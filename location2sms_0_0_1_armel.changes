@@ -1,0 +1,23 @@
+Format: 1.8
+Date: Sat, 16 Jul 2011 01:32:41 +0300
+Source: location2sms
+Binary: location2sms
+Architecture: armel
+Version: 0.0.1
+Distribution: unstable
+Urgency: low
+Maintainer: unknown <>
+Changed-By: unknown <>
+Description: 
+ location2sms - <insert up to 60 chars description>
+Changes: 
+ location2sms (0.0.1) unstable; urgency=low
+ .
+   * Initial Release.
+Checksums-Sha1: 
+ f7506c132699d9c22e65866d1b49edf43f0ad00e 758710 location2sms_0.0.1_armel.deb
+Checksums-Sha256: 
+ 7f04533009ddf5ec47ac0834ecd6b6148807e4436000bbb0027e03d3205d5144 758710 location2sms_0.0.1_armel.deb
+Files: 
+ 3565adb73bb613736eba5c05d2db0ac1 758710 user/other optional location2sms_0.0.1_armel.deb
+Maemo-Display-Name: location2sms
