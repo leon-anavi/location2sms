@@ -17,9 +17,7 @@ AboutWidget::AboutWidget(QWidget *parent) :
         "<i>location<span style=\"color: #006BC2;\">2</span>sms</i> "
         "depends on GPS quality that the device delivers. "
         "Position accuracy of about 20 meters can be expected. "
-        "The application is powered by Google Maps API and requires Internet connection. <br />\n<br />\n"
-        "The application is provided \"as is\" without warranty of any kind. "
-        "Distribution without a permission of the author is forbidden.";
+        "The application is powered by Google Maps API and requires Internet connection. <br />\n<br />\n";
     m_pAboutInfo = new QLabel(sText, this);
     QString sItemsFont = "font-size:";
 #ifdef Q_OS_SYMBIAN
