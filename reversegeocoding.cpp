@@ -32,11 +32,13 @@ void ReverseGeocoding::requestAddressFromCoordinates(qreal nLatitude,
 void ReverseGeocoding::parseAddress()
 {
     qDebug() << "Parsing the address...";
-    QString sAddrAsXml(m_pReverseGeoCoder->downloadedData());
 
-    //TODO: parse XML
-    QDomDocument document;
-    if (false == document.setContent(sAddrAsXml))
+    //QTextStream will detect the UTF-16 or the UTF-32 BOM (Byte Order Mark)
+    //and switch to the appropriate UTF codec when reading.
+
+    QDomDocument document;   
+    if (false == document.setContent(
+                QTextStream(m_pReverseGeoCoder->downloadedData()).readAll()))
     {
         qDebug() << "Bad input data.";
         m_sAddress = "";
