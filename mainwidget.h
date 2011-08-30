@@ -8,7 +8,7 @@
 #include <QSlider>
 #include <QGraphicsView>
 #include <QTimeLine>
-#include <math.h>
+#include <QtCore/qmath.h>
 
 //Qt mobility
 #include <qgeopositioninfo.h>
@@ -192,9 +192,9 @@ private:
       *
       * @return qreal
       */
-    inline qreal round(qreal nNumber, unsigned char nDecimalPoints)
+    inline int round(qreal nNumber, unsigned char nDecimalPoints)
     {
-        return floor(nNumber * pow(10., nDecimalPoints) + .5) / pow(10., nDecimalPoints);
+        return qFloor(nNumber * 10 * nDecimalPoints);
     }
 
 };
