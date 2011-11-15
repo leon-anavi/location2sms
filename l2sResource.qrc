@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/translations">
+        <file>location2sms_bg.qm</file>
+        <file>location2sms_tr.qm</file>
+    </qresource>
+</RCC>
