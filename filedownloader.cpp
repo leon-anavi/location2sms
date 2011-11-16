@@ -25,7 +25,7 @@ FileDownloader::FileDownloader(QObject *parent) :
 
 FileDownloader::~FileDownloader()
 {
-
+    //Nothing to do
 }
 //------------------------------------------------------------------------------
 

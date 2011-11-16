@@ -13,7 +13,7 @@
 <context>
     <name>LanguagesWidget</name>
     <message>
-        <location filename="languageswidget.cpp" line="30"/>
+        <location filename="languageswidget.cpp" line="47"/>
         <source>OK</source>
         <translation>ОК</translation>
     </message>
@@ -21,39 +21,39 @@
 <context>
     <name>MainWidget</name>
     <message>
-        <location filename="mainwidget.cpp" line="438"/>
+        <location filename="mainwidget.cpp" line="450"/>
         <source>Please wait...</source>
         <translation>Моля, изчакайте...</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="248"/>
+        <location filename="mainwidget.cpp" line="261"/>
         <source>Address: </source>
         <translation>Адрес:</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="250"/>
+        <location filename="mainwidget.cpp" line="263"/>
         <source>Latitude: %1 
 Longitude: %2</source>
         <translation>Ширина: %1 
 Дължина: %2</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="280"/>
+        <location filename="mainwidget.cpp" line="293"/>
         <source>Address </source>
         <translation>Адрес </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="297"/>
+        <location filename="mainwidget.cpp" line="310"/>
         <source>Latitude </source>
         <translation>Ширина </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="307"/>
+        <location filename="mainwidget.cpp" line="320"/>
         <source>Longitude </source>
         <translation>Дължина </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="445"/>
+        <location filename="mainwidget.cpp" line="457"/>
         <source>SMS</source>
         <translation>SMS</translation>
     </message>

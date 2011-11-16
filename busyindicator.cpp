@@ -4,6 +4,7 @@
 #include <QPainter>
 #include <QPainterPath>
 #include <QPixmapCache>
+#include <QDebug>
 
 BusyIndicator::BusyIndicator( QDeclarativeItem* parent )
     : QDeclarativeItem( parent ),
@@ -24,6 +25,13 @@ BusyIndicator::BusyIndicator( QDeclarativeItem* parent )
     connect( this, SIGNAL( widthChanged() ), SLOT( updateSpinner() ) );
     connect( this, SIGNAL( heightChanged() ), SLOT( updateSpinner() ) );
 }
+//------------------------------------------------------------------------------
+
+BusyIndicator::~BusyIndicator()
+{
+    //Nothing to do
+}
+//------------------------------------------------------------------------------
 
 void BusyIndicator::setInnerRadius( const qreal& innerRadius )
 {
@@ -33,11 +41,13 @@ void BusyIndicator::setInnerRadius( const qreal& innerRadius )
     updateSpinner();
     emit innerRadiusChanged();
 }
+//------------------------------------------------------------------------------
 
 qreal BusyIndicator::innerRadius() const
 {
     return m_innerRadius;
 }
+//------------------------------------------------------------------------------
 
 void BusyIndicator::setOuterRadius( const qreal& outerRadius )
 {
@@ -47,11 +57,13 @@ void BusyIndicator::setOuterRadius( const qreal& outerRadius )
     updateSpinner();
     emit outerRadiusChanged();
 }
+//------------------------------------------------------------------------------
 
 qreal BusyIndicator::outerRadius() const
 {
     return m_outerRadius;
 }
+//------------------------------------------------------------------------------
 
 void BusyIndicator::setBackgroundColor( const QColor& color )
 {
@@ -61,11 +73,13 @@ void BusyIndicator::setBackgroundColor( const QColor& color )
     updateSpinner();
     emit backgroundColorChanged();
 }
+//------------------------------------------------------------------------------
 
 QColor BusyIndicator::backgroundColor() const
 {
     return m_backgroundColor;
 }
+//------------------------------------------------------------------------------
 
 void BusyIndicator::setForegroundColor( const QColor& color )
 {
@@ -75,21 +89,25 @@ void BusyIndicator::setForegroundColor( const QColor& color )
     updateSpinner();
     emit foregroundColorChanged();
 }
+//------------------------------------------------------------------------------
 
 QColor BusyIndicator::foregroundColor() const
 {
     return m_foregroundColor;
 }
+//------------------------------------------------------------------------------
 
 qreal BusyIndicator::actualInnerRadius() const
 {
     return m_actualInnerRadius;
 }
+//------------------------------------------------------------------------------
 
 qreal BusyIndicator::actualOuterRadius() const
 {
     return m_actualOuterRadius;
 }
+//------------------------------------------------------------------------------
 
 void BusyIndicator::updateSpinner()
 {
@@ -111,6 +129,7 @@ void BusyIndicator::updateSpinner()
     emit actualInnerRadiusChanged();
     emit actualOuterRadiusChanged();
 }
+//------------------------------------------------------------------------------
 
 void BusyIndicator::paint( QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget )
 {
@@ -152,3 +171,4 @@ void BusyIndicator::paint( QPainter* painter, const QStyleOptionGraphicsItem* op
     // Draw pixmap at center of item
     painter->drawPixmap( 0.5 * ( width() - m_size ), 0.5 * ( height() - m_size ), pixmap );
 }
+//------------------------------------------------------------------------------

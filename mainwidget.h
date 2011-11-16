@@ -22,6 +22,7 @@
 #include "menuwidget.h"
 #include "reversegeocoding.h"
 #include "busyindicator.h"
+#include "languageswidget.h"
 
 // QtMobility namespace
 QTM_USE_NAMESPACE
@@ -51,6 +52,9 @@ private:
 
     //about widget
     AboutWidget* m_pAboutWidget;
+
+    //language settings view
+    LanguagesWidget* m_pLangWidget;
 
     QLabel* m_pLabelCoordinates;
 
@@ -122,6 +126,13 @@ private slots:
     void handleAbout();
 
     /**
+      * Show or hide language settings view
+      *
+      * @return nothing
+      */
+    void handleLang();
+
+    /**
       * Rotate spinner
       *
       * @param nValue
@@ -142,6 +153,11 @@ public:
       * @return nothing
       */
     void resizeGUI(bool bPortrait, int bMapWidth, int bMapHeight);
+
+protected:
+
+    //overload from QWidget
+    void changeEvent(QEvent* event);
 
 private:
 
@@ -164,7 +180,7 @@ private:
       *
       * @return nothing
       */
-    void resizeAbout();
+    void resizeAboutAndLang();
 
     /**
       * Adjust visibility of GUI components
@@ -192,11 +208,26 @@ private:
       *
       * @return qreal
       */
-    inline int round(qreal nNumber, unsigned char nDecimalPoints)
+    inline int round(qreal nNumber, unsigned char nDecimalPoints) const
     {
         return qFloor(nNumber * 10 * nDecimalPoints);
     }
 
+    /**
+      * get text for wait
+      *
+      *
+      * @return QString
+      */
+    QString getWaitText() const;
+
+    /**
+      * get text for SMS button
+      *
+      *
+      * @return QString
+      */
+    QString getButtonSMSText() const;
 };
 
 #endif // MAINWIDGET_H

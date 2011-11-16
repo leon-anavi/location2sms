@@ -56,15 +56,19 @@ SOURCES += main.cpp mainwindow.cpp \
     mainwidget.cpp \
     reversegeocoding.cpp \
     filedownloader.cpp \
-    busyindicator.cpp
+    busyindicator.cpp \
+    languageswidget.cpp
 HEADERS += mainwindow.h \
     aboutwidget.h \
     menuwidget.h \
     mainwidget.h \
     reversegeocoding.h \
     filedownloader.h \
-    busyindicator.h
+    busyindicator.h \
+    languageswidget.h
 FORMS += mainwindow.ui
+
+TRANSLATIONS = location2sms_bg.ts location2sms_tr.ts
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)
@@ -84,3 +88,9 @@ OTHER_FILES += \
     qtc_packaging/debian_fremantle/control \
     qtc_packaging/debian_fremantle/compat \
     qtc_packaging/debian_fremantle/changelog
+
+RESOURCES += \
+    l2sResource.qrc
+
+
+

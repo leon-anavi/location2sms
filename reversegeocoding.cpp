@@ -16,6 +16,12 @@ ReverseGeocoding::ReverseGeocoding(QObject *parent) :
 }
 //------------------------------------------------------------------------------
 
+ReverseGeocoding::~ReverseGeocoding()
+{
+    //Nothing to do
+}
+//------------------------------------------------------------------------------
+
 void ReverseGeocoding::requestAddressFromCoordinates(qreal nLatitude,
                                                         qreal nLongitude)
 {

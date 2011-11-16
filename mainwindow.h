@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QtGui/QMainWindow>
+
 #include "mainwidget.h"
 
 namespace Ui {

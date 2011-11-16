@@ -17,6 +17,7 @@ MainWidget::MainWidget(QWidget *parent) :
     m_pLayout(NULL),
     m_pMainMenu(NULL),
     m_pAboutWidget(NULL),
+    m_pLangWidget(NULL),
     m_pLabelCoordinates(NULL),
     m_pButtonSendMessage(NULL),
     m_pWebView(NULL),
@@ -46,13 +47,13 @@ MainWidget::MainWidget(QWidget *parent) :
     sItemsFont += "18pt;";
 #endif
     sItemsFont += "font-weight:bold;color: #FFFFFF;";
-    m_pLabelCoordinates = new QLabel("<span style=\"color: #006BC2;\">Please wait...</span>",this);
+    m_pLabelCoordinates = new QLabel(getWaitText(),this);
     m_pLabelCoordinates->setStyleSheet(sItemsFont);
     m_pLabelCoordinates->setMinimumHeight(50);
     m_pLabelCoordinates->setWordWrap(true);
 
     //button
-    m_pButtonSendMessage = new QPushButton("SMS", this);
+    m_pButtonSendMessage = new QPushButton(getButtonSMSText(), this);
     m_pButtonSendMessage->setMinimumHeight(40);
     QString sButtonBorder = "border-width:0px;border-style:solid;border-radius: 10px 10px / 10px 10px;";
     m_pButtonSendMessage->setStyleSheet(sItemsFont+sStyleBackground+sButtonBorder);
@@ -87,6 +88,7 @@ MainWidget::MainWidget(QWidget *parent) :
     sStyleSlider +=  "border: 0px solid;width: 20px;margin: -2px 0;";
     sStyleSlider +=  "border-radius: 0px; } \n";
     m_pMapZoomSlider->setStyleSheet(sStyleSlider);
+
 
     QGraphicsScene* pScene = new QGraphicsScene(this);
     QBrush brush;
@@ -124,6 +126,20 @@ MainWidget::MainWidget(QWidget *parent) :
     m_pAboutWidget = new AboutWidget(this);
     m_pAboutWidget->hide();
 
+    //languages
+    m_pLangWidget = new LanguagesWidget(this);
+    if (true == m_pLangWidget->isAppStartedForFirstTime())
+    {
+        //Make sure that lang selection view will not be shown next time
+        m_pLangWidget->setIsAppStartedForFirstTime(false);
+        //Show screen for language selection at start-up
+        m_pLangWidget->show();
+    }
+    else
+    {
+        m_pLangWidget->hide();
+    }
+
     m_pMessageManager = new QMessageService(this);
 
     m_pReverseGeoCoder = new ReverseGeocoding(this);
@@ -138,10 +154,16 @@ MainWidget::MainWidget(QWidget *parent) :
     connect(m_pReverseGeoCoder, SIGNAL(addressRetrieved()), this, SLOT(loadAddress()));
     // Handle help
     connect(m_pMainMenu, SIGNAL(showHelp()),this, SLOT(handleAbout()));
+    //handle languages
+    connect(m_pMainMenu, SIGNAL(showLang()),this, SLOT(handleLang()));
+
     connect(m_pAboutWidget, SIGNAL(aboutClosed()),this, SLOT(handleAbout()));
     connect(m_pTimeLine, SIGNAL(frameChanged(int)), this, SLOT(rotateSpinner(int)));
 
     startLocationAPI();
+
+    //Now when everything is constructed load languages
+    m_pLangWidget->loadLanguageSettings();
 }
 //------------------------------------------------------------------------------
 
@@ -227,7 +249,7 @@ void MainWidget::positionUpdated(QGeoPositionInfo geoPositionInfo)
 //------------------------------------------------------------------------------
 
 void MainWidget::handleSendButton()
-{
+{   
     qDebug() << "SMS button pressed.";
     QMessage message;
     message.setType(QMessage::Sms);
@@ -236,9 +258,9 @@ void MainWidget::handleSendButton()
         QString sLocation;
         if (0 < m_pReverseGeoCoder->getAddress().length())
         {
-            sLocation += "Address: " + m_pReverseGeoCoder->getAddress() + "\n";
+            sLocation += tr("Address: ") + m_pReverseGeoCoder->getAddress() + "\n";
         }
-        sLocation += QString("Latitude: %1 \nLongitude: %2").
+        sLocation += QString(tr("Latitude: %1 \nLongitude: %2")).
                                             arg(m_nLatitude).arg(m_nLongitude);
         message.setBody(sLocation);
     }
@@ -268,7 +290,7 @@ void MainWidget::loadAddress()
     QString sAddr = m_pReverseGeoCoder->getAddress();
     if (0 < sAddr.length())
     {
-        sText += "Address ";
+        sText += tr("Address ");
         if (m_bPortrait)
         {
             sText += "<br />\n";
@@ -285,7 +307,7 @@ QString MainWidget::getCoordinatesAsText() const
     {
         return "";
     }
-    QString sText = "Latitude ";
+    QString sText = tr("Latitude ");
     if (m_bPortrait)
     {
         sText += "<br />\n";
@@ -295,7 +317,7 @@ QString MainWidget::getCoordinatesAsText() const
     {
         sText += "<br />\n";
     }
-    sText += "Longitude ";
+    sText += tr("Longitude ");
     if (m_bPortrait)
     {
         sText += "<br />\n";
@@ -317,15 +339,36 @@ void MainWidget::handleAbout()
     }
     else
     {
+        //make sure that the Language settings view is hidden
+        m_pAboutWidget->hide();
         m_pAboutWidget->show();
     }
 
 }
 //------------------------------------------------------------------------------
 
+void MainWidget::handleLang()
+{
+    if (NULL == m_pLangWidget)
+    {
+        return;
+    }
+    if (m_pLangWidget->isVisible())
+    {
+        m_pLangWidget->hide();
+    }
+    else
+    {
+        //make sure that the About view is hidden
+        m_pAboutWidget->hide();
+        m_pLangWidget->show();
+    }
+}
+//------------------------------------------------------------------------------
+
 void MainWidget::resizeGUI(bool bPortrait, int nMapWidth, int nMapHeight)
 {
-    resizeAbout();
+    resizeAboutAndLang();
     m_bPortrait = bPortrait;
     m_nMapWidth = nMapWidth;
     m_nMapHeight = nMapHeight;
@@ -340,13 +383,16 @@ void MainWidget::resizeGUI(bool bPortrait, int nMapWidth, int nMapHeight)
 }
 //------------------------------------------------------------------------------
 
-void MainWidget::resizeAbout()
+void MainWidget::resizeAboutAndLang()
 {
     QRect Screen = QApplication::desktop()->screenGeometry();
     int nSpace = 20;
     int nPosY = m_pMainMenu->height() + nSpace;
-    m_pAboutWidget->setGeometry(nSpace, nPosY, Screen.width()-2*nSpace,
-                                Screen.height()-nPosY-nSpace);
+    int nWidth = Screen.width()-2*nSpace;
+    int nHeight = Screen.height()-2*nPosY-3*nSpace;
+    m_pAboutWidget->setGeometry(nSpace, nPosY, nWidth, nHeight);
+
+    m_pLangWidget->setGeometry(nSpace, nPosY, nWidth, nHeight);
 }
 //------------------------------------------------------------------------------
 
@@ -381,7 +427,36 @@ void MainWidget::loading(bool bStart)
         m_pLabelCoordinates->setAlignment(Qt::AlignLeft);
         m_pLayout->removeWidget(m_pLoadingView);
     }
-
 }
 //------------------------------------------------------------------------------
+
+void MainWidget::changeEvent(QEvent* event)
+{
+    if (QEvent::LanguageChange == event->type())
+    {
+        //translate
+        m_pLabelCoordinates->setText(getWaitText());
+
+        m_pButtonSendMessage->setText(getButtonSMSText());
+
+        loadAddress();
+    }
+    QWidget::changeEvent(event);
+}
+//------------------------------------------------------------------------------
+
+QString MainWidget::getWaitText() const
+{
+    QString sWait = tr("Please wait...");
+    return "<span style=\"color: #006BC2;\">"+sWait+"</span>";
+}
+//------------------------------------------------------------------------------
+
+QString MainWidget::getButtonSMSText() const
+{
+    return tr("SMS");
+}
+//------------------------------------------------------------------------------
+
+
 

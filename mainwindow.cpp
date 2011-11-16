@@ -15,15 +15,18 @@ MainWindow::MainWindow(QWidget *parent)
     setPalette(Pal);
 
     m_pMainWidget = new MainWidget(this);
+
     m_pMainWidget->show();
 
     resizeGui();
 }
+//------------------------------------------------------------------------------
 
 MainWindow::~MainWindow()
 {
-
+    //Nothing to do
 }
+//------------------------------------------------------------------------------
 
 void MainWindow::setOrientation(ScreenOrientation orientation)
 {
@@ -78,6 +81,7 @@ void MainWindow::showExpanded()
     show();
 #endif
 }
+//------------------------------------------------------------------------------
 
 void MainWindow::resizeGui()
 {

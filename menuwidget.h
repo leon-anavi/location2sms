@@ -12,13 +12,19 @@ class MenuWidget : public QWidget
 public:
     explicit MenuWidget(QWidget *parent = 0);
 
+    virtual ~MenuWidget();
+
 signals:
 
     void showHelp();
 
+    void showLang();
+
 private slots:
 
     void handleHelp();
+
+    void handleLang();
 
     void handleExit();
 
@@ -29,13 +35,15 @@ private:
 private:
 
     //controls
-    QHBoxLayout* m_pControlBar;
-
     QLabel* m_pControlLabel;
+
+    QPushButton* m_pControlLang;
 
     QPushButton* m_pControlHelp;
 
     QPushButton* m_pControlExit;
+
+    QHBoxLayout* m_pControlBar;
 
 };
 

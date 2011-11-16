@@ -16,6 +16,8 @@ class BusyIndicator : public QDeclarativeItem
 public:
     explicit BusyIndicator( QDeclarativeItem* parent = 0 );
 
+    virtual ~BusyIndicator();
+
     void setInnerRadius( const qreal& innerRadius );
     qreal innerRadius() const;
 

@@ -19,6 +19,8 @@ private:
 public:
     explicit ReverseGeocoding(QObject *parent = 0);
 
+    virtual ~ReverseGeocoding();
+
     /**
       * Reverse geocoding
       *

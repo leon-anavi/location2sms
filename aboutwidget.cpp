@@ -9,16 +9,7 @@ AboutWidget::AboutWidget(QWidget *parent) :
     m_pAboutWidgetLayout(NULL),
     m_pAboutInfo(NULL)
 {
-    QString sText = "<h2><i>location<span style=\"color: #006BC2;\">2</span>sms</i></h2>\n";
-    sText += "version 1.0.0<br />\n";
-    sText += QChar(0x00A9);
-    sText += " 2011 Leon Anavi<br />\n"
-        "http://anavi.org/<br />\n<br />\n"
-        "<i>location<span style=\"color: #006BC2;\">2</span>sms</i> "
-        "depends on GPS quality that the device delivers. "
-        "Position accuracy of about 20 meters can be expected. "
-        "The application is powered by Google Maps API and requires Internet connection. <br />\n<br />\n";
-    m_pAboutInfo = new QLabel(sText, this);
+    m_pAboutInfo = new QLabel(getInfoText(), this);
     QString sItemsFont = "font-size:";
 #ifdef Q_OS_SYMBIAN
     sItemsFont += "7pt;";
@@ -37,15 +28,15 @@ AboutWidget::AboutWidget(QWidget *parent) :
 
 AboutWidget::~AboutWidget()
 {
-
+    //Nothing to do
 }
 //------------------------------------------------------------------------------
 
 void AboutWidget::paintEvent(QPaintEvent* /*event*/)
 {
-  QColor backgroundColor(32,32,32,220);
-  QPainter customPainter(this);
-  customPainter.fillRect(rect(),backgroundColor);
+    QColor backgroundColor(32,32,32,220);
+    QPainter customPainter(this);
+    customPainter.fillRect(rect(),backgroundColor);
 }
 //------------------------------------------------------------------------------
 
@@ -55,3 +46,32 @@ void AboutWidget::mousePressEvent(QMouseEvent* /*event*/)
     hide();
 }
 //------------------------------------------------------------------------------
+
+void AboutWidget::changeEvent(QEvent* event)
+{
+    if (QEvent::LanguageChange == event->type())
+    {
+        //translate
+        m_pAboutInfo->setText(getInfoText());
+    }
+    QWidget::changeEvent(event);
+}
+//------------------------------------------------------------------------------
+
+QString AboutWidget::getInfoText() const
+{
+    QString sText = "<h2><i>location<span style=\"color: #006BC2;\">2</span>sms</i></h2>\n";
+    sText += "version 2.0.0<br />\n";
+    sText += QChar(0x00A9);
+    sText += " 2011 Leon Anavi<br />\n"
+        "http://anavi.org/<br />\n<br />\n";
+    sText += tr("This is an open source application available under GPLv3 licence at Gitorious: https://gitorious.org/location2sms. "
+        "The application depends on GPS quality that the device delivers. "
+        "It is powered by Google Maps API and requires Internet connection."
+        "Position accuracy of about 20 meters can be expected. ");
+    sText += "<br />\n<br />\n";
+    return sText;
+}
+//------------------------------------------------------------------------------
+
+

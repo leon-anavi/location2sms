@@ -1,6 +1,9 @@
 #include <QPainter>
 #include <QDebug>
 #include <QApplication>
+#include <QDebug>
+#include <QSettings>
+#include <QFile>
 
 #include "languageswidget.h"
 
@@ -8,8 +11,24 @@ LanguagesWidget::LanguagesWidget(QWidget *parent) :
     QWidget(parent),
     m_pLangWidgetLayout(NULL),
     m_pLangList(NULL),
-    m_pLangSelect(NULL)
+    m_pLangSelect(NULL),
+    m_bIsAppStartedForFirstTime(true),
+    m_nSelectedLanguage(0)
 {
+
+#ifdef Q_OS_SYMBIAN
+    m_sSettingsFile = QApplication::applicationDirPath();
+#else
+    m_sSettingsFile ="/home/user";
+#endif
+
+    m_sSettingsFile += "/location2sms.ini";
+
+    //load settings and eventually language
+    loadSettings();
+
+    qDebug() << "Settings file: " << m_sSettingsFile;
+
     QString sStyleBackground = "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4c4c4c, stop: 0.5 #333333, stop: 1 #202020);";
     QString sItemsFont = "font-size: ";
 #ifdef Q_OS_SYMBIAN
@@ -24,8 +43,6 @@ LanguagesWidget::LanguagesWidget(QWidget *parent) :
     new QListWidgetItem(QString::fromUtf8("Български"), m_pLangList);
     new QListWidgetItem(QString::fromUtf8("Türkçe"), m_pLangList);
     m_pLangList->setStyleSheet("background-color: transparent;"+sItemsFont);
-
-    m_pLangList->setCurrentRow(0);
 
     m_pLangSelect = new QPushButton(tr("OK"), this);
     QString sButtonBorder = "border-width:0px;border-style:solid;border-radius: 10px 10px / 10px 10px;";
@@ -42,20 +59,33 @@ LanguagesWidget::LanguagesWidget(QWidget *parent) :
 }
 //------------------------------------------------------------------------------
 
+LanguagesWidget::~LanguagesWidget()
+{
+    saveSettings();
+}
+//------------------------------------------------------------------------------
+
 void LanguagesWidget::paintEvent(QPaintEvent* /*event*/)
 {
-  QColor backgroundColor(32,32,32,220);
-  QPainter customPainter(this);
-  customPainter.fillRect(rect(),backgroundColor);
+    QColor backgroundColor(32,32,32,220);
+    QPainter customPainter(this);
+    customPainter.fillRect(rect(),backgroundColor);
 }
 //------------------------------------------------------------------------------
 
 void LanguagesWidget::selectLang()
 {
-    //get selected row
-    int nSelected = m_pLangList->currentRow();
+    m_nSelectedLanguage = m_pLangList->currentRow();
+    loadSelectedLanguage();
+    //hide this view
+    hide();
+}
+//------------------------------------------------------------------------------
+
+void LanguagesWidget::loadSelectedLanguage()
+{
     //change language
-    switch (nSelected)
+    switch (m_nSelectedLanguage)
     {
         case 1:
             //Bulgarian
@@ -70,8 +100,6 @@ void LanguagesWidget::selectLang()
             loadEnglish();
         break;
     }
-    //hide this view
-    hide();
 }
 //------------------------------------------------------------------------------
 
@@ -112,5 +140,56 @@ void LanguagesWidget::loadTurkish()
 }
 //------------------------------------------------------------------------------
 
+bool LanguagesWidget::isAppStartedForFirstTime() const
+{
+    return m_bIsAppStartedForFirstTime;
+}
+//------------------------------------------------------------------------------
 
+void LanguagesWidget::setIsAppStartedForFirstTime(bool bIsFirstTime)
+{
+    m_bIsAppStartedForFirstTime = bIsFirstTime;
+}
+//------------------------------------------------------------------------------
+
+void LanguagesWidget::loadSettings()
+{
+    //check if file exists
+    QFile settingsFile(m_sSettingsFile);
+    if (false == settingsFile.exists())
+    {
+        return;
+    }
+    QSettings settings(m_sSettingsFile, QSettings::NativeFormat);
+    m_bIsAppStartedForFirstTime =
+                         settings.value("IsAppStartedForFirstTime").toBool();
+    m_nSelectedLanguage = settings.value("SelectedLanguage").toInt();
+}
+//------------------------------------------------------------------------------
+
+void LanguagesWidget::saveSettings()
+{
+    QSettings settings(m_sSettingsFile, QSettings::NativeFormat);
+    qDebug() << "Save: IsAppStartedForFirstTime=" << m_bIsAppStartedForFirstTime;
+    settings.setValue("IsAppStartedForFirstTime", m_bIsAppStartedForFirstTime);
+    settings.setValue("SelectedLanguage", m_nSelectedLanguage);
+}
+//------------------------------------------------------------------------------
+
+void LanguagesWidget::loadLanguageSettings()
+{
+    m_pLangList->setCurrentRow(m_nSelectedLanguage);
+    //by default language is English so there is no need to reload it
+    if (0 != m_nSelectedLanguage)
+    {
+        loadSelectedLanguage();
+    }
+
+    //Make sure that lang selection view will not be shown next time
+    if (true == m_bIsAppStartedForFirstTime)
+    {
+        m_bIsAppStartedForFirstTime = false;
+    }
+}
+//------------------------------------------------------------------------------
 

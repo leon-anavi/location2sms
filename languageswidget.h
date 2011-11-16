@@ -13,6 +13,31 @@ class LanguagesWidget : public QWidget
 public:
     explicit LanguagesWidget(QWidget *parent = 0);
 
+    virtual ~LanguagesWidget();
+
+    /**
+      * Is application started for first time
+      *
+      * @return bool
+      */
+    bool isAppStartedForFirstTime() const;
+
+    /**
+      * set if the application is started for first time or not
+      *
+      * @param bIsFirstTime
+      *
+      * @return noting
+      */
+    void setIsAppStartedForFirstTime(bool bIsFirstTime);
+
+    /**
+      * Read settings and load appropriate language
+      *
+      * @return nothing
+      */
+    void loadLanguageSettings();
+
 protected:
 
     //overload from QWidget
@@ -38,6 +63,12 @@ private:
 
     QTranslator m_Translator;
 
+    QString m_sSettingsFile;
+
+    bool m_bIsAppStartedForFirstTime;
+
+    int m_nSelectedLanguage;
+
 private:
 
     void loadBulgarian();
@@ -45,6 +76,12 @@ private:
     void loadEnglish();
 
     void loadTurkish();
+
+    void loadSettings();
+
+    void saveSettings();
+
+    void loadSelectedLanguage();
 
 };
 

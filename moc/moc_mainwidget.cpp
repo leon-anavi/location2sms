@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwidget.h'
 **
-** Created: Fri Jul 29 21:36:23 2011
+** Created: Thu Nov 17 00:12:55 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWidget[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -36,7 +36,8 @@ static const uint qt_meta_data_MainWidget[] = {
       81,   11,   11,   11, 0x08,
       91,   11,   11,   11, 0x08,
      105,   11,   11,   11, 0x08,
-     126,  119,   11,   11, 0x08,
+     119,   11,   11,   11, 0x08,
+     139,  132,   11,   11, 0x08,
 
        0        // eod
 };
@@ -45,7 +46,8 @@ static const char qt_meta_stringdata_MainWidget[] = {
     "MainWidget\0\0geoPositionInfo\0"
     "positionUpdated(QGeoPositionInfo)\0"
     "handleSendButton()\0loadMap()\0loadAddress()\0"
-    "handleAbout()\0nValue\0rotateSpinner(int)\0"
+    "handleAbout()\0handleLang()\0nValue\0"
+    "rotateSpinner(int)\0"
 };
 
 const QMetaObject MainWidget::staticMetaObject = {
@@ -82,10 +84,11 @@ int MainWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 2: loadMap(); break;
         case 3: loadAddress(); break;
         case 4: handleAbout(); break;
-        case 5: rotateSpinner((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 5: handleLang(); break;
+        case 6: rotateSpinner((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
-        _id -= 6;
+        _id -= 7;
     }
     return _id;
 }

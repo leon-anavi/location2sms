@@ -22,6 +22,13 @@ protected:
     //overload from QWidget
     void mousePressEvent(QMouseEvent* event);
 
+    //overload from QWidget
+    void changeEvent(QEvent* event);
+
+private:
+
+    QString getInfoText() const;
+
 signals:
 
     void aboutClosed();
