@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'busyindicator.h'
 **
-** Created: Sat Nov 19 12:12:46 2011
+** Created: Wed Nov 23 09:23:13 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
