@@ -33,7 +33,7 @@ symbian:
                             ReadDeviceData \
                             WriteDeviceData
 
-    packageheader = "$${LITERAL_HASH}{\"location2sms\"}, ($${TARGET.UID3}), 1, 0, 0"
+    packageheader = "$${LITERAL_HASH}{\"location2sms\"}, ($${TARGET.UID3}), 2, 0, 0"
     name_deployment.pkg_prerules = packageheader
     DEPLOYMENT += name_deployment
 

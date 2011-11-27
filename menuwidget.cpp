@@ -35,6 +35,7 @@ void MenuWidget::initGui()
     QString sFontStyleTop = "font-size: ";
 #ifdef Q_OS_SYMBIAN
     sFontStyleTop += "8pt;";
+    nMinWidth = 60;
 #else
     sFontStyleTop += "20pt;";
 #endif
