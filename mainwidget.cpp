@@ -389,7 +389,7 @@ void MainWidget::resizeAboutAndLang()
     int nSpace = 20;
     int nPosY = m_pMainMenu->height() + nSpace;
     int nWidth = Screen.width()-2*nSpace;
-    int nHeight = Screen.height()-2*nPosY-3*nSpace;
+    int nHeight = Screen.height()-2*nPosY-2*nSpace;
     m_pAboutWidget->setGeometry(nSpace, nPosY, nWidth, nHeight);
 
     m_pLangWidget->setGeometry(nSpace, nPosY, nWidth, nHeight);

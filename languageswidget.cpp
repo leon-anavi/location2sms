@@ -42,6 +42,8 @@ LanguagesWidget::LanguagesWidget(QWidget *parent) :
     new QListWidgetItem("English", m_pLangList);
     new QListWidgetItem(QString::fromUtf8("Български"), m_pLangList);
     new QListWidgetItem(QString::fromUtf8("Türkçe"), m_pLangList);
+    new QListWidgetItem(QString::fromUtf8("Deutsch"), m_pLangList);
+    new QListWidgetItem(QString::fromUtf8("Română"), m_pLangList);
     m_pLangList->setStyleSheet("background-color: transparent;"+sItemsFont);
 
     m_pLangSelect = new QPushButton(tr("OK"), this);
@@ -95,6 +97,12 @@ void LanguagesWidget::loadSelectedLanguage()
             //Turkish
             loadTurkish();
         break;
+        case 3:
+            loadGerman();
+        break;
+        case 4:
+            loadRomanian();
+        break;
         default:
             //English
             loadEnglish();
@@ -134,6 +142,36 @@ void LanguagesWidget::loadTurkish()
     else
     {
         qDebug() << "Unable to load Turkish translation.";
+    }
+
+    qApp->installTranslator(&m_Translator);
+}
+//------------------------------------------------------------------------------
+
+void LanguagesWidget::loadGerman()
+{
+    if (m_Translator.load(":/translations/location2sms_de"))
+    {
+        qDebug() << "German translation loaded.";
+    }
+    else
+    {
+        qDebug() << "Unable to load German translation.";
+    }
+
+    qApp->installTranslator(&m_Translator);
+}
+//------------------------------------------------------------------------------
+
+void LanguagesWidget::loadRomanian()
+{
+    if (m_Translator.load(":/translations/location2sms_ro"))
+    {
+        qDebug() << "Romanian translation loaded.";
+    }
+    else
+    {
+        qDebug() << "Unable to load Romanian translation.";
     }
 
     qApp->installTranslator(&m_Translator);

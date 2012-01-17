@@ -1,8 +1,8 @@
 Package: location2sms
-Version: 2.0.0
+Version: 2.1.0
 Architecture: armel
 Maintainer: unknown <>
-Installed-Size: 109
+Installed-Size: 121
 Depends: libc6 (>= 2.4), libgcc1 (>= 1:4.1.1), libqt4-declarative (>= 4.7.4~git20110517), libqt4-network (>= 4.7.4~git20110517), libqt4-xml (>= 4.7.4~git20110517), libqtcore4 (>= 4.7.4~git20110517), libqtgui4 (>= 4.7.4~git20110517), libqtm-location (>= 1.2.1+193+0m6), libqtm-messaging (>= 1.2.1+193+0m6), libqtwebkit4, libstdc++6 (>= 4.4.0)
 Section: user/other
 Priority: optional

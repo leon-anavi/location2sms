@@ -1,9 +1,9 @@
 Format: 1.8
-Date: Thu, 17 Nov 2011 00:45:28 +0200
+Date: Wed, 18 Jan 2012 00:20:26 +0200
 Source: location2sms
 Binary: location2sms
 Architecture: armel
-Version: 2.0.0
+Version: 2.1.0
 Distribution: unstable
 Urgency: low
 Maintainer: unknown <>
@@ -11,13 +11,13 @@ Changed-By: unknown <>
 Description: 
  location2sms - Retrieve location and send it as SMS with a single click.
 Changes: 
- location2sms (2.0.0) unstable; urgency=low
+ location2sms (2.1.0) unstable; urgency=low
  .
    * <Add change description here>
 Checksums-Sha1: 
- 3ef7714be6d19783e82740d80894a94b8011549e 52118 location2sms_2.0.0_armel.deb
+ 5d986ba7ba95f82775f34e596993ce58e4ab1a5d 53574 location2sms_2.1.0_armel.deb
 Checksums-Sha256: 
- 9964d94f83b5863722e74b1f1b8ab3d5e775313c696c5d06e79e955d71289109 52118 location2sms_2.0.0_armel.deb
+ 448015152eb2304b84bb3b27a2ca4d8980c25bd7aaf75bc54e3b0882c413e293 53574 location2sms_2.1.0_armel.deb
 Files: 
- 66f95646928808c579fde083a68170bd 52118 user/other optional location2sms_2.0.0_armel.deb
+ 50ba87d2b2364668175e66051d827755 53574 user/other optional location2sms_2.1.0_armel.deb
 Maemo-Display-Name: location2sms

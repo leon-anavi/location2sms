@@ -61,9 +61,9 @@ void AboutWidget::changeEvent(QEvent* event)
 QString AboutWidget::getInfoText() const
 {
     QString sText = "<h2><i>location<span style=\"color: #006BC2;\">2</span>sms</i></h2>\n";
-    sText += "version 2.0.0<br />\n";
+    sText += "2.1.0<br />\n";
     sText += QChar(0x00A9);
-    sText += " 2011 Leon Anavi<br />\n"
+    sText += " 2011-2012 Leon Anavi<br />\n"
         "http://anavi.org/<br />\n<br />\n";
     sText += tr("This is an open source application available under GPLv3 licence at Gitorious: https://gitorious.org/location2sms. "
         "The application depends on GPS quality that the device delivers. "

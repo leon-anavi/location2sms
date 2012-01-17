@@ -68,7 +68,7 @@ HEADERS += mainwindow.h \
     languageswidget.h
 FORMS += mainwindow.ui
 
-TRANSLATIONS = location2sms_bg.ts location2sms_tr.ts
+TRANSLATIONS = location2sms_bg.ts location2sms_tr.ts location2sms_de.ts location2sms_ro.ts
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)

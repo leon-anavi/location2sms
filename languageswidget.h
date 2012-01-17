@@ -77,6 +77,10 @@ private:
 
     void loadTurkish();
 
+    void loadGerman();
+
+    void loadRomanian();
+
     void loadSettings();
 
     void saveSettings();
