@@ -1,15 +1,15 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'filedownloader.h'
+** Meta object code from reading C++ file 'languageswidget.h'
 **
-** Created: Sun 29. Apr 12:49:08 2012
+** Created: Sun 29. Apr 12:49:11 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../filedownloader.h"
+#include "../languageswidget.h"
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'filedownloader.h' doesn't include <QObject>."
+#error "The header file 'languageswidget.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 62
 #error "This file was generated using the moc from 4.7.4. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -17,7 +17,7 @@
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-static const uint qt_meta_data_FileDownloader[] = {
+static const uint qt_meta_data_LanguagesWidget[] = {
 
  // content:
        5,       // revision
@@ -31,50 +31,50 @@ static const uint qt_meta_data_FileDownloader[] = {
        1,       // signalCount
 
  // signals: signature, parameters, type, tag, flags
-      16,   15,   15,   15, 0x05,
+      17,   16,   16,   16, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      36,   29,   15,   15, 0x08,
+      30,   16,   16,   16, 0x08,
 
        0        // eod
 };
 
-static const char qt_meta_stringdata_FileDownloader[] = {
-    "FileDownloader\0\0downloaded()\0pReply\0"
-    "fileDownloaded(QNetworkReply*)\0"
+static const char qt_meta_stringdata_LanguagesWidget[] = {
+    "LanguagesWidget\0\0langClosed()\0"
+    "selectLang()\0"
 };
 
-const QMetaObject FileDownloader::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_FileDownloader,
-      qt_meta_data_FileDownloader, 0 }
+const QMetaObject LanguagesWidget::staticMetaObject = {
+    { &QWidget::staticMetaObject, qt_meta_stringdata_LanguagesWidget,
+      qt_meta_data_LanguagesWidget, 0 }
 };
 
 #ifdef Q_NO_DATA_RELOCATION
-const QMetaObject &FileDownloader::getStaticMetaObject() { return staticMetaObject; }
+const QMetaObject &LanguagesWidget::getStaticMetaObject() { return staticMetaObject; }
 #endif //Q_NO_DATA_RELOCATION
 
-const QMetaObject *FileDownloader::metaObject() const
+const QMetaObject *LanguagesWidget::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
 }
 
-void *FileDownloader::qt_metacast(const char *_clname)
+void *LanguagesWidget::qt_metacast(const char *_clname)
 {
     if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_FileDownloader))
-        return static_cast<void*>(const_cast< FileDownloader*>(this));
-    return QObject::qt_metacast(_clname);
+    if (!strcmp(_clname, qt_meta_stringdata_LanguagesWidget))
+        return static_cast<void*>(const_cast< LanguagesWidget*>(this));
+    return QWidget::qt_metacast(_clname);
 }
 
-int FileDownloader::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int LanguagesWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QObject::qt_metacall(_c, _id, _a);
+    _id = QWidget::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: downloaded(); break;
-        case 1: fileDownloaded((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
+        case 0: langClosed(); break;
+        case 1: selectLang(); break;
         default: ;
         }
         _id -= 2;
@@ -83,7 +83,7 @@ int FileDownloader::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void FileDownloader::downloaded()
+void LanguagesWidget::langClosed()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, 0);
 }

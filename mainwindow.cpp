@@ -68,6 +68,7 @@ void MainWindow::setOrientation(ScreenOrientation orientation)
         break;
 #endif // QT_VERSION < 0x040702
     };
+
     setAttribute(attribute, true);
 }
 
@@ -78,7 +79,7 @@ void MainWindow::showExpanded()
 #elif defined(Q_WS_MAEMO_5)
     showMaximized();
 #else
-    show();
+    showFullScreen();
 #endif
 }
 //------------------------------------------------------------------------------
@@ -87,9 +88,6 @@ void MainWindow::resizeGui()
 {
     QRect Screen = QApplication::desktop()->screenGeometry();
     int nHeight = Screen.height();
- #ifndef Q_OS_SYMBIAN
-    nHeight -= 100;
- #endif
     m_pMainWidget->setGeometry(0,0, Screen.width(), nHeight );
     bool bPortraint = false;
     //limited to 640px by Google Maps API

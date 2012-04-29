@@ -1,0 +1,23 @@
+Format: 1.8
+Date: Sun, 29 Apr 2012 12:40:30 +0300
+Source: location2sms
+Binary: location2sms
+Architecture: armel
+Version: 2.1.1
+Distribution: stable
+Urgency: low
+Maintainer: unknown <>
+Changed-By: unknown <>
+Description: 
+ location2sms - Retrieve location and send it as SMS with a single click.
+Changes: 
+ location2sms (2.1.1) stable; urgency=low
+ .
+   * MeeGo toolbar removed
+Checksums-Sha1: 
+ b4a874cab15aed02285d9b6c10e376e90b5cf444 53688 location2sms_2.1.1_armel.deb
+Checksums-Sha256: 
+ 609805f7b71d7bf55c54c48a9981a68cd66e57fe8160f140df928ed10414a2ae 53688 location2sms_2.1.1_armel.deb
+Files: 
+ 7495e6ba9cb5fb23076bc4234da29535 53688 user/other optional location2sms_2.1.1_armel.deb
+Maemo-Display-Name: location2sms
