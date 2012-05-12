@@ -237,6 +237,10 @@ void MainWidget::positionUpdated(QGeoPositionInfo geoPositionInfo)
 
             loadMap();
 
+            //TODO: generate Map URL with default zoom
+
+            //TODO: obtain short URL
+
             loading(false);
         }
         else

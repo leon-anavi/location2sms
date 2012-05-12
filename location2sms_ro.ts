@@ -12,7 +12,7 @@
 <context>
     <name>LanguagesWidget</name>
     <message>
-        <location filename="languageswidget.cpp" line="47"/>
+        <location filename="languageswidget.cpp" line="49"/>
         <source>OK</source>
         <translation>ОК</translation>
     </message>
@@ -20,39 +20,39 @@
 <context>
     <name>MainWidget</name>
     <message>
-        <location filename="mainwidget.cpp" line="261"/>
+        <location filename="mainwidget.cpp" line="265"/>
         <source>Address: </source>
         <translation>Adresa: </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="263"/>
+        <location filename="mainwidget.cpp" line="267"/>
         <source>Latitude: %1 
 Longitude: %2</source>
-        <translation>Latitude: %1 
-Longitude: %2</translation>
+        <translation>Latitudine: %1 
+Longitudine: %2</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="293"/>
+        <location filename="mainwidget.cpp" line="297"/>
         <source>Address </source>
         <translation>Adresă </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="310"/>
+        <location filename="mainwidget.cpp" line="314"/>
         <source>Latitude </source>
         <translation>Latitudine </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="320"/>
+        <location filename="mainwidget.cpp" line="324"/>
         <source>Longitude </source>
         <translation>Longitudine </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="450"/>
+        <location filename="mainwidget.cpp" line="454"/>
         <source>Please wait...</source>
         <translation>Așteptați...</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="457"/>
+        <location filename="mainwidget.cpp" line="461"/>
         <source>SMS</source>
         <translation>SMS</translation>
     </message>

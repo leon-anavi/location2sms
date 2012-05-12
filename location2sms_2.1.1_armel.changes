@@ -15,9 +15,9 @@ Changes:
  .
    * MeeGo toolbar removed
 Checksums-Sha1: 
- b4a874cab15aed02285d9b6c10e376e90b5cf444 53688 location2sms_2.1.1_armel.deb
+ d0314f9fde13b6f4a7c79cada0ba25f60ff59d47 53704 location2sms_2.1.1_armel.deb
 Checksums-Sha256: 
- 609805f7b71d7bf55c54c48a9981a68cd66e57fe8160f140df928ed10414a2ae 53688 location2sms_2.1.1_armel.deb
+ e5833f4254f039736341749bd710c43f1a8bb462bc0ff382b623423cddcdf097 53704 location2sms_2.1.1_armel.deb
 Files: 
- 7495e6ba9cb5fb23076bc4234da29535 53688 user/other optional location2sms_2.1.1_armel.deb
+ 4a1e47ebfa27f089ea1bbebee96a7418 53704 user/other optional location2sms_2.1.1_armel.deb
 Maemo-Display-Name: location2sms
