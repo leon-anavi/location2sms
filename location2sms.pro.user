@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.4.1, 2012-05-12T09:48:41. -->
+<!-- Written by Qt Creator 2.4.1, 2012-05-12T15:30:24. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
-  <value type="int">0</value>
+  <value type="int">1</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.EditorSettings</variable>
@@ -175,14 +175,17 @@
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedFiles">
        <value type="QString">C:/gitorious/location2sms/location2sms_2.1.0_armel.deb</value>
        <value type="QString">C:/gitorious/location2sms/location2sms_2.1.1_armel.deb</value>
+       <value type="QString">C:/gitorious/location2sms/location2sms_2.1.1_armel.deb</value>
        <value type="QString">C:/gitorious/location2sms/location2sms_2.0.0_armel.deb</value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedHosts">
        <value type="QString">192.168.4.102</value>
        <value type="QString">192.168.4.102</value>
+       <value type="QString">192.168.4.103</value>
        <value type="QString">192.168.4.102</value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedRemotePaths">
+       <value type="QString"></value>
        <value type="QString"></value>
        <value type="QString"></value>
        <value type="QString"></value>
@@ -190,6 +193,7 @@
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedTimes">
        <value type="QDateTime">2012-04-29T12:11:08</value>
        <value type="QDateTime">2012-04-29T12:53:06</value>
+       <value type="QDateTime">2012-05-12T15:27:55</value>
        <value type="QDateTime">2012-01-18T00:17:36</value>
       </valuelist>
      </valuemap>
@@ -703,10 +707,10 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Create SIS Package</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.S60SignBuildStep</value>
-      <value type="QString" key="Qt4ProjectManager.S60CreatePackageStep.Certificate">C:/gitorious/location2sms/certificate_v1.cer</value>
-      <value type="QString" key="Qt4ProjectManager.S60CreatePackageStep.Keyfile">C:/gitorious/location2sms/developercertificate.key</value>
-      <value type="int" key="Qt4ProjectManager.S60CreatePackageStep.SignMode">2</value>
-      <value type="bool" key="Qt4ProjectManager.S60CreatorPackageStep.SmartInstaller">true</value>
+      <value type="QString" key="Qt4ProjectManager.S60CreatePackageStep.Certificate">C:/Symbian/QtCreator/location2sms/certificate_v1.cer</value>
+      <value type="QString" key="Qt4ProjectManager.S60CreatePackageStep.Keyfile">C:/Symbian/QtCreator/location2sms/trustsymbian.p12.key</value>
+      <value type="int" key="Qt4ProjectManager.S60CreatePackageStep.SignMode">1</value>
+      <value type="bool" key="Qt4ProjectManager.S60CreatorPackageStep.SmartInstaller">false</value>
       <value type="bool" key="Qt4ProjectManager.S60CreatorPackageStep.SuppressPatchWarningDialog">false</value>
      </valuemap>
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
@@ -727,7 +731,7 @@
     <value type="QString" key="Qt4ProjectManager.S60DeployConfiguration.DeviceAddress"></value>
     <value type="QString" key="Qt4ProjectManager.S60DeployConfiguration.DevicePort">65029</value>
     <value type="QChar" key="Qt4ProjectManager.S60DeployConfiguration.InstallationDriveLetter">C</value>
-    <value type="QString" key="Qt4ProjectManager.S60DeployConfiguration.SerialPortName"></value>
+    <value type="QString" key="Qt4ProjectManager.S60DeployConfiguration.SerialPortName">COM24</value>
     <value type="bool" key="Qt4ProjectManager.S60DeployConfiguration.SilentInstall">true</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.DeployConfigurationCount">1</value>

@@ -33,7 +33,7 @@ symbian:
                             ReadDeviceData \
                             WriteDeviceData
 
-    packageheader = "$${LITERAL_HASH}{\"location2sms\"}, ($${TARGET.UID3}), 2, 1, 0"
+    packageheader = "$${LITERAL_HASH}{\"location2sms\"}, ($${TARGET.UID3}), 2, 1, 2"
     name_deployment.pkg_prerules = packageheader
     DEPLOYMENT += name_deployment
 
@@ -94,3 +94,9 @@ RESOURCES += \
 
 
 
+
+contains(MEEGO_EDITION,harmattan) {
+    icon.files = location2sms.png
+    icon.path = /usr/share/icons/hicolor/80x80/apps
+    INSTALLS += icon
+}

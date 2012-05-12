@@ -30,7 +30,6 @@ void ReverseGeocoding::requestAddressFromCoordinates(qreal nLatitude,
                            "xml?latlng=%1,%2&sensor=false").
                                             arg(nLatitude).arg(nLongitude);
     qDebug() << "Searching for address via: " << sUrl;
-    QUrl locationUrl(sUrl);
     m_pReverseGeoCoder->downloadUrl(sUrl);
 }
 //------------------------------------------------------------------------------
@@ -42,9 +41,11 @@ void ReverseGeocoding::parseAddress()
     //QTextStream will detect the UTF-16 or the UTF-32 BOM (Byte Order Mark)
     //and switch to the appropriate UTF codec when reading.
 
+    QTextStream downloadedStream(m_pReverseGeoCoder->downloadedData());
+    downloadedStream.setCodec("UTF-8");
+
     QDomDocument document;   
-    if (false == document.setContent(
-                QTextStream(m_pReverseGeoCoder->downloadedData()).readAll()))
+    if (false == document.setContent(downloadedStream.readAll()))
     {
         qDebug() << "Bad input data.";
         m_sAddress = "";
