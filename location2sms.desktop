@@ -5,7 +5,7 @@ Type=Application
 Terminal=false
 Name=location2sms
 Exec=invoker --type=e --single-instance /opt/location2sms/bin/location2sms
-Icon=location2sms
+Icon=/usr/share/icons/hicolor/80x80/apps/location2sms.png
 X-Window-Icon=
 X-HildonDesk-ShowInToolbar=true
 X-Osso-Type=application/x-executable

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.4.1, 2012-05-13T14:35:38. -->
+<!-- Written by Qt Creator 2.4.1, 2012-05-13T17:20:35. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
-  <value type="int">1</value>
+  <value type="int">0</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.EditorSettings</variable>
@@ -174,6 +174,7 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">MaemoUploadAndInstallDpkgPackageStep</value>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedFiles">
        <value type="QString">C:/gitorious/location2sms/location2sms_2.1.0_armel.deb</value>
+       <value type="QString">C:/gitorious/location2sms/location2sms_2.1.3_armel.deb</value>
        <value type="QString">C:/gitorious/location2sms/location2sms_2.1.1_armel.deb</value>
        <value type="QString">C:/gitorious/location2sms/location2sms_2.1.1_armel.deb</value>
        <value type="QString">C:/gitorious/location2sms/location2sms_2.1.2_armel.deb</value>
@@ -181,6 +182,7 @@
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedHosts">
        <value type="QString">192.168.4.102</value>
+       <value type="QString">192.168.4.103</value>
        <value type="QString">192.168.4.102</value>
        <value type="QString">192.168.4.103</value>
        <value type="QString">192.168.4.103</value>
@@ -192,12 +194,14 @@
        <value type="QString"></value>
        <value type="QString"></value>
        <value type="QString"></value>
+       <value type="QString"></value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedTimes">
        <value type="QDateTime">2012-04-29T12:11:08</value>
+       <value type="QDateTime">2012-05-13T17:16:33</value>
        <value type="QDateTime">2012-04-29T12:53:06</value>
        <value type="QDateTime">2012-05-12T15:27:55</value>
-       <value type="QDateTime">2012-05-13T13:48:22</value>
+       <value type="QDateTime">2012-05-13T14:48:53</value>
        <value type="QDateTime">2012-01-18T00:17:36</value>
       </valuelist>
      </valuemap>
