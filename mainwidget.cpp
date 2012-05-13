@@ -288,8 +288,6 @@ void MainWidget::handleSendButton()
         sLocation += QString::number(m_nLongitude);
         sLocation += "\n";
 
-        //sLocation += QString(tr("Latitude: %1 \nLongitude: %2\n")).
-        //                                    arg(m_nLatitude).arg(m_nLongitude);
         //Add URL to map if available
         if (0 < m_sMapShortUrl.length())
         {
