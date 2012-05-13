@@ -20,7 +20,6 @@ QT += declarative
 
 symbian:
 {
-
     TARGET.UID3 = 0x20041EC8
     #TARGET.UID3 = 0xE864CBE1
     ICON = location2sms.svg
@@ -33,7 +32,7 @@ symbian:
                             ReadDeviceData \
                             WriteDeviceData
 
-    packageheader = "$${LITERAL_HASH}{\"location2sms\"}, ($${TARGET.UID3}), 2, 1, 2"
+    packageheader = "$${LITERAL_HASH}{\"location2sms\"}, ($${TARGET.UID3}), 2, 1, 3"
     name_deployment.pkg_prerules = packageheader
     DEPLOYMENT += name_deployment
 

@@ -4,7 +4,7 @@
 <context>
     <name>AboutWidget</name>
     <message>
-        <location filename="aboutwidget.cpp" line="68"/>
+        <location filename="aboutwidget.cpp" line="83"/>
         <source>This is an open source application available under GPLv3 licence at Gitorious: https://gitorious.org/location2sms. The application depends on GPS quality that the device delivers. It is powered by Google Maps API and requires Internet connection.Position accuracy of about 20 meters can be expected. </source>
         <oldsource>This is an open source application available under GPLv3 licence at Gitorious: https://gitorious.org/location2sms. The application depends on GPS quality that the device delivers. Position accuracy of about 20 meters can be expected. It is powered by Google Maps API and requires Internet connection.</oldsource>
         <translation>Това е приложение с отворен код, който е достъпен под GPLv3 лиценз в Gitorious: https://gitorious.org/location2sms. Приложението зависи от качеството на GPS устройството. Използва Google Maps API и изисква Интернет връзка. Може да бъде очаквана точност на позиционирането до 20 метра. </translation>
@@ -13,7 +13,7 @@
 <context>
     <name>LanguagesWidget</name>
     <message>
-        <location filename="languageswidget.cpp" line="49"/>
+        <location filename="languageswidget.cpp" line="64"/>
         <source>OK</source>
         <translation>ОК</translation>
     </message>
@@ -21,39 +21,48 @@
 <context>
     <name>MainWidget</name>
     <message>
-        <location filename="mainwidget.cpp" line="454"/>
+        <location filename="mainwidget.cpp" line="480"/>
         <source>Please wait...</source>
         <translation>Моля, изчакайте...</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="265"/>
+        <location filename="mainwidget.cpp" line="282"/>
         <source>Address: </source>
         <translation>Адрес:</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="267"/>
         <source>Latitude: %1 
 Longitude: %2</source>
-        <translation>Ширина: %1 
+        <translation type="obsolete">Ширина: %1 
 Дължина: %2</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="297"/>
+        <location filename="mainwidget.cpp" line="284"/>
+        <source>Latitude: </source>
+        <translation>Ширина: </translation>
+    </message>
+    <message>
+        <location filename="mainwidget.cpp" line="287"/>
+        <source>Longitude: </source>
+        <translation>Дължина: </translation>
+    </message>
+    <message>
+        <location filename="mainwidget.cpp" line="317"/>
         <source>Address </source>
         <translation>Адрес </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="314"/>
+        <location filename="mainwidget.cpp" line="340"/>
         <source>Latitude </source>
         <translation>Ширина </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="324"/>
+        <location filename="mainwidget.cpp" line="350"/>
         <source>Longitude </source>
         <translation>Дължина </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="461"/>
+        <location filename="mainwidget.cpp" line="487"/>
         <source>SMS</source>
         <translation>SMS</translation>
     </message>

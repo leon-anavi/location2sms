@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'languageswidget.h'
 **
-** Created: Sun 13. May 14:36:01 2012
+** Created: Sun 13. May 23:07:33 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.3)
 **
 ** WARNING! All changes made in this file will be lost!
