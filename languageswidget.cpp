@@ -1,3 +1,17 @@
+/*
+* ============================================================================
+*  Name         : languageswidget.cpp
+*  Part of      : location2sms
+*  Description  : manage languages
+*  Author     	: Leon Anavi
+*  Email		: leon@anavi.org
+*  License      : GNU General Public License version 3 (GPLv3)
+*
+*  Copyright (c) 2011-12
+* ============================================================================
+*/
+
+//Standard includes
 #include <QPainter>
 #include <QDebug>
 #include <QApplication>
@@ -5,6 +19,7 @@
 #include <QSettings>
 #include <QFile>
 
+//Project specific includes
 #include "languageswidget.h"
 
 LanguagesWidget::LanguagesWidget(QWidget *parent) :

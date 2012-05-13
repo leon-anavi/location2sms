@@ -1,6 +1,20 @@
+/*
+* ============================================================================
+*  Name         : filedownloader.h
+*  Part of      : location2sms
+*  Description  : download from URL
+*  Author     	: Leon Anavi
+*  Email		: leon@anavi.org
+*  License      : GNU General Public License version 3 (GPLv3)
+*
+*  Copyright (c) 2011-12
+* ============================================================================
+*/
+
 #ifndef FILEDOWNLOADER_H
 #define FILEDOWNLOADER_H
 
+//Standard includes
 #include <QObject>
 #include <QByteArray>
 #include <QNetworkAccessManager>
@@ -20,6 +34,8 @@ public:
     QByteArray downloadedData() const;
 
     void downloadUrl(QUrl targetUrl);
+
+    void downloadUrl(QUrl targetUrl, QString sHeader, QByteArray postData);
 
 signals:
         void downloaded();

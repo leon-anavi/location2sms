@@ -1,6 +1,20 @@
+/*
+* ============================================================================
+*  Name         : mainwidget.h
+*  Part of      : location2sms
+*  Description  : Main screen
+*  Author     	: Leon Anavi
+*  Email		: leon@anavi.org
+*  License      : GNU General Public License version 3 (GPLv3)
+*
+*  Copyright (c) 2011-12
+* ============================================================================
+*/
+
 #ifndef MAINWIDGET_H
 #define MAINWIDGET_H
 
+//Standard includes
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QLabel>
@@ -18,11 +32,13 @@
 //Qt WebKit
 #include <QWebView>
 
+//Project specific includes
 #include "aboutwidget.h"
 #include "menuwidget.h"
 #include "reversegeocoding.h"
 #include "busyindicator.h"
 #include "languageswidget.h"
+#include "urlshortener.h"
 
 // QtMobility namespace
 QTM_USE_NAMESPACE
@@ -45,6 +61,8 @@ private:
 
     qreal m_nLongitude;
 
+    QString m_sMapShortUrl;
+
     QVBoxLayout* m_pLayout;
 
     //main menu
@@ -65,6 +83,8 @@ private:
     QSlider* m_pMapZoomSlider;
 
     ReverseGeocoding* m_pReverseGeoCoder;
+
+    UrlShortener* m_pUrlShortener;
 
     bool m_bPortrait;
 
@@ -117,6 +137,13 @@ private slots:
       * @return nothing
       */
     void loadAddress();
+
+    /**
+      * Load short URL
+      *
+      * @return nothing
+      */
+    void loadMapShortUrl();
 
     /**
       * Show or hide help (about) view
@@ -228,6 +255,18 @@ private:
       * @return QString
       */
     QString getButtonSMSText() const;
+
+    /**
+      * Get Google Maps URL
+      *
+      * @param nZoom
+      * @param nMapHeight
+      * @param nMapWidth
+      *
+      * @return Map URL
+      */
+    QString getMapUrl(int nZoom, int nMapWidth,
+                      int nMapHeight) const;
 };
 
 #endif // MAINWIDGET_H

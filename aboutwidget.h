@@ -1,6 +1,20 @@
+/*
+* ============================================================================
+*  Name         : aboutwidget.h
+*  Part of      : location2sms
+*  Description  : Show about information
+*  Author     	: Leon Anavi
+*  Email		: leon@anavi.org
+*  License      : GNU General Public License version 3 (GPLv3)
+*
+*  Copyright (c) 2011-12
+* ============================================================================
+*/
+
 #ifndef ABOUTWIDGET_H
 #define ABOUTWIDGET_H
 
+//Standard includes
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QLabel>

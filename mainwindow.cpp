@@ -1,5 +1,20 @@
+/*
+* ============================================================================
+*  Name         : mainwindow.cpp
+*  Part of      : location2sms
+*  Description  : Main window
+*  Author     	: Leon Anavi
+*  Email		: leon@anavi.org
+*  License      : GNU General Public License version 3 (GPLv3)
+*
+*  Copyright (c) 2011-12
+* ============================================================================
+*/
+
+//Project specific includes
 #include "mainwindow.h"
 
+//Standard includes
 #include <QtCore/QCoreApplication>
 #include <QApplication>
 #include <QDesktopWidget>

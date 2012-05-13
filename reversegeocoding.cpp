@@ -1,10 +1,24 @@
+/*
+* ============================================================================
+*  Name         : reversegeocoding.cpp
+*  Part of      : location2sms
+*  Description  : retrieve address from coordinates using Google Maps API
+*  Author     	: Leon Anavi
+*  Email		: leon@anavi.org
+*  License      : GNU General Public License version 3 (GPLv3)
+*
+*  Copyright (c) 2011-12
+* ============================================================================
+*/
+
+//Project specific includes
 #include "reversegeocoding.h"
 
+//Standard includes
 #include <QDomDocument>
 #include <QDomNodeList>
 #include <QDomElement>
-#include <QDebug>
-
+#include <QTextStream>
 
 ReverseGeocoding::ReverseGeocoding(QObject *parent) :
     QObject(parent),
@@ -29,25 +43,20 @@ void ReverseGeocoding::requestAddressFromCoordinates(qreal nLatitude,
     QString sUrl = QString("http://maps.googleapis.com/maps/api/geocode/"
                            "xml?latlng=%1,%2&sensor=false").
                                             arg(nLatitude).arg(nLongitude);
-    qDebug() << "Searching for address via: " << sUrl;
     m_pReverseGeoCoder->downloadUrl(sUrl);
 }
 //------------------------------------------------------------------------------
 
 void ReverseGeocoding::parseAddress()
 {
-    qDebug() << "Parsing the address...";
-
     //QTextStream will detect the UTF-16 or the UTF-32 BOM (Byte Order Mark)
     //and switch to the appropriate UTF codec when reading.
-
     QTextStream downloadedStream(m_pReverseGeoCoder->downloadedData());
     downloadedStream.setCodec("UTF-8");
 
     QDomDocument document;   
     if (false == document.setContent(downloadedStream.readAll()))
     {
-        qDebug() << "Bad input data.";
         m_sAddress = "";
         return;
     }
@@ -56,7 +65,6 @@ void ReverseGeocoding::parseAddress()
             firstChildElement("result").firstChildElement("formatted_address");
 
     m_sAddress = mElement.text();
-    qDebug() <<  "The address is: '" << m_sAddress << "'";
 
     //emit a signal
     emit addressRetrieved();

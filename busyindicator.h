@@ -1,6 +1,21 @@
+/*
+* ============================================================================
+*  Name         : busyindicator.h
+*  Part of      : location2sms
+*  Description  : Busy indicator
+*  Author     	: ZapB, Leon Anavi
+*  Tutorial     : http://qt-project.org/wiki/Busy_Indicator_for_QML
+*  Email		: leon@anavi.org
+*  License      : GNU General Public License version 3 (GPLv3)
+*
+*  Copyright (c) 2011-12
+* ============================================================================
+*/
+
 #ifndef BUSYINDICATOR_H
 #define BUSYINDICATOR_H
 
+//Standard includes
 #include <QDeclarativeItem>
 
 class BusyIndicator : public QDeclarativeItem

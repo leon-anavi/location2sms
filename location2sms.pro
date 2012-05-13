@@ -57,7 +57,8 @@ SOURCES += main.cpp mainwindow.cpp \
     reversegeocoding.cpp \
     filedownloader.cpp \
     busyindicator.cpp \
-    languageswidget.cpp
+    languageswidget.cpp \
+    urlshortener.cpp
 HEADERS += mainwindow.h \
     aboutwidget.h \
     menuwidget.h \
@@ -65,7 +66,8 @@ HEADERS += mainwindow.h \
     reversegeocoding.h \
     filedownloader.h \
     busyindicator.h \
-    languageswidget.h
+    languageswidget.h \
+    urlshortener.h
 FORMS += mainwindow.ui
 
 TRANSLATIONS = location2sms_bg.ts location2sms_tr.ts location2sms_de.ts location2sms_ro.ts

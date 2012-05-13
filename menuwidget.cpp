@@ -1,7 +1,22 @@
+/*
+* ============================================================================
+*  Name         : menuwidget.cpp
+*  Part of      : location2sms
+*  Description  : Menu
+*  Author     	: Leon Anavi
+*  Email		: leon@anavi.org
+*  License      : GNU General Public License version 3 (GPLv3)
+*
+*  Copyright (c) 2011-12
+* ============================================================================
+*/
+
+//Standard includes
 #include <QtCore/QCoreApplication>
 #include <QPalette>
 #include <QDebug>
 
+//Project specific includes
 #include "menuwidget.h"
 
 MenuWidget::MenuWidget(QWidget *parent) :

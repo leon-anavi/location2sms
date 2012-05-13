@@ -1,10 +1,25 @@
-#include "mainwidget.h"
 #include <QMessage>
 #include <QUrl>
+/*
+* ============================================================================
+*  Name         : mainwidget.cpp
+*  Part of      : location2sms
+*  Description  : Main screen
+*  Author     	: Leon Anavi
+*  Email		: leon@anavi.org
+*  License      : GNU General Public License version 3 (GPLv3)
+*
+*  Copyright (c) 2011-12
+* ============================================================================
+*/
+
+//Standard includes
 #include <QDebug>
 #include <QApplication>
 #include <QDesktopWidget>
 
+//Project specific includes
+#include "mainwidget.h"
 
 MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent),
@@ -23,6 +38,7 @@ MainWidget::MainWidget(QWidget *parent) :
     m_pWebView(NULL),
     m_pMapZoomSlider(NULL),
     m_pReverseGeoCoder(NULL),
+    m_pUrlShortener(NULL),
     m_bPortrait(false),
     m_nMapWidth(640),
     m_nMapHeight(200),
@@ -57,7 +73,6 @@ MainWidget::MainWidget(QWidget *parent) :
     m_pButtonSendMessage->setMinimumHeight(40);
     QString sButtonBorder = "border-width:0px;border-style:solid;border-radius: 10px 10px / 10px 10px;";
     m_pButtonSendMessage->setStyleSheet(sItemsFont+sStyleBackground+sButtonBorder);
-
 
     //web view
     m_pWebView = new QWebView(this);
@@ -144,6 +159,8 @@ MainWidget::MainWidget(QWidget *parent) :
 
     m_pReverseGeoCoder = new ReverseGeocoding(this);
 
+    m_pUrlShortener = new UrlShortener(this);
+
     // Connect button signal to appropriate slot
     connect(m_pButtonSendMessage, SIGNAL(released()), this, SLOT(handleSendButton()));
     // Handle slider signals
@@ -152,6 +169,8 @@ MainWidget::MainWidget(QWidget *parent) :
     connect(m_pMapZoomSlider, SIGNAL(sliderReleased()), this, SLOT(loadMap()));
     // Process retrieved address via reverse geocoding
     connect(m_pReverseGeoCoder, SIGNAL(addressRetrieved()), this, SLOT(loadAddress()));
+    // Save retrieved short URL
+    connect(m_pUrlShortener, SIGNAL(shortUrlRetrieved()), this, SLOT(loadMapShortUrl()));
     // Handle help
     connect(m_pMainMenu, SIGNAL(showHelp()),this, SLOT(handleAbout()));
     //handle languages
@@ -237,9 +256,8 @@ void MainWidget::positionUpdated(QGeoPositionInfo geoPositionInfo)
 
             loadMap();
 
-            //TODO: generate Map URL with default zoom
-
-            //TODO: obtain short URL
+            //request a short URL for the map
+            m_pUrlShortener->requestShortUrl(getMapUrl(14, 400, 400));
 
             loading(false);
         }
@@ -254,7 +272,6 @@ void MainWidget::positionUpdated(QGeoPositionInfo geoPositionInfo)
 
 void MainWidget::handleSendButton()
 {   
-    qDebug() << "SMS button pressed.";
     QMessage message;
     message.setType(QMessage::Sms);
     if ( true == m_bIsPositionFound )
@@ -264,8 +281,13 @@ void MainWidget::handleSendButton()
         {
             sLocation += tr("Address: ") + m_pReverseGeoCoder->getAddress() + "\n";
         }
-        sLocation += QString(tr("Latitude: %1 \nLongitude: %2")).
+        sLocation += QString(tr("Latitude: %1 \nLongitude: %2\n")).
                                             arg(m_nLatitude).arg(m_nLongitude);
+        //Add URL to map if available
+        if (0 < m_sMapShortUrl.length())
+        {
+            sLocation += m_sMapShortUrl;
+        }
         message.setBody(sLocation);
     }
     m_pMessageManager->compose(message);
@@ -274,16 +296,7 @@ void MainWidget::handleSendButton()
 
 void MainWidget::loadMap()
 {
-    QString sUrl = QString("http://maps.googleapis.com/maps/api/staticmap?center=");
-    sUrl += QString("%1,%2").arg(m_nLatitude).arg(m_nLongitude);
-    sUrl += QString("&zoom=");
-    sUrl += QString::number(m_pMapZoomSlider->value());
-    sUrl += QString("&size=");
-    sUrl += QString::number(m_nMapWidth);
-    sUrl += "x";
-    sUrl += QString::number(m_nMapHeight);
-    sUrl += QString("&sensor=false&markers=color:blue|label:O|");
-    sUrl += QString("%1,%2").arg(m_nLatitude).arg(m_nLongitude);
+    QString sUrl = getMapUrl(m_pMapZoomSlider->value(), m_nMapWidth, m_nMapHeight);
     m_pWebView->load(QUrl(sUrl));
 }
 //------------------------------------------------------------------------------
@@ -302,6 +315,12 @@ void MainWidget::loadAddress()
         sText += QString("<span style=\"color: #006BC2;\">%1</span>").arg(sAddr);
     }
     m_pLabelCoordinates->setText(sText);
+}
+//------------------------------------------------------------------------------
+
+void MainWidget::loadMapShortUrl()
+{
+    m_sMapShortUrl = m_pUrlShortener->getShortUrl();
 }
 //------------------------------------------------------------------------------
 
@@ -461,6 +480,24 @@ QString MainWidget::getButtonSMSText() const
     return tr("SMS");
 }
 //------------------------------------------------------------------------------
+
+QString MainWidget::getMapUrl(int nZoom, int nMapWidth, int nMapHeight) const
+{
+    QString sUrl = QString("http://maps.googleapis.com/maps/api/staticmap?center=");
+    sUrl += QString("%1,%2").arg(m_nLatitude).arg(m_nLongitude);
+    sUrl += QString("&zoom=");
+    sUrl += QString::number(nZoom);
+    sUrl += QString("&size=");
+    sUrl += QString::number(nMapWidth);
+    sUrl += "x";
+    sUrl += QString::number(nMapHeight);
+    sUrl += QString("&sensor=false&markers=color:blue|label:O|");
+    sUrl += QString("%1,%2").arg(m_nLatitude).arg(m_nLongitude);
+
+    return sUrl;
+}
+//------------------------------------------------------------------------------
+
 
 
 

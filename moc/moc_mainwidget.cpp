@@ -1,8 +1,8 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwidget.h'
 **
-** Created: Sun 29. Apr 12:49:03 2012
-**      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
+** Created: Sun 13. May 14:35:57 2012
+**      by: The Qt Meta Object Compiler version 62 (Qt 4.7.3)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -11,7 +11,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'mainwidget.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 62
-#error "This file was generated using the moc from 4.7.4. It"
+#error "This file was generated using the moc from 4.7.3. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWidget[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -36,8 +36,9 @@ static const uint qt_meta_data_MainWidget[] = {
       81,   11,   11,   11, 0x08,
       91,   11,   11,   11, 0x08,
      105,   11,   11,   11, 0x08,
-     119,   11,   11,   11, 0x08,
-     139,  132,   11,   11, 0x08,
+     123,   11,   11,   11, 0x08,
+     137,   11,   11,   11, 0x08,
+     157,  150,   11,   11, 0x08,
 
        0        // eod
 };
@@ -46,8 +47,8 @@ static const char qt_meta_stringdata_MainWidget[] = {
     "MainWidget\0\0geoPositionInfo\0"
     "positionUpdated(QGeoPositionInfo)\0"
     "handleSendButton()\0loadMap()\0loadAddress()\0"
-    "handleAbout()\0handleLang()\0nValue\0"
-    "rotateSpinner(int)\0"
+    "loadMapShortUrl()\0handleAbout()\0"
+    "handleLang()\0nValue\0rotateSpinner(int)\0"
 };
 
 const QMetaObject MainWidget::staticMetaObject = {
@@ -83,12 +84,13 @@ int MainWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 1: handleSendButton(); break;
         case 2: loadMap(); break;
         case 3: loadAddress(); break;
-        case 4: handleAbout(); break;
-        case 5: handleLang(); break;
-        case 6: rotateSpinner((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 4: loadMapShortUrl(); break;
+        case 5: handleAbout(); break;
+        case 6: handleLang(); break;
+        case 7: rotateSpinner((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
-        _id -= 7;
+        _id -= 8;
     }
     return _id;
 }

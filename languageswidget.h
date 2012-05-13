@@ -1,6 +1,20 @@
+/*
+* ============================================================================
+*  Name         : languageswidget.h
+*  Part of      : location2sms
+*  Description  : manage languages
+*  Author     	: Leon Anavi
+*  Email		: leon@anavi.org
+*  License      : GNU General Public License version 3 (GPLv3)
+*
+*  Copyright (c) 2011-12
+* ============================================================================
+*/
+
 #ifndef LANGUAGESWIDGET_H
 #define LANGUAGESWIDGET_H
 
+//Standard includes
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QListWidget>

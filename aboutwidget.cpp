@@ -1,5 +1,20 @@
+/*
+* ============================================================================
+*  Name         : aboutwidget.cpp
+*  Part of      : location2sms
+*  Description  : Show about information
+*  Author     	: Leon Anavi
+*  Email		: leon@anavi.org
+*  License      : GNU General Public License version 3 (GPLv3)
+*
+*  Copyright (c) 2011-12
+* ============================================================================
+*/
+
+//Project specific includes
 #include "aboutwidget.h"
 
+//Standard includes
 #include <QPainter>
 #include <QDebug>
 #include <QEvent>
