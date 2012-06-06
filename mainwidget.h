@@ -65,6 +65,8 @@ private:
 
     QVBoxLayout* m_pLayout;
 
+    QHBoxLayout* m_pSendButtonsLayout;
+
     //main menu
     MenuWidget* m_pMainMenu;
 
@@ -77,6 +79,8 @@ private:
     QLabel* m_pLabelCoordinates;
 
     QPushButton* m_pButtonSendMessage;
+
+    QPushButton* m_pButtonSendEmail;
 
     QWebView* m_pWebView;
 
@@ -98,6 +102,8 @@ private:
 
     QGraphicsView* m_pLoadingView;
 
+    static const QString m_sAppName;
+
 public:
 
     explicit MainWidget(QWidget *parent = 0);
@@ -118,11 +124,18 @@ public slots:
 private slots:
 
     /**
-      * Handle Send Button
+      * Handle SMS Send Button
       *
       * @return nothing
       */
-    void handleSendButton();
+    void handleSmsSendButton();
+
+    /**
+      * Handle E-mail Send Button
+      *
+      * @return nothing
+      */
+    void handleEmailSendButton();
 
     /**
       * Load the map
@@ -257,6 +270,13 @@ private:
     QString getButtonSMSText() const;
 
     /**
+      * get text for E-mail button
+      *
+      * @return QString
+      */
+    QString getButtonEmailText() const;
+
+    /**
       * Get Google Maps URL
       *
       * @param nZoom
@@ -267,6 +287,15 @@ private:
       */
     QString getMapUrl(int nZoom, int nMapWidth,
                       int nMapHeight) const;
+
+    /**
+      * Handle Send Button
+      *
+      * type SMS or E-mail
+      *
+      * @return nothing
+      */
+    void handleSendButton(QMessage::Type type);
 };
 
 #endif // MAINWIDGET_H

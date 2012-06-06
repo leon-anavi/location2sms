@@ -1,5 +1,3 @@
-#include <QMessage>
-#include <QUrl>
 /*
 * ============================================================================
 *  Name         : mainwidget.cpp
@@ -14,12 +12,16 @@
 */
 
 //Standard includes
+#include <QMessage>
+#include <QUrl>
 #include <QDebug>
 #include <QApplication>
 #include <QDesktopWidget>
 
 //Project specific includes
 #include "mainwidget.h"
+
+const QString MainWidget::m_sAppName = QString("location2sms");
 
 MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent),
@@ -30,11 +32,13 @@ MainWidget::MainWidget(QWidget *parent) :
     m_nLatitude(0),
     m_nLongitude(0),
     m_pLayout(NULL),
+    m_pSendButtonsLayout(NULL),
     m_pMainMenu(NULL),
     m_pAboutWidget(NULL),
     m_pLangWidget(NULL),
     m_pLabelCoordinates(NULL),
     m_pButtonSendMessage(NULL),
+    m_pButtonSendEmail(NULL),
     m_pWebView(NULL),
     m_pMapZoomSlider(NULL),
     m_pReverseGeoCoder(NULL),
@@ -72,7 +76,13 @@ MainWidget::MainWidget(QWidget *parent) :
     m_pButtonSendMessage = new QPushButton(getButtonSMSText(), this);
     m_pButtonSendMessage->setMinimumHeight(40);
     QString sButtonBorder = "border-width:0px;border-style:solid;border-radius: 10px 10px / 10px 10px;";
-    m_pButtonSendMessage->setStyleSheet(sItemsFont+sStyleBackground+sButtonBorder);
+    QString sButtonStyle = sItemsFont+sStyleBackground+sButtonBorder;
+    m_pButtonSendMessage->setStyleSheet(sButtonStyle);
+
+    //button E-mail
+    m_pButtonSendEmail = new QPushButton(getButtonEmailText(), this);
+    m_pButtonSendEmail->setMinimumHeight(40);
+    m_pButtonSendEmail->setStyleSheet(sButtonStyle);
 
     //web view
     m_pWebView = new QWebView(this);
@@ -123,7 +133,13 @@ MainWidget::MainWidget(QWidget *parent) :
     m_pTimeLine->setLoopCount(0);
     m_pTimeLine->setFrameRange(0, 36);
 
-    //layout
+    //layouts
+    m_pSendButtonsLayout = new QHBoxLayout();
+    m_pSendButtonsLayout->setSpacing(2);
+    m_pSendButtonsLayout->setMargin(0);
+    m_pSendButtonsLayout->addWidget(m_pButtonSendMessage);
+    m_pSendButtonsLayout->addWidget(m_pButtonSendEmail);
+
     m_pLayout = new QVBoxLayout(this);
     m_pLayout->setSpacing(2);
     m_pLayout->setMargin(0);
@@ -133,7 +149,7 @@ MainWidget::MainWidget(QWidget *parent) :
     m_pLayout->addWidget(m_pMapZoomSlider, 0, Qt::AlignTop);
     m_pLayout->addWidget(m_pLoadingView);
     m_pLayout->addWidget(m_pLabelCoordinates, 0, Qt::AlignTop);
-    m_pLayout->addWidget(m_pButtonSendMessage, 0, Qt::AlignBottom);
+    m_pLayout->addLayout(m_pSendButtonsLayout, 0);
     loading(true);
     setLayout(m_pLayout);
 
@@ -162,7 +178,8 @@ MainWidget::MainWidget(QWidget *parent) :
     m_pUrlShortener = new UrlShortener(this);
 
     // Connect button signal to appropriate slot
-    connect(m_pButtonSendMessage, SIGNAL(released()), this, SLOT(handleSendButton()));
+    connect(m_pButtonSendMessage, SIGNAL(released()), this, SLOT(handleSmsSendButton()));
+    connect(m_pButtonSendEmail, SIGNAL(released()), this, SLOT(handleEmailSendButton()));
     // Handle slider signals
     connect(m_pMapZoomSlider, SIGNAL(valueChanged(int)), this, SLOT(loadMap()));
     connect(m_pMapZoomSlider, SIGNAL(sliderMoved(int)), this, SLOT(loadMap()));
@@ -270,10 +287,23 @@ void MainWidget::positionUpdated(QGeoPositionInfo geoPositionInfo)
 }
 //------------------------------------------------------------------------------
 
-void MainWidget::handleSendButton()
+void MainWidget::handleSmsSendButton()
+{
+    handleSendButton(QMessage::Sms);
+}
+//------------------------------------------------------------------------------
+
+void MainWidget::handleEmailSendButton()
+{
+    handleSendButton(QMessage::Email);
+}
+//------------------------------------------------------------------------------
+
+void MainWidget::handleSendButton(QMessage::Type type)
 {   
     QMessage message;
-    message.setType(QMessage::Sms);
+    message.setType(type);
+    message.setSubject(m_sAppName);
     if ( true == m_bIsPositionFound )
     {
         QString sLocation;
@@ -429,6 +459,7 @@ void MainWidget::setCtrlVisible(bool bVisible)
     m_pWebView->setVisible(bVisible);
     m_pMapZoomSlider->setVisible(bVisible);
     m_pButtonSendMessage->setVisible(bVisible);
+    m_pButtonSendEmail->setVisible(bVisible);
 }
 //------------------------------------------------------------------------------
 
@@ -466,6 +497,7 @@ void MainWidget::changeEvent(QEvent* event)
         m_pLabelCoordinates->setText(getWaitText());
 
         m_pButtonSendMessage->setText(getButtonSMSText());
+        m_pButtonSendEmail->setText(getButtonEmailText());
 
         loadAddress();
     }
@@ -483,6 +515,12 @@ QString MainWidget::getWaitText() const
 QString MainWidget::getButtonSMSText() const
 {
     return tr("SMS");
+}
+//------------------------------------------------------------------------------
+
+QString MainWidget::getButtonEmailText() const
+{
+    return tr("E-mail");
 }
 //------------------------------------------------------------------------------
 
