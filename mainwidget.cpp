@@ -323,6 +323,15 @@ void MainWidget::handleSendButton(QMessage::Type type)
         {
             sLocation += m_sMapShortUrl;
         }
+
+        //Append app signature to e-mails
+        if (QMessage::Email == type)
+        {
+            sLocation += "\n";
+            sLocation += tr("Sent from ");
+            sLocation += m_sAppName;
+        }
+
         message.setBody(sLocation);
     }
     m_pMessageManager->compose(message);

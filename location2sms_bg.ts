@@ -21,14 +21,14 @@
 <context>
     <name>MainWidget</name>
     <message>
-        <location filename="mainwidget.cpp" line="480"/>
+        <location filename="mainwidget.cpp" line="519"/>
         <source>Please wait...</source>
         <translation>Моля, изчакайте...</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="282"/>
+        <location filename="mainwidget.cpp" line="312"/>
         <source>Address: </source>
-        <translation>Адрес:</translation>
+        <translation type="unfinished">Адрес: </translation>
     </message>
     <message>
         <source>Latitude: %1 
@@ -37,34 +37,44 @@ Longitude: %2</source>
 Дължина: %2</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="284"/>
+        <location filename="mainwidget.cpp" line="314"/>
         <source>Latitude: </source>
         <translation>Ширина: </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="287"/>
+        <location filename="mainwidget.cpp" line="317"/>
         <source>Longitude: </source>
         <translation>Дължина: </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="317"/>
+        <location filename="mainwidget.cpp" line="331"/>
+        <source>Sent from </source>
+        <translation>Изпратено от </translation>
+    </message>
+    <message>
+        <location filename="mainwidget.cpp" line="354"/>
         <source>Address </source>
         <translation>Адрес </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="340"/>
+        <location filename="mainwidget.cpp" line="377"/>
         <source>Latitude </source>
         <translation>Ширина </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="350"/>
+        <location filename="mainwidget.cpp" line="387"/>
         <source>Longitude </source>
         <translation>Дължина </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="487"/>
+        <location filename="mainwidget.cpp" line="526"/>
         <source>SMS</source>
         <translation>SMS</translation>
+    </message>
+    <message>
+        <location filename="mainwidget.cpp" line="532"/>
+        <source>E-mail</source>
+        <translation>E-поща</translation>
     </message>
 </context>
 <context>

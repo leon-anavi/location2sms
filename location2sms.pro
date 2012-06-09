@@ -20,8 +20,8 @@ QT += declarative
 
 symbian:
 {
-    TARGET.UID3 = 0x20041EC8
-    #TARGET.UID3 = 0xE864CBE1
+    #TARGET.UID3 = 0x20041EC8
+    TARGET.UID3 = 0xE864CBE1
     ICON = location2sms.svg
 
     # symbian capabilities
