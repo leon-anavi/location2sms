@@ -52,6 +52,18 @@ public:
       */
     void loadLanguageSettings();
 
+    /**
+      * resize
+      *
+      * @param nPosX postion X
+      * @param nPosY position Y
+      * @param nWidth Width
+      * @param nHeight Height
+      *
+      * @return nothing
+      */
+    void resizeGUI(int nPosX, int nPosY, int nWidth, int nHeight);
+
 protected:
 
     //overload from QWidget

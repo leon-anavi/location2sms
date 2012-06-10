@@ -90,6 +90,14 @@ void LanguagesWidget::paintEvent(QPaintEvent* /*event*/)
 }
 //------------------------------------------------------------------------------
 
+void LanguagesWidget::resizeGUI(int nPosX, int nPosY, int nWidth, int nHeight)
+{
+    setGeometry(nPosX, nPosY, nWidth, nHeight);
+    int nButtonHeightAndSpacing = static_cast<int>(1.5*m_pLangSelect->height());
+    m_pLangList->setMinimumHeight(nHeight - nButtonHeightAndSpacing);
+}
+//------------------------------------------------------------------------------
+
 void LanguagesWidget::selectLang()
 {
     m_nSelectedLanguage = m_pLangList->currentRow();

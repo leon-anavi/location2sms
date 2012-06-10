@@ -407,7 +407,7 @@ void MainWidget::handleAbout()
     else
     {
         //make sure that the Language settings view is hidden
-        m_pAboutWidget->hide();
+        m_pLangWidget->hide();
         m_pAboutWidget->show();
     }
 
@@ -459,7 +459,7 @@ void MainWidget::resizeAboutAndLang()
     int nHeight = Screen.height()-nPosY-nSpace;
     m_pAboutWidget->setGeometry(nSpace, nPosY, nWidth, nHeight);
 
-    m_pLangWidget->setGeometry(nSpace, nPosY, nWidth, nHeight);
+    m_pLangWidget->resizeGUI(nSpace, nPosY, nWidth, nHeight);
 }
 //------------------------------------------------------------------------------
 
