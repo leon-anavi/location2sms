@@ -13,7 +13,6 @@
 
 //Standard includes
 #include <QPainter>
-#include <QDebug>
 #include <QApplication>
 #include <QDebug>
 #include <QSettings>
@@ -22,27 +21,16 @@
 //Project specific includes
 #include "languageswidget.h"
 
-LanguagesWidget::LanguagesWidget(QWidget *parent) :
+LanguagesWidget::LanguagesWidget(Settings* pSettings, QWidget *parent) :
     QWidget(parent),
     m_pLangWidgetLayout(NULL),
+    m_pLangLabel(NULL),
+    m_pMapsLabel(NULL),
     m_pLangList(NULL),
-    m_pLangSelect(NULL),
-    m_bIsAppStartedForFirstTime(true),
-    m_nSelectedLanguage(0)
+    m_pMapsList(NULL),
+    m_pLangSelect(NULL)
 {
-
-#ifdef Q_OS_SYMBIAN
-    m_sSettingsFile = QApplication::applicationDirPath();
-#else
-    m_sSettingsFile ="/home/user";
-#endif
-
-    m_sSettingsFile += "/location2sms.ini";
-
-    //load settings and eventually language
-    loadSettings();
-
-    qDebug() << "Settings file: " << m_sSettingsFile;
+    m_pSettings = pSettings;
 
     QString sStyleBackground = "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4c4c4c, stop: 0.5 #333333, stop: 1 #202020);";
     QString sItemsFont = "font-size: ";
@@ -51,7 +39,18 @@ LanguagesWidget::LanguagesWidget(QWidget *parent) :
 #else
     sItemsFont += "22pt;";
 #endif
-    sItemsFont += "font-weight:bold;color: #FFFFFF;";
+    sItemsFont += "color: #FFFFFF;";
+
+    QString sFontBold = QString("font-weight:bold;");
+
+    QString sStyle = QString("background-color: transparent;");
+    sStyle += sItemsFont;
+
+    m_pLangLabel = new QLabel(tr("Language:"), this);
+    m_pLangLabel->setStyleSheet(sStyle);
+
+    m_pMapsLabel = new QLabel(tr("Map:"), this);
+    m_pMapsLabel->setStyleSheet(sStyle);
 
     m_pLangList = new QListWidget(this);
     new QListWidgetItem("English", m_pLangList);
@@ -59,7 +58,12 @@ LanguagesWidget::LanguagesWidget(QWidget *parent) :
     new QListWidgetItem(QString::fromUtf8("Türkçe"), m_pLangList);
     new QListWidgetItem(QString::fromUtf8("Deutsch"), m_pLangList);
     new QListWidgetItem(QString::fromUtf8("Română"), m_pLangList);
-    m_pLangList->setStyleSheet("background-color: transparent;"+sItemsFont);
+    m_pLangList->setStyleSheet(sStyle+sFontBold);
+
+    m_pMapsList = new QListWidget(this);
+    new QListWidgetItem("Bing", m_pMapsList);
+    new QListWidgetItem("Google", m_pMapsList);
+    m_pMapsList->setStyleSheet(sStyle+sFontBold);
 
     m_pLangSelect = new QPushButton(tr("OK"), this);
     QString sButtonBorder = "border-width:0px;border-style:solid;border-radius: 10px 10px / 10px 10px;";
@@ -67,7 +71,13 @@ LanguagesWidget::LanguagesWidget(QWidget *parent) :
     m_pLangSelect->setMinimumHeight(40);
 
     m_pLangWidgetLayout = new QVBoxLayout(this);
+    m_pLangWidgetLayout->setSpacing(2);
+    m_pLangWidgetLayout->setMargin(0);
+    m_pLangWidgetLayout->setContentsMargins(5,0,5,0);
+    m_pLangWidgetLayout->addWidget(m_pLangLabel, 0, Qt::AlignVCenter);
     m_pLangWidgetLayout->addWidget(m_pLangList, 0, Qt::AlignTop);
+    m_pLangWidgetLayout->addWidget(m_pMapsLabel, 0, Qt::AlignVCenter);
+    m_pLangWidgetLayout->addWidget(m_pMapsList, 0, Qt::AlignTop);
     m_pLangWidgetLayout->addWidget(m_pLangSelect, 0, Qt::AlignBottom);
     setLayout(m_pLangWidgetLayout);
 
@@ -78,7 +88,7 @@ LanguagesWidget::LanguagesWidget(QWidget *parent) :
 
 LanguagesWidget::~LanguagesWidget()
 {
-    saveSettings();
+    //Nothing to do
 }
 //------------------------------------------------------------------------------
 
@@ -94,14 +104,28 @@ void LanguagesWidget::resizeGUI(int nPosX, int nPosY, int nWidth, int nHeight)
 {
     setGeometry(nPosX, nPosY, nWidth, nHeight);
     int nButtonHeightAndSpacing = static_cast<int>(1.5*m_pLangSelect->height());
-    m_pLangList->setMinimumHeight(nHeight - nButtonHeightAndSpacing);
+    int nMapListHeight = static_cast<int>(1.2*m_pMapsList->count()* m_pMapsList->fontMetrics().height());
+    m_pMapsList->setMinimumHeight(nMapListHeight);
+
+    int nLangListHeight = nHeight - m_pLangLabel->height() -
+            m_pMapsLabel->height() - m_pMapsList->height() - nButtonHeightAndSpacing;
+    m_pLangList->setMaximumHeight(nLangListHeight);
 }
 //------------------------------------------------------------------------------
 
 void LanguagesWidget::selectLang()
 {
-    m_nSelectedLanguage = m_pLangList->currentRow();
+    m_pSettings->setSelectedLanguage(m_pLangList->currentRow());
     loadSelectedLanguage();
+
+    Settings::MapTypes eMap =
+        (0 == m_pMapsList->currentRow()) ? Settings::bing : Settings::google;
+    if (eMap != m_pSettings->getSelectedMap())
+    {
+        m_pSettings->setSelectedMap(eMap);
+        emit mapChanged();
+    }
+
     //hide this view
     hide();
 }
@@ -110,7 +134,7 @@ void LanguagesWidget::selectLang()
 void LanguagesWidget::loadSelectedLanguage()
 {
     //change language
-    switch (m_nSelectedLanguage)
+    switch (m_pSettings->getSelectedLanguage())
     {
         case 1:
             //Bulgarian
@@ -201,55 +225,28 @@ void LanguagesWidget::loadRomanian()
 }
 //------------------------------------------------------------------------------
 
-bool LanguagesWidget::isAppStartedForFirstTime() const
-{
-    return m_bIsAppStartedForFirstTime;
-}
-//------------------------------------------------------------------------------
-
-void LanguagesWidget::setIsAppStartedForFirstTime(bool bIsFirstTime)
-{
-    m_bIsAppStartedForFirstTime = bIsFirstTime;
-}
-//------------------------------------------------------------------------------
-
-void LanguagesWidget::loadSettings()
-{
-    //check if file exists
-    QFile settingsFile(m_sSettingsFile);
-    if (false == settingsFile.exists())
-    {
-        return;
-    }
-    QSettings settings(m_sSettingsFile, QSettings::NativeFormat);
-    m_bIsAppStartedForFirstTime =
-                         settings.value("IsAppStartedForFirstTime").toBool();
-    m_nSelectedLanguage = settings.value("SelectedLanguage").toInt();
-}
-//------------------------------------------------------------------------------
-
-void LanguagesWidget::saveSettings()
-{
-    QSettings settings(m_sSettingsFile, QSettings::NativeFormat);
-    qDebug() << "Save: IsAppStartedForFirstTime=" << m_bIsAppStartedForFirstTime;
-    settings.setValue("IsAppStartedForFirstTime", m_bIsAppStartedForFirstTime);
-    settings.setValue("SelectedLanguage", m_nSelectedLanguage);
-}
-//------------------------------------------------------------------------------
-
 void LanguagesWidget::loadLanguageSettings()
 {
-    m_pLangList->setCurrentRow(m_nSelectedLanguage);
+    m_pLangList->setCurrentRow(m_pSettings->getSelectedLanguage());
     //by default language is English so there is no need to reload it
-    if (0 != m_nSelectedLanguage)
+    if (0 != m_pSettings->getSelectedLanguage())
     {
         loadSelectedLanguage();
     }
 
-    //Make sure that lang selection view will not be shown next time
-    if (true == m_bIsAppStartedForFirstTime)
+    if (Settings::bing == m_pSettings->getSelectedMap())
     {
-        m_bIsAppStartedForFirstTime = false;
+        m_pMapsList->setCurrentRow(0);
+    }
+    else
+    {
+        m_pMapsList->setCurrentRow(1);
+    }
+
+    //Make sure that lang selection view will not be shown next time
+    if (true == m_pSettings->isAppStartedForFirstTime())
+    {
+        m_pSettings->setIsAppStartedForFirstTime(false);
     }
 }
 //------------------------------------------------------------------------------

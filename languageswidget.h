@@ -20,30 +20,18 @@
 #include <QListWidget>
 #include <QPushButton>
 #include <QTranslator>
+#include <QLabel>
+
+//Project specific includes
+#include "settings.h"
 
 class LanguagesWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit LanguagesWidget(QWidget *parent = 0);
+    explicit LanguagesWidget(Settings* pSettings, QWidget *parent = 0);
 
     virtual ~LanguagesWidget();
-
-    /**
-      * Is application started for first time
-      *
-      * @return bool
-      */
-    bool isAppStartedForFirstTime() const;
-
-    /**
-      * set if the application is started for first time or not
-      *
-      * @param bIsFirstTime
-      *
-      * @return noting
-      */
-    void setIsAppStartedForFirstTime(bool bIsFirstTime);
 
     /**
       * Read settings and load appropriate language
@@ -71,7 +59,7 @@ protected:
 
 signals:
 
-    void langClosed();
+    void mapChanged();
 
 private slots:
 
@@ -81,19 +69,21 @@ public slots:
 
 private:
 
+    Settings* m_pSettings;
+
     QVBoxLayout* m_pLangWidgetLayout;
 
+    QLabel* m_pLangLabel;
+
+    QLabel* m_pMapsLabel;
+
     QListWidget* m_pLangList;
+
+    QListWidget* m_pMapsList;
 
     QPushButton* m_pLangSelect;
 
     QTranslator m_Translator;
-
-    QString m_sSettingsFile;
-
-    bool m_bIsAppStartedForFirstTime;
-
-    int m_nSelectedLanguage;
 
 private:
 
@@ -106,10 +96,6 @@ private:
     void loadGerman();
 
     void loadRomanian();
-
-    void loadSettings();
-
-    void saveSettings();
 
     void loadSelectedLanguage();
 

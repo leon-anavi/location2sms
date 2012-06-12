@@ -39,6 +39,7 @@
 #include "busyindicator.h"
 #include "languageswidget.h"
 #include "urlshortener.h"
+#include "settings.h"
 
 // QtMobility namespace
 QTM_USE_NAMESPACE
@@ -48,6 +49,8 @@ class MainWidget : public QWidget
     Q_OBJECT
 
 private:
+
+    Settings* m_pSettings;
 
     QGeoPositionInfoSource* m_pLocationInfo;
 
@@ -181,6 +184,13 @@ private slots:
       */
     void rotateSpinner(int nValue);
 
+    /**
+      * Reload settings
+      *
+      * @return nothing
+      */
+    void mapChanged();
+
 public:
 
     /**
@@ -296,6 +306,13 @@ private:
       * @return nothing
       */
     void handleSendButton(QMessage::Type type);
+
+    /**
+      * Update slider value and range based on the settings
+      *
+      * @return nothing
+      */
+    void updateSlider();
 };
 
 #endif // MAINWIDGET_H

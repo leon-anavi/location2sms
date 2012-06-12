@@ -49,6 +49,8 @@ MainWidget::MainWidget(QWidget *parent) :
     m_pBusyIndicator(NULL),
     m_pLoadingView(NULL)
 {
+    m_pSettings = new Settings(this);
+
     QString sStyleBackground = "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4c4c4c, stop: 0.5 #333333, stop: 1 #202020);";
 
     //menu
@@ -94,8 +96,7 @@ MainWidget::MainWidget(QWidget *parent) :
     //slider
     m_pMapZoomSlider = new QSlider(Qt::Horizontal, this);
     m_pMapZoomSlider->setMinimumHeight(32);
-    m_pMapZoomSlider->setRange(0,19);
-    m_pMapZoomSlider->setValue(14);
+    updateSlider();
     m_pMapZoomSlider->setSingleStep(1);
     m_pMapZoomSlider->setPageStep(1);
 
@@ -158,11 +159,11 @@ MainWidget::MainWidget(QWidget *parent) :
     m_pAboutWidget->hide();
 
     //languages
-    m_pLangWidget = new LanguagesWidget(this);
-    if (true == m_pLangWidget->isAppStartedForFirstTime())
+    m_pLangWidget = new LanguagesWidget(m_pSettings, this);
+    if (true == m_pSettings->isAppStartedForFirstTime())
     {
         //Make sure that lang selection view will not be shown next time
-        m_pLangWidget->setIsAppStartedForFirstTime(false);
+        m_pSettings->setIsAppStartedForFirstTime(false);
         //Show screen for language selection at start-up
         m_pLangWidget->show();
     }
@@ -195,6 +196,8 @@ MainWidget::MainWidget(QWidget *parent) :
 
     connect(m_pAboutWidget, SIGNAL(aboutClosed()),this, SLOT(handleAbout()));
     connect(m_pTimeLine, SIGNAL(frameChanged(int)), this, SLOT(rotateSpinner(int)));
+
+    connect(m_pLangWidget, SIGNAL(mapChanged()), this, SLOT(mapChanged()));
 
     startLocationAPI();
 
@@ -535,21 +538,49 @@ QString MainWidget::getButtonEmailText() const
 
 QString MainWidget::getMapUrl(int nZoom, int nMapWidth, int nMapHeight) const
 {
-    QString sUrl = QString("http://maps.googleapis.com/maps/api/staticmap?center=");
-    sUrl += QString("%1,%2").arg(m_nLatitude).arg(m_nLongitude);
-    sUrl += QString("&zoom=");
-    sUrl += QString::number(nZoom);
-    sUrl += QString("&size=");
-    sUrl += QString::number(nMapWidth);
-    sUrl += "x";
-    sUrl += QString::number(nMapHeight);
-    sUrl += QString("&sensor=false&markers=color:blue|label:O|");
-    sUrl += QString("%1,%2").arg(m_nLatitude).arg(m_nLongitude);
-
+    QString sUrl;
+    if (Settings::google == m_pSettings->getSelectedMap())
+    {
+        sUrl += QString("http://maps.googleapis.com/maps/api/staticmap?center=");
+        sUrl += QString("%1,%2").arg(m_nLatitude).arg(m_nLongitude);
+        sUrl += QString("&zoom=");
+        sUrl += QString::number(nZoom);
+        sUrl += QString("&size=");
+        sUrl += QString::number(nMapWidth);
+        sUrl += "x";
+        sUrl += QString::number(nMapHeight);
+        sUrl += QString("&sensor=false&markers=color:blue|label:O|");
+        sUrl += QString("%1,%2").arg(m_nLatitude).arg(m_nLongitude);
+    }
+    else
+    {
+        sUrl += QString("http://dev.virtualearth.net/REST/v1/Imagery/Map/Road/");
+        sUrl += QString("%1,%2/").arg(m_nLatitude).arg(m_nLongitude);
+        sUrl += QString::number(nZoom);
+        sUrl += QString("?mapSize=");
+        sUrl += QString("%1,%2").arg(nMapWidth).arg(nMapHeight);
+        sUrl += QString("&pp=%1,%2").arg(m_nLatitude).arg(m_nLongitude);
+        sUrl += QString(";;&key=");
+    }
     return sUrl;
 }
 //------------------------------------------------------------------------------
 
+void MainWidget::mapChanged()
+{
+    if (true == m_bIsPositionFound)
+    {
+        updateSlider();
+        //reload the map
+        loadMap();
+    }
+}
+//------------------------------------------------------------------------------
 
-
-
+void MainWidget::updateSlider()
+{
+    m_pMapZoomSlider->setRange(m_pSettings->getMapZoomMin(),
+                               m_pSettings->getMapZoomMax());
+    m_pMapZoomSlider->setValue(m_pSettings->getDefaultZoom());
+}
+//------------------------------------------------------------------------------
