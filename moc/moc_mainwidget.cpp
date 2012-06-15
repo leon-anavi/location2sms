@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwidget.h'
 **
-** Created: Sun 10. Jun 22:49:48 2012
+** Created: Wed 13. Jun 00:13:23 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWidget[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      10,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -40,6 +40,7 @@ static const uint qt_meta_data_MainWidget[] = {
      150,   11,   11,   11, 0x08,
      164,   11,   11,   11, 0x08,
      184,  177,   11,   11, 0x08,
+     203,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -50,7 +51,7 @@ static const char qt_meta_stringdata_MainWidget[] = {
     "handleSmsSendButton()\0handleEmailSendButton()\0"
     "loadMap()\0loadAddress()\0loadMapShortUrl()\0"
     "handleAbout()\0handleLang()\0nValue\0"
-    "rotateSpinner(int)\0"
+    "rotateSpinner(int)\0mapChanged()\0"
 };
 
 const QMetaObject MainWidget::staticMetaObject = {
@@ -91,9 +92,10 @@ int MainWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 6: handleAbout(); break;
         case 7: handleLang(); break;
         case 8: rotateSpinner((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 9: mapChanged(); break;
         default: ;
         }
-        _id -= 9;
+        _id -= 10;
     }
     return _id;
 }

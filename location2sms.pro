@@ -20,8 +20,8 @@ QT += declarative
 
 symbian:
 {
-    TARGET.UID3 = 0x20041EC8
-    #TARGET.UID3 = 0xE864CBE1
+    #TARGET.UID3 = 0x20041EC8
+    TARGET.UID3 = 0xE864CBE1
     ICON = location2sms.svg
 
     # symbian capabilities
@@ -57,7 +57,8 @@ SOURCES += main.cpp mainwindow.cpp \
     filedownloader.cpp \
     busyindicator.cpp \
     languageswidget.cpp \
-    urlshortener.cpp
+    urlshortener.cpp \
+    settings.cpp
 HEADERS += mainwindow.h \
     aboutwidget.h \
     menuwidget.h \
@@ -66,7 +67,8 @@ HEADERS += mainwindow.h \
     filedownloader.h \
     busyindicator.h \
     languageswidget.h \
-    urlshortener.h
+    urlshortener.h \
+    settings.h
 FORMS += mainwindow.ui
 
 TRANSLATIONS = location2sms_bg.ts location2sms_tr.ts location2sms_de.ts location2sms_ro.ts

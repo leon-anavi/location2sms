@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'languageswidget.h'
 **
-** Created: Sun 10. Jun 22:49:50 2012
+** Created: Wed 13. Jun 00:13:24 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -40,7 +40,7 @@ static const uint qt_meta_data_LanguagesWidget[] = {
 };
 
 static const char qt_meta_stringdata_LanguagesWidget[] = {
-    "LanguagesWidget\0\0langClosed()\0"
+    "LanguagesWidget\0\0mapChanged()\0"
     "selectLang()\0"
 };
 
@@ -73,7 +73,7 @@ int LanguagesWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: langClosed(); break;
+        case 0: mapChanged(); break;
         case 1: selectLang(); break;
         default: ;
         }
@@ -83,7 +83,7 @@ int LanguagesWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void LanguagesWidget::langClosed()
+void LanguagesWidget::mapChanged()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, 0);
 }
