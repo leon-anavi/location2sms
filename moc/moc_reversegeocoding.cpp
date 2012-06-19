@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'reversegeocoding.h'
 **
-** Created: Thu 7. Jun 00:16:20 2012
+** Created: Tue 19. Jun 16:26:20 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

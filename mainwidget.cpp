@@ -39,7 +39,7 @@ MainWidget::MainWidget(QWidget *parent) :
     m_pLabelCoordinates(NULL),
     m_pButtonSendMessage(NULL),
     m_pButtonSendEmail(NULL),
-    m_pWebView(NULL),
+    m_pLabelMap(NULL),
     m_pMapZoomSlider(NULL),
     m_pReverseGeoCoder(NULL),
     m_pUrlShortener(NULL),
@@ -47,7 +47,8 @@ MainWidget::MainWidget(QWidget *parent) :
     m_nMapWidth(640),
     m_nMapHeight(200),
     m_pBusyIndicator(NULL),
-    m_pLoadingView(NULL)
+    m_pLoadingView(NULL),
+    m_pMapProvider(NULL)
 {
     m_pSettings = new Settings(this);
 
@@ -86,12 +87,11 @@ MainWidget::MainWidget(QWidget *parent) :
     m_pButtonSendEmail->setMinimumHeight(40);
     m_pButtonSendEmail->setStyleSheet(sButtonStyle);
 
-    //web view
-    m_pWebView = new QWebView(this);
-    m_pWebView->setStyleSheet("background-color:#000000;");
-    m_pWebView->setMinimumHeight(m_nMapHeight-100);
-    m_pWebView->setMaximumHeight(m_nMapHeight);
-    m_pWebView->setFixedWidth(m_nMapWidth);
+    //map
+    m_pLabelMap = new QLabel(this);
+    m_pLabelMap->setMinimumHeight(m_nMapHeight-100);
+    m_pLabelMap->setMaximumHeight(m_nMapHeight);
+    m_pLabelMap->setFixedWidth(m_nMapWidth);
 
     //slider
     m_pMapZoomSlider = new QSlider(Qt::Horizontal, this);
@@ -146,7 +146,7 @@ MainWidget::MainWidget(QWidget *parent) :
     m_pLayout->setMargin(0);
     m_pLayout->setContentsMargins(5,0,5,0);
     m_pLayout->addWidget(m_pMainMenu, 0, Qt::AlignTop);
-    m_pLayout->addWidget(m_pWebView, 0, Qt::AlignCenter);
+    m_pLayout->addWidget(m_pLabelMap, 0, Qt::AlignCenter);
     m_pLayout->addWidget(m_pMapZoomSlider, 0, Qt::AlignTop);
     m_pLayout->addWidget(m_pLoadingView);
     m_pLayout->addWidget(m_pLabelCoordinates, 0, Qt::AlignTop);
@@ -178,13 +178,15 @@ MainWidget::MainWidget(QWidget *parent) :
 
     m_pUrlShortener = new UrlShortener(this);
 
+    m_pMapProvider = new FileDownloader(this);
+
     // Connect button signal to appropriate slot
     connect(m_pButtonSendMessage, SIGNAL(released()), this, SLOT(handleSmsSendButton()));
     connect(m_pButtonSendEmail, SIGNAL(released()), this, SLOT(handleEmailSendButton()));
     // Handle slider signals
-    connect(m_pMapZoomSlider, SIGNAL(valueChanged(int)), this, SLOT(loadMap()));
-    connect(m_pMapZoomSlider, SIGNAL(sliderMoved(int)), this, SLOT(loadMap()));
-    connect(m_pMapZoomSlider, SIGNAL(sliderReleased()), this, SLOT(loadMap()));
+    connect(m_pMapZoomSlider, SIGNAL(valueChanged(int)), this, SLOT(requestMap()));
+    connect(m_pMapZoomSlider, SIGNAL(sliderMoved(int)), this, SLOT(requestMap()));
+    connect(m_pMapZoomSlider, SIGNAL(sliderReleased()), this, SLOT(requestMap()));
     // Process retrieved address via reverse geocoding
     connect(m_pReverseGeoCoder, SIGNAL(addressRetrieved()), this, SLOT(loadAddress()));
     // Save retrieved short URL
@@ -198,6 +200,8 @@ MainWidget::MainWidget(QWidget *parent) :
     connect(m_pTimeLine, SIGNAL(frameChanged(int)), this, SLOT(rotateSpinner(int)));
 
     connect(m_pLangWidget, SIGNAL(mapChanged()), this, SLOT(mapChanged()));
+
+    connect(m_pMapProvider, SIGNAL(downloaded()), SLOT(loadMap()));
 
     startLocationAPI();
 
@@ -274,7 +278,7 @@ void MainWidget::positionUpdated(QGeoPositionInfo geoPositionInfo)
 
             m_pReverseGeoCoder->requestAddressFromCoordinates(m_nLatitude, m_nLongitude);
 
-            loadMap();
+            requestMap();
 
             //request a short URL for the map
             m_pUrlShortener->requestShortUrl(getMapUrl(14, 400, 400));
@@ -341,10 +345,18 @@ void MainWidget::handleSendButton(QMessage::Type type)
 }
 //------------------------------------------------------------------------------
 
-void MainWidget::loadMap()
+void MainWidget::requestMap()
 {
     QString sUrl = getMapUrl(m_pMapZoomSlider->value(), m_nMapWidth, m_nMapHeight);
-    m_pWebView->load(QUrl(sUrl));
+    m_pMapProvider->downloadUrl(QUrl(sUrl));
+}
+//------------------------------------------------------------------------------
+
+void MainWidget::loadMap()
+{
+    QPixmap map;
+    map.loadFromData(m_pMapProvider->downloadedData());
+    m_pLabelMap->setPixmap(map);
 }
 //------------------------------------------------------------------------------
 
@@ -442,12 +454,14 @@ void MainWidget::resizeGUI(bool bPortrait, int nMapWidth, int nMapHeight)
     m_bPortrait = bPortrait;
     m_nMapWidth = nMapWidth;
     m_nMapHeight = nMapHeight;
-    m_pWebView->setFixedWidth(m_nMapWidth);
-    m_pWebView->setMinimumHeight(m_nMapHeight-100);
-    m_pWebView->setMaximumHeight(m_nMapHeight);
+
+    m_pLabelMap->setFixedWidth(m_nMapWidth);
+    m_pLabelMap->setMinimumHeight(m_nMapHeight-100);
+    m_pLabelMap->setMaximumHeight(m_nMapHeight);
+
     if (true == m_bIsPositionFound)
     {
-        loadMap();
+        requestMap();
         loadAddress();
     }
 }
@@ -468,7 +482,7 @@ void MainWidget::resizeAboutAndLang()
 
 void MainWidget::setCtrlVisible(bool bVisible)
 {
-    m_pWebView->setVisible(bVisible);
+    m_pLabelMap->setVisible(bVisible);
     m_pMapZoomSlider->setVisible(bVisible);
     m_pButtonSendMessage->setVisible(bVisible);
     m_pButtonSendEmail->setVisible(bVisible);
@@ -572,7 +586,7 @@ void MainWidget::mapChanged()
     {
         updateSlider();
         //reload the map
-        loadMap();
+        requestMap();
     }
 }
 //------------------------------------------------------------------------------

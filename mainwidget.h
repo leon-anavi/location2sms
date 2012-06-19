@@ -40,6 +40,7 @@
 #include "languageswidget.h"
 #include "urlshortener.h"
 #include "settings.h"
+#include "filedownloader.h"
 
 // QtMobility namespace
 QTM_USE_NAMESPACE
@@ -85,7 +86,7 @@ private:
 
     QPushButton* m_pButtonSendEmail;
 
-    QWebView* m_pWebView;
+    QLabel* m_pLabelMap;
 
     QSlider* m_pMapZoomSlider;
 
@@ -104,6 +105,8 @@ private:
     QTimeLine* m_pTimeLine;
 
     QGraphicsView* m_pLoadingView;
+
+    FileDownloader* m_pMapProvider;
 
     static const QString m_sAppName;
 
@@ -139,6 +142,13 @@ private slots:
       * @return nothing
       */
     void handleEmailSendButton();
+
+    /**
+      * Request the map
+      *
+      * @return nothing
+      */
+    void requestMap();
 
     /**
       * Load the map
