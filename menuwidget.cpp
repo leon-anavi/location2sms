@@ -32,7 +32,11 @@ MenuWidget::MenuWidget(QWidget *parent) :
     //handle buttons
     connect(m_pControlLang, SIGNAL(released()),this, SLOT(handleLang()));
     connect(m_pControlHelp, SIGNAL(released()),this, SLOT(handleHelp()));
-    connect(m_pControlExit, SIGNAL(released()),this, SLOT(handleExit()));
+
+    if (NULL != m_pControlExit)
+    {
+        connect(m_pControlExit, SIGNAL(released()),this, SLOT(handleExit()));
+    }
 }
 //------------------------------------------------------------------------------
 
@@ -77,10 +81,12 @@ void MenuWidget::initGui()
     m_pControlHelp->setMinimumHeight(nMinHeight);
     m_pControlHelp->setStyleSheet(sButtonStyle);
 
+#ifdef Q_OS_SYMBIAN
     m_pControlExit = new QPushButton("  X  ", this);
     m_pControlExit->setMinimumWidth(nMinWidth);
     m_pControlExit->setMinimumHeight(nMinHeight);
     m_pControlExit->setStyleSheet(sButtonStyle);
+#endif
 
     m_pControlBar = new QHBoxLayout(this);
     m_pControlBar->setSpacing(0);
@@ -91,8 +97,11 @@ void MenuWidget::initGui()
     m_pControlBar->addWidget(m_pControlLang, 0, Qt::AlignRight);
     m_pControlBar->addItem( new QSpacerItem(10, 0, QSizePolicy::Fixed, QSizePolicy::Minimum) );
     m_pControlBar->addWidget(m_pControlHelp, 0, Qt::AlignRight);
-    m_pControlBar->addItem( new QSpacerItem(10, 0, QSizePolicy::Fixed, QSizePolicy::Minimum) );
-    m_pControlBar->addWidget(m_pControlExit, 0, Qt::AlignRight);
+    if (NULL != m_pControlExit)
+    {
+        m_pControlBar->addItem( new QSpacerItem(10, 0, QSizePolicy::Fixed, QSizePolicy::Minimum) );
+        m_pControlBar->addWidget(m_pControlExit, 0, Qt::AlignRight);
+    }
     setLayout(m_pControlBar);
 }
 //------------------------------------------------------------------------------

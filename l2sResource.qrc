@@ -4,5 +4,6 @@
         <file>location2sms_tr.qm</file>
         <file>location2sms_de.qm</file>
         <file>location2sms_ro.qm</file>
+        <file>location2sms_el.qm</file>
     </qresource>
 </RCC>

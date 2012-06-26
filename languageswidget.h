@@ -97,6 +97,8 @@ private:
 
     void loadRomanian();
 
+    void loadGreek();
+
     void loadSelectedLanguage();
 
 };

@@ -88,7 +88,7 @@ MainWidget::MainWidget(QWidget *parent) :
     m_pButtonSendEmail->setStyleSheet(sButtonStyle);
 
     //map
-    m_pLabelMap = new QLabel(this);
+    m_pLabelMap = new QLabel("", this);
     m_pLabelMap->setMinimumHeight(m_nMapHeight-100);
     m_pLabelMap->setMaximumHeight(m_nMapHeight);
     m_pLabelMap->setFixedWidth(m_nMapWidth);
@@ -469,7 +469,7 @@ void MainWidget::resizeGUI(bool bPortrait, int nMapWidth, int nMapHeight)
 
 void MainWidget::resizeAboutAndLang()
 {
-    QRect Screen = QApplication::desktop()->screenGeometry();
+    QRect Screen = rect();
     int nSpace = 20;
     int nPosY = m_pMainMenu->height() + nSpace;
     int nWidth = Screen.width()-2*nSpace;

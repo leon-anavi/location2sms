@@ -58,6 +58,7 @@ LanguagesWidget::LanguagesWidget(Settings* pSettings, QWidget *parent) :
     new QListWidgetItem(QString::fromUtf8("Türkçe"), m_pLangList);
     new QListWidgetItem(QString::fromUtf8("Deutsch"), m_pLangList);
     new QListWidgetItem(QString::fromUtf8("Română"), m_pLangList);
+    new QListWidgetItem(QString::fromUtf8("Ελληνικά"), m_pLangList);
     m_pLangList->setStyleSheet(sStyle+sFontBold);
 
     m_pMapsList = new QListWidget(this);
@@ -150,6 +151,9 @@ void LanguagesWidget::loadSelectedLanguage()
         case 4:
             loadRomanian();
         break;
+        case 5:
+            loadGreek();
+        break;
         default:
             //English
             loadEnglish();
@@ -219,6 +223,21 @@ void LanguagesWidget::loadRomanian()
     else
     {
         qDebug() << "Unable to load Romanian translation.";
+    }
+
+    qApp->installTranslator(&m_Translator);
+}
+//------------------------------------------------------------------------------
+
+void LanguagesWidget::loadGreek()
+{
+    if (m_Translator.load(":/translations/location2sms_el"))
+    {
+        qDebug() << "Greek translation loaded.";
+    }
+    else
+    {
+        qDebug() << "Unable to load Greek translation.";
     }
 
     qApp->installTranslator(&m_Translator);

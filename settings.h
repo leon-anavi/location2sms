@@ -40,7 +40,7 @@ private:
 
     int m_nMapZoomDefault;
 
-    static const int m_nMapZoomMinGoogle = 0;
+    static const int m_nMapZoomMinGoogle = 1;
     static const int m_nMapZoomMaxGoogle = 19;
     static const int m_nMapDefaultZoomGoogle = 14;
 

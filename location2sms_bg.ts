@@ -13,7 +13,17 @@
 <context>
     <name>LanguagesWidget</name>
     <message>
-        <location filename="languageswidget.cpp" line="64"/>
+        <location filename="languageswidget.cpp" line="49"/>
+        <source>Language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="languageswidget.cpp" line="52"/>
+        <source>Map:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="languageswidget.cpp" line="69"/>
         <source>OK</source>
         <translation>ОК</translation>
     </message>
@@ -21,12 +31,12 @@
 <context>
     <name>MainWidget</name>
     <message>
-        <location filename="mainwidget.cpp" line="519"/>
+        <location filename="mainwidget.cpp" line="536"/>
         <source>Please wait...</source>
         <translation>Моля, изчакайте...</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="312"/>
+        <location filename="mainwidget.cpp" line="319"/>
         <source>Address: </source>
         <translation type="unfinished">Адрес: </translation>
     </message>
@@ -37,52 +47,44 @@ Longitude: %2</source>
 Дължина: %2</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="314"/>
+        <location filename="mainwidget.cpp" line="321"/>
         <source>Latitude: </source>
         <translation>Ширина: </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="317"/>
+        <location filename="mainwidget.cpp" line="324"/>
         <source>Longitude: </source>
         <translation>Дължина: </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="331"/>
+        <location filename="mainwidget.cpp" line="338"/>
         <source>Sent from </source>
         <translation>Изпратено от </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="354"/>
+        <location filename="mainwidget.cpp" line="369"/>
         <source>Address </source>
         <translation>Адрес </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="377"/>
+        <location filename="mainwidget.cpp" line="392"/>
         <source>Latitude </source>
         <translation>Ширина </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="387"/>
+        <location filename="mainwidget.cpp" line="402"/>
         <source>Longitude </source>
         <translation>Дължина </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="526"/>
+        <location filename="mainwidget.cpp" line="543"/>
         <source>SMS</source>
         <translation>SMS</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="532"/>
+        <location filename="mainwidget.cpp" line="549"/>
         <source>E-mail</source>
         <translation>E-поща</translation>
-    </message>
-</context>
-<context>
-    <name>MainWindow</name>
-    <message>
-        <location filename="mainwindow.ui" line="13"/>
-        <source>MainWindow</source>
-        <translation></translation>
     </message>
 </context>
 <context>

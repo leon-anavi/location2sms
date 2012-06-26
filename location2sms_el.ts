@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="tr_TR">
+<TS version="2.0" language="el_GR">
 <context>
     <name>AboutWidget</name>
     <message>
         <location filename="aboutwidget.cpp" line="83"/>
         <source>This is an open source application available under GPLv3 licence at Gitorious: https://gitorious.org/location2sms. The application depends on GPS quality that the device delivers. It is powered by Google Maps API and requires Internet connection.Position accuracy of about 20 meters can be expected. </source>
-        <translation>Bu uygulama açık kaynaklı bir yazılım olup GPLv3 lisansıyla Gitorius: https://gitorious.org/location2sms adresinde bulunmaktadır. Bu uygulama cihazınızın GPS kalitesine bağlıdır. Google Maps API&apos;sini kullanır ve internet bağlantısı gerektirir. 20 metrelik yanılsamalar olağandır. </translation>
+        <translation>Το παρόν λογισμικό είναι λογισμικό ανοικτού κώδικα και είναι διαθέσιμο, υπό την άδεια GPLv3, στο Gitorious: https://gitorious.org/location2sms. Το λογισμικό εξαρτάται απο την ποιότητα του GPS που προσφέρει η τηλεφωνική σας συσκευή. Τροφοδοτείται απο το API των χαρτών της Google και προϋποθέτει ένωση στο διαδίκτυο. Αναμένετε ακρίβεια τοποθεσίας με απόκλιση 20 μέτρων.</translation>
     </message>
 </context>
 <context>
@@ -14,17 +14,18 @@
     <message>
         <location filename="languageswidget.cpp" line="49"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Γλώσσα:</translation>
     </message>
     <message>
         <location filename="languageswidget.cpp" line="52"/>
         <source>Map:</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>in greek it&apos;s better to use &quot;Map&quot; (Χάρτης) instead of &quot;Maps&quot; (Χάρτες) but both are correct</translatorcomment>
+        <translation>Χάρτης:</translation>
     </message>
     <message>
         <location filename="languageswidget.cpp" line="69"/>
         <source>OK</source>
-        <translation>Tamam</translation>
+        <translation>Εντάξει</translation>
     </message>
 </context>
 <context>
@@ -32,48 +33,42 @@
     <message>
         <location filename="mainwidget.cpp" line="319"/>
         <source>Address: </source>
-        <translation>Adres: </translation>
-    </message>
-    <message>
-        <source>Latitude: %1 
-Longitude: %2</source>
-        <translation type="obsolete">Enlem: %1
-Boylam: %2</translation>
+        <translation>Διεύθυνση:</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="321"/>
         <source>Latitude: </source>
-        <translation>Enlem: </translation>
+        <translation>Γεωγραφικό πλάτος:</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="324"/>
         <source>Longitude: </source>
-        <translation>Boylam: </translation>
+        <translation>Γεωγραφικό μήκος:</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="338"/>
         <source>Sent from </source>
-        <translation>Gönderilmiş </translation>
+        <translation>Στάλθηκε από </translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="369"/>
         <source>Address </source>
-        <translation>Adres </translation>
+        <translation>Διεύθυνση</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="392"/>
         <source>Latitude </source>
-        <translation>Enlem </translation>
+        <translation>Γεωγραφικό πλάτος</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="402"/>
         <source>Longitude </source>
-        <translation>Boylam </translation>
+        <translation>Γεωγραφικό μήκος</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="536"/>
         <source>Please wait...</source>
-        <translation>Lütfen bekleyin...</translation>
+        <translation>Παρακαλώ περιμένετε...</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="543"/>
@@ -83,7 +78,7 @@ Boylam: %2</translation>
     <message>
         <location filename="mainwidget.cpp" line="549"/>
         <source>E-mail</source>
-        <translation>Е-posta</translation>
+        <translation>Ηλεκτρονική διεύθυνση</translation>
     </message>
 </context>
 </TS>

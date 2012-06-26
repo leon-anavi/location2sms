@@ -30,10 +30,14 @@ MainWindow::MainWindow(QWidget *parent)
     setPalette(Pal);
 
     m_pMainWidget = new MainWidget(this);
+    m_pMainWidget->setAutoFillBackground(true);
+    m_pMainWidget->setPalette(Pal);
 
     m_pMainWidget->show();
 
+#ifdef Q_OS_SYMBIAN
     resizeGui();
+#endif
 }
 //------------------------------------------------------------------------------
 
@@ -99,20 +103,24 @@ void MainWindow::showExpanded()
 }
 //------------------------------------------------------------------------------
 
-void MainWindow::resizeGui()
+void MainWindow::resizeGui(int nWidth, int nHeight)
 {
-    QRect Screen = QApplication::desktop()->screenGeometry();
-    int nHeight = Screen.height();
-    m_pMainWidget->setGeometry(0,0, Screen.width(), nHeight );
+    if ( (0 == nWidth) || (0 == nHeight) )
+    {
+        QRect Screen = QApplication::desktop()->screenGeometry();
+        nWidth = Screen.width();
+        nHeight = Screen.height();
+    }
+    m_pMainWidget->setGeometry(0, 0, nWidth, nHeight);
     bool bPortraint = false;
     //limited to 640px by Google Maps API
     int nMapWidth = 640;
     int nMapHeight = 200;
-    if (Screen.height() > Screen.width())
+    if (nHeight > nWidth)
     {
         bPortraint = true;
-        nMapWidth = Screen.width();
-        nMapHeight = Screen.width();
+        nMapWidth = nWidth;
+        nMapHeight = nWidth;
     }
     m_pMainWidget->resizeGUI(bPortraint, nMapWidth, nMapHeight);
 }

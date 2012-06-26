@@ -47,9 +47,9 @@ public:
 
     void showExpanded();
 
-private:
+    void resizeGui(int nWidth = 0, int nHeight = 0);
 
-    void resizeGui();
+private:
 
     // from QMainWindow
     void resizeEvent(QResizeEvent* event);
