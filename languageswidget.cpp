@@ -1,4 +1,4 @@
-/*
+﻿/*
 * ============================================================================
 *  Name         : languageswidget.cpp
 *  Part of      : location2sms
@@ -46,10 +46,10 @@ LanguagesWidget::LanguagesWidget(Settings* pSettings, QWidget *parent) :
     QString sStyle = QString("background-color: transparent;");
     sStyle += sItemsFont;
 
-    m_pLangLabel = new QLabel(tr("Language:"), this);
+    m_pLangLabel = new QLabel(getLabelLanguage(), this);
     m_pLangLabel->setStyleSheet(sStyle);
 
-    m_pMapsLabel = new QLabel(tr("Map:"), this);
+    m_pMapsLabel = new QLabel(getLabelMap(), this);
     m_pMapsLabel->setStyleSheet(sStyle);
 
     m_pLangList = new QListWidget(this);
@@ -358,6 +358,31 @@ void LanguagesWidget::loadLanguageSettings()
     {
         m_pSettings->setIsAppStartedForFirstTime(false);
     }
+}
+//------------------------------------------------------------------------------
+
+void LanguagesWidget::changeEvent(QEvent* event)
+{
+    if (QEvent::LanguageChange == event->type())
+    {
+        //translate
+        m_pLangLabel->setText(getLabelLanguage());
+        m_pMapsLabel->setText(getLabelMap());
+    }
+    QWidget::changeEvent(event);
+}
+//------------------------------------------------------------------------------
+
+
+QString LanguagesWidget::getLabelMap() const
+{
+    return tr("Map:");
+}
+//------------------------------------------------------------------------------
+
+QString LanguagesWidget::getLabelLanguage() const
+{
+    return tr("Language:");
 }
 //------------------------------------------------------------------------------
 

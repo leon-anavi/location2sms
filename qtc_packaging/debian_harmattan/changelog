@@ -1,3 +1,8 @@
+location2sms (2.1.5) stable; urgency=low
+  * New map engines (Bing, Nokia, OpenStreet Maps) and languages (Greek, Dutch, Czech, Indonesian and Russian) added.
+
+ -- unknown <>  Sun, 08 Jul 2012 13:58:12 +0300
+
 location2sms (2.1.4) stable; urgency=low
   * New feature for sharing location via e-mail added
 

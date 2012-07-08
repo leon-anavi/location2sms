@@ -12,18 +12,18 @@
 <context>
     <name>LanguagesWidget</name>
     <message>
-        <location filename="languageswidget.cpp" line="49"/>
+        <location filename="languageswidget.cpp" line="385"/>
         <source>Language:</source>
         <translation>Γλώσσα:</translation>
     </message>
     <message>
-        <location filename="languageswidget.cpp" line="52"/>
+        <location filename="languageswidget.cpp" line="379"/>
         <source>Map:</source>
         <translatorcomment>in greek it&apos;s better to use &quot;Map&quot; (Χάρτης) instead of &quot;Maps&quot; (Χάρτες) but both are correct</translatorcomment>
         <translation>Χάρτης:</translation>
     </message>
     <message>
-        <location filename="languageswidget.cpp" line="72"/>
+        <location filename="languageswidget.cpp" line="75"/>
         <source>OK</source>
         <translation>Εντάξει</translation>
     </message>

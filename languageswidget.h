@@ -57,6 +57,9 @@ protected:
     //overload from QWidget
     void paintEvent(QPaintEvent* event);
 
+    //overload from QWidget
+    void changeEvent(QEvent* event);
+
 signals:
 
     void mapChanged();
@@ -108,6 +111,10 @@ private:
     void loadRussian();
 
     void loadSelectedLanguage();
+
+    QString getLabelMap() const;
+
+    QString getLabelLanguage() const;
 
 };
 

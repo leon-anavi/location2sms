@@ -73,7 +73,7 @@ SOURCES += main.cpp \
     busyindicator.cpp \
     aboutwidget.cpp
 
-TRANSLATIONS = location2sms_bg.ts location2sms_tr.ts location2sms_de.ts location2sms_ro.ts location2sms_el.ts location2sms_nl.ts location2sms_cz.ts location2sms_id.ts
+TRANSLATIONS = location2sms_bg.ts location2sms_tr.ts location2sms_de.ts location2sms_ro.ts location2sms_el.ts location2sms_nl.ts location2sms_cs.ts location2sms_id.ts
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)

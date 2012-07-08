@@ -8,23 +8,23 @@
         <source>This is an open source application available under GPLv3 licence at Gitorious: https://gitorious.org/location2sms. The application depends on GPS quality that the device delivers. It is powered by Google Maps API and requires Internet connection.Position accuracy of about 20 meters can be expected. </source>
         <oldsource>This is an open source application available under GPLv3 licence at Gitorious: https://gitorious.org/location2sms. The application depends on GPS quality that the device delivers. Position accuracy of about 20 meters can be expected. It is powered by Google Maps API and requires Internet connection.</oldsource>
         <translatorcomment>Dit is een open source applicatie  en volgt de GPLv3 licentievoorwaarden. Location2sms is afhankelijk van de GPS nauwkeurigheid van uw smartphone. Google Maps wordt gebruikt en internetverbinding is nodig voor goede werking. De te verwachten nauwkeurigheid van de positie is 20 meter</translatorcomment>
-        <translation>Това е приложение с отворен код, който е достъпен под GPLv3 лиценз в Gitorious: https://gitorious.org/location2sms. Приложението зависи от качеството на GPS устройството. Използва Google Maps API и изисква Интернет връзка. Може да бъде очаквана точност на позиционирането до 20 метра. </translation>
+        <translation>Dit is een open source applicatie  en volgt de GPLv3 licentievoorwaarden. Location2sms is afhankelijk van de GPS nauwkeurigheid van uw smartphone. Google Maps wordt gebruikt en internetverbinding is nodig voor goede werking. De te verwachten nauwkeurigheid van de positie is 20 meter.</translation>
     </message>
 </context>
 <context>
     <name>LanguagesWidget</name>
     <message>
-        <location filename="languageswidget.cpp" line="49"/>
+        <location filename="languageswidget.cpp" line="385"/>
         <source>Language:</source>
-        <translation>Taal: </translation>
+        <translation>Taal:</translation>
     </message>
     <message>
-        <location filename="languageswidget.cpp" line="52"/>
+        <location filename="languageswidget.cpp" line="379"/>
         <source>Map:</source>
-        <translation>Kaarten: </translation>
+        <translation>Kaarten:</translation>
     </message>
     <message>
-        <location filename="languageswidget.cpp" line="72"/>
+        <location filename="languageswidget.cpp" line="75"/>
         <source>OK</source>
         <translation>ОК</translation>
     </message>
