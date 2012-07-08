@@ -15,15 +15,15 @@
     <message>
         <location filename="languageswidget.cpp" line="49"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Език:</translation>
     </message>
     <message>
         <location filename="languageswidget.cpp" line="52"/>
         <source>Map:</source>
-        <translation type="unfinished"></translation>
+        <translation>Карта:</translation>
     </message>
     <message>
-        <location filename="languageswidget.cpp" line="69"/>
+        <location filename="languageswidget.cpp" line="72"/>
         <source>OK</source>
         <translation>ОК</translation>
     </message>
@@ -38,7 +38,7 @@
     <message>
         <location filename="mainwidget.cpp" line="319"/>
         <source>Address: </source>
-        <translation type="unfinished">Адрес: </translation>
+        <translation>Адрес: </translation>
     </message>
     <message>
         <source>Latitude: %1 

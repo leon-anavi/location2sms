@@ -127,17 +127,21 @@ Settings::MapTypes Settings::getSelectedMap() const
 void Settings::setSelectedMap(MapTypes eMapType)
 {
     m_eMapType = eMapType;
-    if (google == m_eMapType)
+    switch (m_eMapType)
     {
-        m_nMapZoomMin = m_nMapZoomMinGoogle;
-        m_nMapZoomMax = m_nMapZoomMaxGoogle;
-        m_nMapZoomDefault = m_nMapDefaultZoomGoogle;
-    }
-    else
-    {
-        m_nMapZoomMin = m_nMapZoomMinBing;
-        m_nMapZoomMax = m_nMapZoomMaxBing;
-        m_nMapZoomDefault = m_nMapDefaultZoomBing;
+        case bing:
+            m_nMapZoomMin = m_nMapZoomMinBing;
+            m_nMapZoomMax = m_nMapZoomMaxBing;
+            m_nMapZoomDefault = m_nMapDefaultZoomBing;
+        break;
+        case nokia:
+        case openstreetmaps:
+        default:
+            //google
+            m_nMapZoomMin = m_nMapZoomMinGoogle;
+            m_nMapZoomMax = m_nMapZoomMaxGoogle;
+            m_nMapZoomDefault = m_nMapDefaultZoomGoogle;
+        break;
     }
 }
 //------------------------------------------------------------------------------

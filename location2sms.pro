@@ -36,11 +36,11 @@ symbian:
 
     # symbian capabilities
     TARGET.CAPABILITY += NetworkServices \
-                            Location #\
-    #                        ReadUserData \
-    #                        WriteUserData \
-    #                        ReadDeviceData \
-    #                        WriteDeviceData
+                            Location \
+                            ReadUserData \
+                            WriteUserData \
+                            ReadDeviceData \
+                            WriteDeviceData
 
     packageheader = "$${LITERAL_HASH}{\"location2sms\"}, ($${TARGET.UID3}), 2, 1, 4"
     name_deployment.pkg_prerules = packageheader
@@ -73,7 +73,7 @@ SOURCES += main.cpp \
     busyindicator.cpp \
     aboutwidget.cpp
 
-TRANSLATIONS = location2sms_bg.ts location2sms_tr.ts location2sms_de.ts location2sms_ro.ts location2sms_el.ts
+TRANSLATIONS = location2sms_bg.ts location2sms_tr.ts location2sms_de.ts location2sms_ro.ts location2sms_el.ts location2sms_nl.ts location2sms_cz.ts location2sms_id.ts
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)

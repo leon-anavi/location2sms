@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="de_DE">
+<TS version="2.0" language="nl_NL">
 <context>
     <name>AboutWidget</name>
     <message>
         <location filename="aboutwidget.cpp" line="83"/>
         <source>This is an open source application available under GPLv3 licence at Gitorious: https://gitorious.org/location2sms. The application depends on GPS quality that the device delivers. It is powered by Google Maps API and requires Internet connection.Position accuracy of about 20 meters can be expected. </source>
-        <translation>Diese Opensource-Anwendung (s. gitorius: https://gitorious.org/location2sms) steht unter der GPLv3 Lizenz. Die Anwendung verwendet die GPS Genauigkeit, die vom jeweiligen Gerät bereitgestellt wird. Es wird Google Maps verwendet und eine Internetverbindung benötigt. Mit einer Positionsgenauigkeit mit Abweichung von 20 Metern muss gerechnet werden.</translation>
+        <oldsource>This is an open source application available under GPLv3 licence at Gitorious: https://gitorious.org/location2sms. The application depends on GPS quality that the device delivers. Position accuracy of about 20 meters can be expected. It is powered by Google Maps API and requires Internet connection.</oldsource>
+        <translatorcomment>Dit is een open source applicatie  en volgt de GPLv3 licentievoorwaarden. Location2sms is afhankelijk van de GPS nauwkeurigheid van uw smartphone. Google Maps wordt gebruikt en internetverbinding is nodig voor goede werking. De te verwachten nauwkeurigheid van de positie is 20 meter</translatorcomment>
+        <translation>Това е приложение с отворен код, който е достъпен под GPLv3 лиценз в Gitorious: https://gitorious.org/location2sms. Приложението зависи от качеството на GPS устройството. Използва Google Maps API и изисква Интернет връзка. Може да бъде очаквана точност на позиционирането до 20 метра. </translation>
     </message>
 </context>
 <context>
@@ -14,66 +16,66 @@
     <message>
         <location filename="languageswidget.cpp" line="49"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Taal: </translation>
     </message>
     <message>
         <location filename="languageswidget.cpp" line="52"/>
         <source>Map:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaarten: </translation>
     </message>
     <message>
         <location filename="languageswidget.cpp" line="72"/>
         <source>OK</source>
-        <translation>Ok</translation>
+        <translation>ОК</translation>
     </message>
 </context>
 <context>
     <name>MainWidget</name>
     <message>
+        <location filename="mainwidget.cpp" line="536"/>
+        <source>Please wait...</source>
+        <translation>Even geduld ...</translation>
+    </message>
+    <message>
         <location filename="mainwidget.cpp" line="319"/>
         <source>Address: </source>
-        <translation>Adresse: </translation>
+        <translation>Adres: </translation>
     </message>
     <message>
         <source>Latitude: %1 
 Longitude: %2</source>
-        <translation type="obsolete">Breite: %1
-Länge: %2</translation>
+        <translation type="obsolete">Ширина: %1 
+Дължина: %2</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="321"/>
         <source>Latitude: </source>
-        <translation>Breite: </translation>
+        <translation>Breedtegraad: </translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="324"/>
         <source>Longitude: </source>
-        <translation>Länge: </translation>
+        <translation>Lengtegraad: </translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="338"/>
         <source>Sent from </source>
-        <translation>Gesendet von </translation>
+        <translation>Verstuurd door </translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="369"/>
         <source>Address </source>
-        <translation>Adresse </translation>
+        <translation>Adres </translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="392"/>
         <source>Latitude </source>
-        <translation>Breite </translation>
+        <translation>Breedtegraad </translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="402"/>
         <source>Longitude </source>
-        <translation>Länge </translation>
-    </message>
-    <message>
-        <location filename="mainwidget.cpp" line="536"/>
-        <source>Please wait...</source>
-        <translation>Bitte warten...</translation>
+        <translation>Lengtegraad </translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="543"/>
@@ -83,7 +85,14 @@ Länge: %2</translation>
     <message>
         <location filename="mainwidget.cpp" line="549"/>
         <source>E-mail</source>
-        <translation>Е-Mail</translation>
+        <translation>E-mail</translation>
+    </message>
+</context>
+<context>
+    <name>QPushButton</name>
+    <message>
+        <source>SMS</source>
+        <translation type="obsolete">SMS</translation>
     </message>
 </context>
 </TS>

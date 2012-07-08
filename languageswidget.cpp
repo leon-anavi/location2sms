@@ -59,11 +59,17 @@ LanguagesWidget::LanguagesWidget(Settings* pSettings, QWidget *parent) :
     new QListWidgetItem(QString::fromUtf8("Deutsch"), m_pLangList);
     new QListWidgetItem(QString::fromUtf8("Română"), m_pLangList);
     new QListWidgetItem(QString::fromUtf8("Ελληνικά"), m_pLangList);
+    new QListWidgetItem(QString::fromUtf8("Nederlands"), m_pLangList);
+    new QListWidgetItem(QString::fromUtf8("Čeština"), m_pLangList);
+    new QListWidgetItem(QString::fromUtf8("Bahasa Indonesia"), m_pLangList);
+    new QListWidgetItem(QString::fromUtf8("Русский"), m_pLangList);
     m_pLangList->setStyleSheet(sStyle+sFontBold);
 
     m_pMapsList = new QListWidget(this);
-    new QListWidgetItem("Bing", m_pMapsList);
     new QListWidgetItem("Google", m_pMapsList);
+    new QListWidgetItem("Bing", m_pMapsList);
+    new QListWidgetItem("Nokia", m_pMapsList);
+    new QListWidgetItem("OpenStreet Maps", m_pMapsList);
     m_pMapsList->setStyleSheet(sStyle+sFontBold);
 
     m_pLangSelect = new QPushButton(tr("OK"), this);
@@ -119,8 +125,14 @@ void LanguagesWidget::selectLang()
     m_pSettings->setSelectedLanguage(m_pLangList->currentRow());
     loadSelectedLanguage();
 
-    Settings::MapTypes eMap =
-        (0 == m_pMapsList->currentRow()) ? Settings::bing : Settings::google;
+    Settings::MapTypes eMap = Settings::google;
+    switch (m_pMapsList->currentRow())
+    {
+        case 1:
+            eMap = Settings::bing;
+        break;
+    }
+
     if (eMap != m_pSettings->getSelectedMap())
     {
         m_pSettings->setSelectedMap(eMap);
@@ -153,6 +165,18 @@ void LanguagesWidget::loadSelectedLanguage()
         break;
         case 5:
             loadGreek();
+        break;
+        case 6:
+            loadDutch();
+        break;
+        case 7:
+            loadCzech();
+        break;
+        case 8:
+            loadIndonesian();
+        break;
+        case 9:
+            loadRussian();
         break;
         default:
             //English
@@ -244,6 +268,67 @@ void LanguagesWidget::loadGreek()
 }
 //------------------------------------------------------------------------------
 
+void LanguagesWidget::loadDutch()
+{
+    if (m_Translator.load(":/translations/location2sms_nl"))
+    {
+        qDebug() << "Dutch translation loaded.";
+    }
+    else
+    {
+        qDebug() << "Unable to load Dutch translation.";
+    }
+
+    qApp->installTranslator(&m_Translator);
+}
+//------------------------------------------------------------------------------
+
+
+void LanguagesWidget::loadCzech()
+{
+    if (m_Translator.load(":/translations/location2sms_cs"))
+    {
+        qDebug() << "Czech translation loaded.";
+    }
+    else
+    {
+        qDebug() << "Unable to load Czech translation.";
+    }
+
+    qApp->installTranslator(&m_Translator);
+}
+//------------------------------------------------------------------------------
+
+void LanguagesWidget::loadIndonesian()
+{
+    if (m_Translator.load(":/translations/location2sms_id"))
+    {
+        qDebug() << "Indonesian translation loaded.";
+    }
+    else
+    {
+        qDebug() << "Unable to load Indonesian translation.";
+    }
+
+    qApp->installTranslator(&m_Translator);
+}
+//------------------------------------------------------------------------------
+
+void LanguagesWidget::loadRussian()
+{
+    if (m_Translator.load(":/translations/location2sms_ru"))
+    {
+        qDebug() << "Russian translation loaded.";
+    }
+    else
+    {
+        qDebug() << "Unable to load Russian translation.";
+    }
+
+    qApp->installTranslator(&m_Translator);
+}
+//------------------------------------------------------------------------------
+
 void LanguagesWidget::loadLanguageSettings()
 {
     m_pLangList->setCurrentRow(m_pSettings->getSelectedLanguage());
@@ -253,14 +338,14 @@ void LanguagesWidget::loadLanguageSettings()
         loadSelectedLanguage();
     }
 
-    if (Settings::bing == m_pSettings->getSelectedMap())
+    int nRow = 0;
+    switch (m_pSettings->getSelectedMap())
     {
-        m_pMapsList->setCurrentRow(0);
+        case Settings::bing:
+            nRow = 1;
+        break;
     }
-    else
-    {
-        m_pMapsList->setCurrentRow(1);
-    }
+    m_pMapsList->setCurrentRow(nRow);
 
     //Make sure that lang selection view will not be shown next time
     if (true == m_pSettings->isAppStartedForFirstTime())

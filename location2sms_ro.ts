@@ -22,7 +22,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="languageswidget.cpp" line="69"/>
+        <location filename="languageswidget.cpp" line="72"/>
         <source>OK</source>
         <translation>ОК</translation>
     </message>

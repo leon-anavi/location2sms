@@ -99,6 +99,14 @@ private:
 
     void loadGreek();
 
+    void loadDutch();
+
+    void loadCzech();
+
+    void loadIndonesian();
+
+    void loadRussian();
+
     void loadSelectedLanguage();
 
 };
