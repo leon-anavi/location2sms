@@ -24,7 +24,7 @@ Settings::Settings(QObject *parent) :
     QObject(parent),
     m_bIsAppStartedForFirstTime(true),
     m_nSelectedLanguage(0),
-    m_eMapType(bing),
+    m_eMapType(google),
     m_nMapZoomMin(1),
     m_nMapZoomMax(18),
     m_nMapZoomDefault(14)

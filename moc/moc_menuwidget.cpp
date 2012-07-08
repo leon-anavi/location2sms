@@ -1,8 +1,8 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'menuwidget.h'
 **
-** Created: Wed 20. Jun 01:46:11 2012
-**      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
+** Created: Wed 27. Jun 12:26:54 2012
+**      by: The Qt Meta Object Compiler version 62 (Qt 4.7.3)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -11,7 +11,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'menuwidget.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 62
-#error "This file was generated using the moc from 4.7.4. It"
+#error "This file was generated using the moc from 4.7.3. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif

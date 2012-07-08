@@ -27,7 +27,7 @@ AboutWidget::AboutWidget(QWidget *parent) :
     m_pAboutInfo = new QLabel(getInfoText(), this);
     QString sItemsFont = "font-size:";
 #ifdef Q_OS_SYMBIAN
-    sItemsFont += "7pt;";
+    sItemsFont += "5pt;";
 #else
     sItemsFont += "16pt;";
 #endif
