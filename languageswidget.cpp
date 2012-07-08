@@ -35,7 +35,7 @@ LanguagesWidget::LanguagesWidget(Settings* pSettings, QWidget *parent) :
     QString sStyleBackground = "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4c4c4c, stop: 0.5 #333333, stop: 1 #202020);";
     QString sItemsFont = "font-size: ";
 #ifdef Q_OS_SYMBIAN
-    sItemsFont += "8pt;";
+    sItemsFont += "6pt;";
 #else
     sItemsFont += "22pt;";
 #endif
