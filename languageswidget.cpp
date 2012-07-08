@@ -131,6 +131,12 @@ void LanguagesWidget::selectLang()
         case 1:
             eMap = Settings::bing;
         break;
+        case 2:
+            eMap = Settings::nokia;
+        break;
+        case 3:
+            eMap = Settings::openstreetmaps;
+        break;
     }
 
     if (eMap != m_pSettings->getSelectedMap())

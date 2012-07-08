@@ -48,6 +48,14 @@ private:
     static const int m_nMapZoomMaxBing = 18;
     static const int m_nMapDefaultZoomBing = 14;
 
+    static const int m_nMapZoomMinNokia = 2;
+    static const int m_nMapZoomMaxNokia = 18;
+    static const int m_nMapDefaultZoomNokia = 14;
+
+    static const int m_nMapZoomMinOpenstreetMap = 2;
+    static const int m_nMapZoomMaxOpenstreetMap = 18;
+    static const int m_nMapDefaultZoomOpenstreetMap = 14;
+
 public:
 
     explicit Settings(QObject *parent = 0);

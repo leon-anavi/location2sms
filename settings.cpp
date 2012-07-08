@@ -61,13 +61,21 @@ void Settings::loadSettings()
     m_nSelectedLanguage = settings.value("SelectedLanguage").toInt();
     //Map type
     QString sMapType = settings.value("MapType").toString();
-    if (0 == sMapType.compare(QString("google")))
+    if (1 == sMapType.compare(QString("bing")))
     {
-        setSelectedMap(google);
+        setSelectedMap(bing);
+    }
+    else if (2 == sMapType.compare(QString("nokia")))
+    {
+        setSelectedMap(nokia);
+    }
+    else if (3 == sMapType.compare(QString("openstreetmaps")))
+    {
+        setSelectedMap(openstreetmaps);
     }
     else
     {
-        setSelectedMap(bing);
+        setSelectedMap(google);
     }
 }
 //------------------------------------------------------------------------------
@@ -135,7 +143,15 @@ void Settings::setSelectedMap(MapTypes eMapType)
             m_nMapZoomDefault = m_nMapDefaultZoomBing;
         break;
         case nokia:
+            m_nMapZoomMin = m_nMapZoomMinNokia;
+            m_nMapZoomMax = m_nMapZoomMaxNokia;
+            m_nMapZoomDefault = m_nMapDefaultZoomNokia;
+        break;
         case openstreetmaps:
+            m_nMapZoomMin = m_nMapZoomMinOpenstreetMap;
+            m_nMapZoomMax = m_nMapZoomMaxOpenstreetMap;
+            m_nMapZoomDefault = m_nMapDefaultZoomOpenstreetMap;
+        break;
         default:
             //google
             m_nMapZoomMin = m_nMapZoomMinGoogle;
