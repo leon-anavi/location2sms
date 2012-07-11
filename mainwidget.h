@@ -41,6 +41,7 @@
 #include "urlshortener.h"
 #include "settings.h"
 #include "filedownloader.h"
+#include "custommessagebox.h"
 
 // QtMobility namespace
 QTM_USE_NAMESPACE
@@ -79,6 +80,9 @@ private:
 
     //language settings view
     LanguagesWidget* m_pLangWidget;
+
+    //Custom message
+    CustomMessageBox* m_pMessageBox;
 
     QLabel* m_pLabelCoordinates;
 
@@ -215,6 +219,13 @@ private slots:
       */
     void showEnableLocationDataMsg();
 
+    /**
+      * Handle message box for enabling location data
+      *
+      * @return nothing
+      */
+    void handleMessageBox();
+
 public:
 
     /**
@@ -227,6 +238,13 @@ public:
       * @return nothing
       */
     void resizeGUI(bool bPortrait, int bMapWidth, int bMapHeight);
+
+    /**
+      * Get message box
+      *
+      * @return CustomMessageBox
+      */
+    CustomMessageBox* getMessageBox() const;
 
 protected:
 
@@ -337,6 +355,14 @@ private:
       * @return nothing
       */
     void updateSlider();
+
+    /**
+      * Create single instance of the message box
+      *
+      * @return nothing
+      */
+    void createMessageBox();
+
 };
 
 #endif // MAINWIDGET_H

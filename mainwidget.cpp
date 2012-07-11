@@ -38,6 +38,7 @@ MainWidget::MainWidget(QWidget *parent) :
     m_pMainMenu(NULL),
     m_pAboutWidget(NULL),
     m_pLangWidget(NULL),
+    m_pMessageBox(NULL),
     m_pLabelCoordinates(NULL),
     m_pButtonSendMessage(NULL),
     m_pButtonSendEmail(NULL),
@@ -439,7 +440,6 @@ void MainWidget::handleAbout()
         m_pLangWidget->hide();
         m_pAboutWidget->show();
     }
-
 }
 //------------------------------------------------------------------------------
 
@@ -491,6 +491,11 @@ void MainWidget::resizeAboutAndLang()
     m_pAboutWidget->setGeometry(nSpace, nPosY, nWidth, nHeight);
 
     m_pLangWidget->resizeGUI(nSpace, nPosY, nWidth, nHeight);
+
+    if (NULL != m_pMessageBox)
+    {
+        m_pMessageBox->setGeometry(nSpace, nPosY, nWidth, nHeight);
+    }
 }
 //------------------------------------------------------------------------------
 
@@ -642,23 +647,19 @@ void MainWidget::enableLocationData()
 
 void MainWidget::showEnableLocationDataMsg()
 {
-    //show enable location dialog
-    QMessageBox msgBox;
-    msgBox.setText(tr("Do you authorize location2sms to use your location data?"));
-    msgBox.addButton(tr("OK"), QMessageBox::YesRole);
-    QPushButton* pButtonDisable = msgBox.addButton(tr("Exit"), QMessageBox::NoRole);
+    createMessageBox();
 
-    msgBox.exec();
-    if (msgBox.clickedButton() == pButtonDisable)
-    {
-        m_pSettings->setIsLocationDataEnabled(false);
-        //exit
-        QCoreApplication::quit();
-        return;
-    }
-    //Enable location data and start searching for position
-    m_pSettings->setIsLocationDataEnabled(true);
-    startLocationAPI();
+    m_pMessageBox->addLabel(tr("Do you authorize location2sms to use your location data?"));
+    m_pMessageBox->addButton(tr("OK"));
+    m_pMessageBox->addButton(tr("Exit"));
+    m_pMessageBox->finalizeWidget();
+
+    connect( m_pMessageBox, SIGNAL(buttonClicked()),
+            this, SLOT(handleMessageBox()) );
+
+    resizeAboutAndLang();
+
+    m_pMessageBox->show();
 }
 //------------------------------------------------------------------------------
 
@@ -667,5 +668,44 @@ void MainWidget::updateSlider()
     m_pMapZoomSlider->setRange(m_pSettings->getMapZoomMin(),
                                m_pSettings->getMapZoomMax());
     m_pMapZoomSlider->setValue(m_pSettings->getDefaultZoom());
+}
+//------------------------------------------------------------------------------
+
+void MainWidget::handleMessageBox()
+{
+    if (NULL == m_pMessageBox)
+    {
+        return;
+    }
+    QPushButton* pButton = m_pMessageBox->getLastClickedButton();
+    //get last clicked button
+    if (pButton->text() == tr("Exit"))
+    {
+        m_pSettings->setIsLocationDataEnabled(false);
+        //exit
+        QCoreApplication::quit();
+        return;
+    }
+    m_pMessageBox->hide();
+
+    //Enable location data and start searching for position
+    m_pSettings->setIsLocationDataEnabled(true);
+    startLocationAPI();
+}
+//------------------------------------------------------------------------------
+
+void MainWidget::createMessageBox()
+{
+    if (NULL != m_pMessageBox)
+    {
+        return;
+    }
+    m_pMessageBox = new CustomMessageBox(this);
+}
+//------------------------------------------------------------------------------
+
+CustomMessageBox* MainWidget::getMessageBox() const
+{
+    return m_pMessageBox;
 }
 //------------------------------------------------------------------------------

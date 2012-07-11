@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.4.1, 2012-07-11T11:28:09. -->
+<!-- Written by Qt Creator 2.4.1, 2012-07-11T20:55:44. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -738,7 +738,7 @@
       <value type="QString" key="Qt4ProjectManager.S60CreatePackageStep.Certificate">C:/Symbian/Carbide/workspace/UBrowser/sis/certificate_v1.cer</value>
       <value type="QString" key="Qt4ProjectManager.S60CreatePackageStep.Keyfile">C:/Symbian/Carbide/workspace/UBrowser/sis/developercertificate.key</value>
       <value type="int" key="Qt4ProjectManager.S60CreatePackageStep.SignMode">1</value>
-      <value type="bool" key="Qt4ProjectManager.S60CreatorPackageStep.SmartInstaller">true</value>
+      <value type="bool" key="Qt4ProjectManager.S60CreatorPackageStep.SmartInstaller">false</value>
       <value type="bool" key="Qt4ProjectManager.S60CreatorPackageStep.SuppressPatchWarningDialog">false</value>
      </valuemap>
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
