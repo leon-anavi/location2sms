@@ -147,6 +147,8 @@ void LanguagesWidget::selectLang()
 
     //hide this view
     hide();
+
+    emit langWidgetClosed();
 }
 //------------------------------------------------------------------------------
 
@@ -352,12 +354,6 @@ void LanguagesWidget::loadLanguageSettings()
         break;
     }
     m_pMapsList->setCurrentRow(nRow);
-
-    //Make sure that lang selection view will not be shown next time
-    if (true == m_pSettings->isAppStartedForFirstTime())
-    {
-        m_pSettings->setIsAppStartedForFirstTime(false);
-    }
 }
 //------------------------------------------------------------------------------
 

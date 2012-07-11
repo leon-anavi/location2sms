@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwidget.h'
 **
-** Created: Sun 8. Jul 14:52:09 2012
+** Created: Wed 11. Jul 11:25:21 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWidget[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -42,6 +42,8 @@ static const uint qt_meta_data_MainWidget[] = {
      177,   11,   11,   11, 0x08,
      197,  190,   11,   11, 0x08,
      216,   11,   11,   11, 0x08,
+     229,   11,   11,   11, 0x08,
+     250,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -53,7 +55,8 @@ static const char qt_meta_stringdata_MainWidget[] = {
     "requestMap()\0loadMap()\0loadAddress()\0"
     "loadMapShortUrl()\0handleAbout()\0"
     "handleLang()\0nValue\0rotateSpinner(int)\0"
-    "mapChanged()\0"
+    "mapChanged()\0enableLocationData()\0"
+    "showEnableLocationDataMsg()\0"
 };
 
 const QMetaObject MainWidget::staticMetaObject = {
@@ -96,9 +99,11 @@ int MainWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 8: handleLang(); break;
         case 9: rotateSpinner((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 10: mapChanged(); break;
+        case 11: enableLocationData(); break;
+        case 12: showEnableLocationDataMsg(); break;
         default: ;
         }
-        _id -= 11;
+        _id -= 13;
     }
     return _id;
 }

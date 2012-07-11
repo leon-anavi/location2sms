@@ -201,6 +201,20 @@ private slots:
       */
     void mapChanged();
 
+    /**
+      * Check if location data is disabled and ask the user to enable location
+      *
+      * @return nothing
+      */
+    void enableLocationData();
+
+    /**
+      * Ask the user to enable location
+      *
+      * @return nothing
+      */
+    void showEnableLocationDataMsg();
+
 public:
 
     /**

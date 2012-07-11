@@ -30,6 +30,8 @@ private:
 
     bool m_bIsAppStartedForFirstTime;
 
+    bool m_bIsLocationDataEnabled;
+
     int m_nSelectedLanguage;
 
     MapTypes m_eMapType;
@@ -77,6 +79,22 @@ public:
       * @return noting
       */
     void setIsAppStartedForFirstTime(bool bIsFirstTime);
+
+    /**
+      * Is location data enabled?
+      *
+      * @return bool
+      */
+    bool isLocationDataEnabled() const;
+
+    /**
+      * Set if location data is enabled
+      *
+      * @param bIsLocationDataEnabled
+      *
+      * @return nothing
+      */
+    void setIsLocationDataEnabled(bool bIsLocationDataEnabled);
 
     /**
       * Get selected language

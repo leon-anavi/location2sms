@@ -64,6 +64,8 @@ signals:
 
     void mapChanged();
 
+    void langWidgetClosed();
+
 private slots:
 
     void selectLang();

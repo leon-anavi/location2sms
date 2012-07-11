@@ -17,6 +17,8 @@
 #include <QDebug>
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QMessageBox>
+#include <QTimer>
 
 //Project specific includes
 #include "mainwidget.h"
@@ -160,17 +162,6 @@ MainWidget::MainWidget(QWidget *parent) :
 
     //languages
     m_pLangWidget = new LanguagesWidget(m_pSettings, this);
-    if (true == m_pSettings->isAppStartedForFirstTime())
-    {
-        //Make sure that lang selection view will not be shown next time
-        m_pSettings->setIsAppStartedForFirstTime(false);
-        //Show screen for language selection at start-up
-        m_pLangWidget->show();
-    }
-    else
-    {
-        m_pLangWidget->hide();
-    }
 
     m_pMessageManager = new QMessageService(this);
 
@@ -201,12 +192,35 @@ MainWidget::MainWidget(QWidget *parent) :
 
     connect(m_pLangWidget, SIGNAL(mapChanged()), this, SLOT(mapChanged()));
 
-    connect(m_pMapProvider, SIGNAL(downloaded()), SLOT(loadMap()));
+    connect( m_pMapProvider, SIGNAL(downloaded()), SLOT(loadMap()) );
 
-    startLocationAPI();
+    connect( m_pLangWidget, SIGNAL(langWidgetClosed()),
+            this, SLOT(enableLocationData()) );
 
     //Now when everything is constructed load languages
     m_pLangWidget->loadLanguageSettings();
+
+    //handle views
+    if (true == m_pSettings->isAppStartedForFirstTime())
+    {
+        //Make sure that lang selection view will not be shown next time
+        m_pSettings->setIsAppStartedForFirstTime(false);
+        //Show screen for language selection at start-up
+        m_pLangWidget->show();
+    }
+    else
+    {
+        m_pLangWidget->hide();
+        if (true == m_pSettings->isLocationDataEnabled())
+        {
+            startLocationAPI();
+        }
+        else
+        {
+            QTimer::singleShot(500, this, SLOT(showEnableLocationDataMsg()));
+        }
+    }
+
 }
 //------------------------------------------------------------------------------
 
@@ -613,6 +627,38 @@ void MainWidget::mapChanged()
         //reload the map
         requestMap();
     }
+}
+//------------------------------------------------------------------------------
+
+void MainWidget::enableLocationData()
+{
+    if (true == m_pSettings->isLocationDataEnabled())
+    {
+        return;
+    }
+    showEnableLocationDataMsg();
+}
+//------------------------------------------------------------------------------
+
+void MainWidget::showEnableLocationDataMsg()
+{
+    //show enable location dialog
+    QMessageBox msgBox;
+    msgBox.setText(tr("Do you authorize location2sms to use your location data?"));
+    msgBox.addButton(tr("OK"), QMessageBox::YesRole);
+    QPushButton* pButtonDisable = msgBox.addButton(tr("Exit"), QMessageBox::NoRole);
+
+    msgBox.exec();
+    if (msgBox.clickedButton() == pButtonDisable)
+    {
+        m_pSettings->setIsLocationDataEnabled(false);
+        //exit
+        QCoreApplication::quit();
+        return;
+    }
+    //Enable location data and start searching for position
+    m_pSettings->setIsLocationDataEnabled(true);
+    startLocationAPI();
 }
 //------------------------------------------------------------------------------
 

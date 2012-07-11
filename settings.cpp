@@ -23,6 +23,7 @@
 Settings::Settings(QObject *parent) :
     QObject(parent),
     m_bIsAppStartedForFirstTime(true),
+    m_bIsLocationDataEnabled(false),
     m_nSelectedLanguage(0),
     m_eMapType(google),
     m_nMapZoomMin(1),
@@ -58,6 +59,9 @@ void Settings::loadSettings()
     QSettings settings(m_sSettingsFile, QSettings::NativeFormat);
     m_bIsAppStartedForFirstTime =
                          settings.value("IsAppStartedForFirstTime").toBool();
+    //load enable location status
+    m_bIsLocationDataEnabled = settings.value("IsLocationDataEnabled").toBool();
+    //load language
     m_nSelectedLanguage = settings.value("SelectedLanguage").toInt();
     //Map type
     QString sMapType = settings.value("MapType").toString();
@@ -84,8 +88,27 @@ void Settings::saveSettings()
 {
     QSettings settings(m_sSettingsFile, QSettings::NativeFormat);
     settings.setValue("IsAppStartedForFirstTime", m_bIsAppStartedForFirstTime);
+
+    //save enable location
+    settings.setValue("IsLocationDataEnabled", m_bIsLocationDataEnabled);
+
+    //save language
     settings.setValue("SelectedLanguage", m_nSelectedLanguage);
-    QString sMapType = (google == m_eMapType) ? QString("google") : QString("bing");
+
+    //save map
+    QString sMapType = "google";
+    switch (m_eMapType)
+    {
+        case bing:
+            sMapType = "bing";
+        break;
+        case nokia:
+            sMapType = "nokia";
+        break;
+        case openstreetmaps:
+            sMapType = "openstreetmaps";
+        break;
+    }
     settings.setValue("MapType", sMapType);
 }
 //------------------------------------------------------------------------------
@@ -99,6 +122,18 @@ bool Settings::isAppStartedForFirstTime() const
 void Settings::setIsAppStartedForFirstTime(bool bIsFirstTime)
 {
     m_bIsAppStartedForFirstTime = bIsFirstTime;
+}
+//------------------------------------------------------------------------------
+
+bool Settings::isLocationDataEnabled() const
+{
+    return m_bIsLocationDataEnabled;
+}
+//------------------------------------------------------------------------------
+
+void Settings::setIsLocationDataEnabled(bool bIsLocationDataEnabled)
+{
+    m_bIsLocationDataEnabled = bIsLocationDataEnabled;
 }
 //------------------------------------------------------------------------------
 

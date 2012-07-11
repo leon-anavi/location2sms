@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'languageswidget.h'
 **
-** Created: Sun 8. Jul 14:52:10 2012
+** Created: Wed 11. Jul 11:25:22 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,25 +23,26 @@ static const uint qt_meta_data_LanguagesWidget[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       1,       // signalCount
+       2,       // signalCount
 
  // signals: signature, parameters, type, tag, flags
       17,   16,   16,   16, 0x05,
+      30,   16,   16,   16, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      30,   16,   16,   16, 0x08,
+      49,   16,   16,   16, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_LanguagesWidget[] = {
     "LanguagesWidget\0\0mapChanged()\0"
-    "selectLang()\0"
+    "langWidgetClosed()\0selectLang()\0"
 };
 
 const QMetaObject LanguagesWidget::staticMetaObject = {
@@ -74,10 +75,11 @@ int LanguagesWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: mapChanged(); break;
-        case 1: selectLang(); break;
+        case 1: langWidgetClosed(); break;
+        case 2: selectLang(); break;
         default: ;
         }
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
 }
@@ -86,5 +88,11 @@ int LanguagesWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 void LanguagesWidget::mapChanged()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, 0);
+}
+
+// SIGNAL 1
+void LanguagesWidget::langWidgetClosed()
+{
+    QMetaObject::activate(this, &staticMetaObject, 1, 0);
 }
 QT_END_MOC_NAMESPACE

@@ -12,12 +12,12 @@
 <context>
     <name>LanguagesWidget</name>
     <message>
-        <location filename="languageswidget.cpp" line="385"/>
+        <location filename="languageswidget.cpp" line="381"/>
         <source>Language:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="languageswidget.cpp" line="379"/>
+        <location filename="languageswidget.cpp" line="375"/>
         <source>Map:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -30,7 +30,7 @@
 <context>
     <name>MainWidget</name>
     <message>
-        <location filename="mainwidget.cpp" line="319"/>
+        <location filename="mainwidget.cpp" line="333"/>
         <source>Address: </source>
         <translation>Adresse: </translation>
     </message>
@@ -41,49 +41,64 @@ Longitude: %2</source>
 Länge: %2</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="321"/>
+        <location filename="mainwidget.cpp" line="335"/>
         <source>Latitude: </source>
         <translation>Breite: </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="324"/>
+        <location filename="mainwidget.cpp" line="338"/>
         <source>Longitude: </source>
         <translation>Länge: </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="338"/>
+        <location filename="mainwidget.cpp" line="352"/>
         <source>Sent from </source>
         <translation>Gesendet von </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="369"/>
+        <location filename="mainwidget.cpp" line="383"/>
         <source>Address </source>
         <translation>Adresse </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="392"/>
+        <location filename="mainwidget.cpp" line="406"/>
         <source>Latitude </source>
         <translation>Breite </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="402"/>
+        <location filename="mainwidget.cpp" line="416"/>
         <source>Longitude </source>
         <translation>Länge </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="536"/>
+        <location filename="mainwidget.cpp" line="550"/>
         <source>Please wait...</source>
         <translation>Bitte warten...</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="543"/>
+        <location filename="mainwidget.cpp" line="557"/>
         <source>SMS</source>
         <translation>SMS</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="549"/>
+        <location filename="mainwidget.cpp" line="563"/>
         <source>E-mail</source>
         <translation>Е-Mail</translation>
+    </message>
+    <message>
+        <location filename="mainwidget.cpp" line="647"/>
+        <source>Do you authorize location2sms to use your location data?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwidget.cpp" line="648"/>
+        <source>OK</source>
+        <translation type="unfinished">Ok</translation>
+    </message>
+    <message>
+        <location filename="mainwidget.cpp" line="649"/>
+        <source>Exit</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
