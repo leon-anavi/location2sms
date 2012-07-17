@@ -36,13 +36,13 @@ ReverseGeocoding::~ReverseGeocoding()
 }
 //------------------------------------------------------------------------------
 
-void ReverseGeocoding::requestAddressFromCoordinates(qreal nLatitude,
-                                                        qreal nLongitude)
+void ReverseGeocoding::requestAddressFromCoordinates(QString sLatitude,
+                                                        QString sLongitude)
 {
 
     QString sUrl = QString("http://maps.googleapis.com/maps/api/geocode/"
                            "xml?latlng=%1,%2&sensor=false").
-                                            arg(nLatitude).arg(nLongitude);
+                                            arg(sLatitude).arg(sLongitude);
     m_pReverseGeoCoder->downloadUrl(sUrl);
 }
 //------------------------------------------------------------------------------

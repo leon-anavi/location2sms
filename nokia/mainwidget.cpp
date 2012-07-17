@@ -288,10 +288,13 @@ void MainWidget::positionUpdated(QGeoPositionInfo geoPositionInfo)
             //reload infomation only if the coordinates have been changed
             m_nLatitude = geoCoordinate.latitude();
             m_nLongitude = geoCoordinate.longitude();
+
+            coordinatesToStrings(geoCoordinate.toString(QGeoCoordinate::Degrees));
+
             QString sText = getCoordinatesAsText();
             m_pLabelCoordinates->setText(sText);
 
-            m_pReverseGeoCoder->requestAddressFromCoordinates(m_nLatitude, m_nLongitude);
+            m_pReverseGeoCoder->requestAddressFromCoordinates(m_sLatitude, m_sLongitude);
 
             requestMap();
 
@@ -334,10 +337,10 @@ void MainWidget::handleSendButton(QMessage::Type type)
             sLocation += tr("Address: ") + m_pReverseGeoCoder->getAddress() + "\n";
         }
         sLocation += tr("Latitude: ");
-        sLocation += QString::number(m_nLatitude);
+        sLocation += m_sLatitude;
         sLocation += "\n";
         sLocation += tr("Longitude: ");
-        sLocation += QString::number(m_nLongitude);
+        sLocation += m_sLongitude;
         sLocation += "\n";
 
         //Add URL to map if available
@@ -409,7 +412,7 @@ QString MainWidget::getCoordinatesAsText() const
     {
         sText += "<br />\n";
     }
-    sText += QString("<span style=\"color: #006BC2;\">%1</span> ").arg(m_nLatitude);
+    sText += QString("<span style=\"color: #006BC2;\">%1</span> ").arg(m_sLatitude);
     if (m_bPortrait)
     {
         sText += "<br />\n";
@@ -419,7 +422,7 @@ QString MainWidget::getCoordinatesAsText() const
     {
         sText += "<br />\n";
     }
-    sText += QString("<span style=\"color: #006BC2;\">%1</span><br />").arg(m_nLongitude);
+    sText += QString("<span style=\"color: #006BC2;\">%1</span><br />").arg(m_sLongitude);
     return sText;
 }
 //------------------------------------------------------------------------------
@@ -575,18 +578,18 @@ QString MainWidget::getMapUrl(int nZoom, int nMapWidth, int nMapHeight) const
     if (Settings::bing == m_pSettings->getSelectedMap())
     {
         sUrl += QString("http://dev.virtualearth.net/REST/v1/Imagery/Map/Road/");
-        sUrl += QString("%1,%2/").arg(m_nLatitude).arg(m_nLongitude);
+        sUrl += QString("%1,%2/").arg(m_sLatitude).arg(m_sLongitude);
         sUrl += QString::number(nZoom);
         sUrl += QString("?mapSize=");
         sUrl += QString("%1,%2").arg(nMapWidth).arg(nMapHeight);
-        sUrl += QString("&pp=%1,%2").arg(m_nLatitude).arg(m_nLongitude);
+        sUrl += QString("&pp=%1,%2").arg(m_sLatitude).arg(m_sLongitude);
         sUrl += QString(";;&key=");
     }
     else if (Settings::nokia == m_pSettings->getSelectedMap())
     {
         sUrl += QString("http://m.nok.it/?app_id=");
         sUrl += QString("&token=");
-        sUrl += QString("&c=%1,%2").arg(m_nLatitude).arg(m_nLongitude);
+        sUrl += QString("&c=%1,%2").arg(m_sLatitude).arg(m_sLongitude);
         sUrl += QString("&z=");
         sUrl += QString::number(nZoom);
         sUrl += QString("&h=");
@@ -598,19 +601,19 @@ QString MainWidget::getMapUrl(int nZoom, int nMapWidth, int nMapHeight) const
     else if (Settings::openstreetmaps == m_pSettings->getSelectedMap())
     {
         sUrl += QString("http://staticmap.openstreetmap.de/staticmap.php?center=");
-        sUrl += QString("%1,%2/").arg(m_nLatitude).arg(m_nLongitude);
+        sUrl += QString("%1,%2/").arg(m_sLatitude).arg(m_sLongitude);
         sUrl += QString("&zoom=");
         sUrl += QString::number(nZoom);
         sUrl += QString("&size=");
         sUrl += QString("%1x%2").arg(nMapWidth).arg(nMapHeight);
         sUrl += QString("&maptype=mapnik&markers=");
-        sUrl += QString("%1,%2").arg(m_nLatitude).arg(m_nLongitude);
+        sUrl += QString("%1,%2").arg(m_sLatitude).arg(m_sLongitude);
         sUrl += QString(",lightblue1");
     }
     else
     {
         sUrl += QString("http://maps.googleapis.com/maps/api/staticmap?center=");
-        sUrl += QString("%1,%2").arg(m_nLatitude).arg(m_nLongitude);
+        sUrl += QString("%1,%2").arg(m_sLatitude).arg(m_sLongitude);
         sUrl += QString("&zoom=");
         sUrl += QString::number(nZoom);
         sUrl += QString("&size=");
@@ -618,7 +621,7 @@ QString MainWidget::getMapUrl(int nZoom, int nMapWidth, int nMapHeight) const
         sUrl += "x";
         sUrl += QString::number(nMapHeight);
         sUrl += QString("&sensor=false&markers=color:blue|label:O|");
-        sUrl += QString("%1,%2").arg(m_nLatitude).arg(m_nLongitude);
+        sUrl += QString("%1,%2").arg(m_sLatitude).arg(m_sLongitude);
     }
     return sUrl;
 }
@@ -709,3 +712,24 @@ CustomMessageBox* MainWidget::getMessageBox() const
     return m_pMessageBox;
 }
 //------------------------------------------------------------------------------
+
+void MainWidget::coordinatesToStrings(const QString& sCoordinates)
+{
+    QString sCoord = sCoordinates.trimmed();
+    sCoord = sCoord.replace(" ","");
+    sCoord = sCoord.replace("°","");
+    QStringList coordList = sCoord.split(",");
+    if (1 < coordList.length())
+    {
+        m_sLatitude = coordList.at(0);
+        m_sLongitude = coordList.at(1);
+    }
+    else
+    {
+        //unable to retrieve coordinates from string
+        m_sLatitude = QString::number(m_nLatitude);
+        m_sLongitude = QString::number(m_nLongitude);
+    }
+}
+//------------------------------------------------------------------------------
+

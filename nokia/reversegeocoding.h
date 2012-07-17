@@ -39,12 +39,12 @@ public:
     /**
       * Reverse geocoding
       *
-      * @param nLatitude
-      * @param nLongitude
+      * @param sLatitude
+      * @param sLongitude
       *
       * @return nothing
       */
-    void requestAddressFromCoordinates(qreal nLatitude, qreal nLongitude);
+    void requestAddressFromCoordinates(QString sLatitude, QString sLongitude);
 
     /**
       * Get address

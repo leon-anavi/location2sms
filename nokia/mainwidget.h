@@ -66,6 +66,10 @@ private:
 
     qreal m_nLongitude;
 
+    QString m_sLatitude;
+
+    QString m_sLongitude;
+
     QString m_sMapShortUrl;
 
     QVBoxLayout* m_pLayout;
@@ -362,6 +366,14 @@ private:
       * @return nothing
       */
     void createMessageBox();
+
+    /**
+      * Save coordinates as strings
+      *
+      *
+      * @return nothing
+      */
+    void coordinatesToStrings(const QString& sCoordinates);
 
 };
 
