@@ -22,16 +22,14 @@
 MenuWidget::MenuWidget(QWidget *parent) :
     QWidget(parent),
     m_pControlLabel(NULL),
-    m_pControlLang(NULL),
-    m_pControlHelp(NULL),
+    m_pControlOptions(NULL),
     m_pControlExit(NULL),
     m_pControlBar(NULL)
 {
     initGui();
 
     //handle buttons
-    connect(m_pControlLang, SIGNAL(released()),this, SLOT(handleLang()));
-    connect(m_pControlHelp, SIGNAL(released()),this, SLOT(handleHelp()));
+    connect(m_pControlOptions, SIGNAL(released()),this, SLOT(handleHelp()));
 
     if (NULL != m_pControlExit)
     {
@@ -71,15 +69,10 @@ void MenuWidget::initGui()
 
     QString sButtonStyle = sFontStyleTop+sStyleBackground+sButtonBorder;
 
-    m_pControlLang = new QPushButton("  O  ", this);
-    m_pControlLang->setMinimumWidth(nMinWidth);
-    m_pControlLang->setMinimumHeight(nMinHeight);
-    m_pControlLang->setStyleSheet(sButtonStyle);
-
-    m_pControlHelp = new QPushButton("  ?  ", this);
-    m_pControlHelp->setMinimumWidth(nMinWidth);
-    m_pControlHelp->setMinimumHeight(nMinHeight);
-    m_pControlHelp->setStyleSheet(sButtonStyle);
+    m_pControlOptions = new QPushButton("  O  ", this);
+    m_pControlOptions->setMinimumWidth(nMinWidth);
+    m_pControlOptions->setMinimumHeight(nMinHeight);
+    m_pControlOptions->setStyleSheet(sButtonStyle);
 
 #ifdef Q_OS_SYMBIAN
     m_pControlExit = new QPushButton("  X  ", this);
@@ -94,9 +87,8 @@ void MenuWidget::initGui()
     m_pControlBar->setContentsMargins(0,0,0,0);
     m_pControlBar->addWidget(m_pControlLabel, 0, Qt::AlignLeft);
     m_pControlBar->addItem(new QSpacerItem(50, 0, QSizePolicy::Expanding, QSizePolicy::Minimum));
-    m_pControlBar->addWidget(m_pControlLang, 0, Qt::AlignRight);
     m_pControlBar->addItem( new QSpacerItem(10, 0, QSizePolicy::Fixed, QSizePolicy::Minimum) );
-    m_pControlBar->addWidget(m_pControlHelp, 0, Qt::AlignRight);
+    m_pControlBar->addWidget(m_pControlOptions, 0, Qt::AlignRight);
     if (NULL != m_pControlExit)
     {
         m_pControlBar->addItem( new QSpacerItem(10, 0, QSizePolicy::Fixed, QSizePolicy::Minimum) );
@@ -108,13 +100,7 @@ void MenuWidget::initGui()
 
 void MenuWidget::handleHelp()
 {
-    emit showHelp();
-}
-//------------------------------------------------------------------------------
-
-void MenuWidget::handleLang()
-{
-    emit showLang();
+    emit showOptionsMenu();
 }
 //------------------------------------------------------------------------------
 

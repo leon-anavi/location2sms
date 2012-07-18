@@ -22,74 +22,21 @@
 #include "languageswidget.h"
 
 LanguagesWidget::LanguagesWidget(Settings* pSettings, QWidget *parent) :
-    QWidget(parent),
-    m_pLangWidgetLayout(NULL),
-    m_pLangLabel(NULL),
-    m_pMapsLabel(NULL),
-    m_pLangList(NULL),
-    m_pMapsList(NULL),
-    m_pLangSelect(NULL)
+    SettingsListWidget(pSettings, parent)
 {
-    m_pSettings = pSettings;
+    m_pTitle->setText(tr("Language:"));
 
-    QString sStyleBackground = "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #4c4c4c, stop: 0.5 #333333, stop: 1 #202020);";
-    QString sItemsFont = "font-size: ";
-#ifdef Q_OS_SYMBIAN
-    sItemsFont += "6pt;";
-#else
-    sItemsFont += "22pt;";
-#endif
-    sItemsFont += "color: #FFFFFF;";
+    new QListWidgetItem("English", m_pList);
+    new QListWidgetItem(QString::fromUtf8("Български"), m_pList);
+    new QListWidgetItem(QString::fromUtf8("Türkçe"), m_pList);
+    new QListWidgetItem(QString::fromUtf8("Deutsch"), m_pList);
+    new QListWidgetItem(QString::fromUtf8("Română"), m_pList);
+    new QListWidgetItem(QString::fromUtf8("Ελληνικά"), m_pList);
+    new QListWidgetItem(QString::fromUtf8("Nederlands"), m_pList);
+    new QListWidgetItem(QString::fromUtf8("Čeština"), m_pList);
+    new QListWidgetItem(QString::fromUtf8("Bahasa Indonesia"), m_pList);
+    new QListWidgetItem(QString::fromUtf8("Русский"), m_pList);
 
-    QString sFontBold = QString("font-weight:bold;");
-
-    QString sStyle = QString("background-color: transparent;");
-    sStyle += sItemsFont;
-
-    m_pLangLabel = new QLabel(getLabelLanguage(), this);
-    m_pLangLabel->setStyleSheet(sStyle);
-
-    m_pMapsLabel = new QLabel(getLabelMap(), this);
-    m_pMapsLabel->setStyleSheet(sStyle);
-
-    m_pLangList = new QListWidget(this);
-    new QListWidgetItem("English", m_pLangList);
-    new QListWidgetItem(QString::fromUtf8("Български"), m_pLangList);
-    new QListWidgetItem(QString::fromUtf8("Türkçe"), m_pLangList);
-    new QListWidgetItem(QString::fromUtf8("Deutsch"), m_pLangList);
-    new QListWidgetItem(QString::fromUtf8("Română"), m_pLangList);
-    new QListWidgetItem(QString::fromUtf8("Ελληνικά"), m_pLangList);
-    new QListWidgetItem(QString::fromUtf8("Nederlands"), m_pLangList);
-    new QListWidgetItem(QString::fromUtf8("Čeština"), m_pLangList);
-    new QListWidgetItem(QString::fromUtf8("Bahasa Indonesia"), m_pLangList);
-    new QListWidgetItem(QString::fromUtf8("Русский"), m_pLangList);
-    m_pLangList->setStyleSheet(sStyle+sFontBold);
-
-    m_pMapsList = new QListWidget(this);
-    new QListWidgetItem("Google", m_pMapsList);
-    new QListWidgetItem("Bing", m_pMapsList);
-    new QListWidgetItem("Nokia", m_pMapsList);
-    new QListWidgetItem("OpenStreet Maps", m_pMapsList);
-    m_pMapsList->setStyleSheet(sStyle+sFontBold);
-
-    m_pLangSelect = new QPushButton(tr("OK"), this);
-    QString sButtonBorder = "border-width:0px;border-style:solid;border-radius: 10px 10px / 10px 10px;";
-    m_pLangSelect->setStyleSheet(sItemsFont+sStyleBackground+sButtonBorder);
-    m_pLangSelect->setMinimumHeight(40);
-
-    m_pLangWidgetLayout = new QVBoxLayout(this);
-    m_pLangWidgetLayout->setSpacing(2);
-    m_pLangWidgetLayout->setMargin(0);
-    m_pLangWidgetLayout->setContentsMargins(5,0,5,0);
-    m_pLangWidgetLayout->addWidget(m_pLangLabel, 0, Qt::AlignVCenter);
-    m_pLangWidgetLayout->addWidget(m_pLangList, 0, Qt::AlignTop);
-    m_pLangWidgetLayout->addWidget(m_pMapsLabel, 0, Qt::AlignVCenter);
-    m_pLangWidgetLayout->addWidget(m_pMapsList, 0, Qt::AlignTop);
-    m_pLangWidgetLayout->addWidget(m_pLangSelect, 0, Qt::AlignBottom);
-    setLayout(m_pLangWidgetLayout);
-
-    // Connect button signals to appropriate slot
-    connect(m_pLangSelect, SIGNAL(released()), this, SLOT(selectLang()));
 }
 //------------------------------------------------------------------------------
 
@@ -99,56 +46,19 @@ LanguagesWidget::~LanguagesWidget()
 }
 //------------------------------------------------------------------------------
 
-void LanguagesWidget::paintEvent(QPaintEvent* /*event*/)
+void LanguagesWidget::select()
 {
-    QColor backgroundColor(32,32,32,220);
-    QPainter customPainter(this);
-    customPainter.fillRect(rect(),backgroundColor);
-}
-//------------------------------------------------------------------------------
-
-void LanguagesWidget::resizeGUI(int nPosX, int nPosY, int nWidth, int nHeight)
-{
-    setGeometry(nPosX, nPosY, nWidth, nHeight);
-    int nButtonHeightAndSpacing = static_cast<int>(1.5*m_pLangSelect->height());
-    int nMapListHeight = static_cast<int>(1.2*m_pMapsList->count()* m_pMapsList->fontMetrics().height());
-    m_pMapsList->setMinimumHeight(nMapListHeight);
-
-    int nLangListHeight = nHeight - m_pLangLabel->height() -
-            m_pMapsLabel->height() - m_pMapsList->height() - nButtonHeightAndSpacing;
-    m_pLangList->setMaximumHeight(nLangListHeight);
-}
-//------------------------------------------------------------------------------
-
-void LanguagesWidget::selectLang()
-{
-    m_pSettings->setSelectedLanguage(m_pLangList->currentRow());
-    loadSelectedLanguage();
-
-    Settings::MapTypes eMap = Settings::google;
-    switch (m_pMapsList->currentRow())
+    int nSelectedLang = m_pList->currentRow();
+    if (m_pSettings->getSelectedLanguage() != nSelectedLang)
     {
-        case 1:
-            eMap = Settings::bing;
-        break;
-        case 2:
-            eMap = Settings::nokia;
-        break;
-        case 3:
-            eMap = Settings::openstreetmaps;
-        break;
-    }
-
-    if (eMap != m_pSettings->getSelectedMap())
-    {
-        m_pSettings->setSelectedMap(eMap);
-        emit mapChanged();
+        m_pSettings->setSelectedLanguage(nSelectedLang);
+        loadSelectedLanguage();
     }
 
     //hide this view
     hide();
 
-    emit langWidgetClosed();
+    emit settingsWidgetClosed();
 }
 //------------------------------------------------------------------------------
 
@@ -337,9 +247,9 @@ void LanguagesWidget::loadRussian()
 }
 //------------------------------------------------------------------------------
 
-void LanguagesWidget::loadLanguageSettings()
+void LanguagesWidget::loadSettings()
 {
-    m_pLangList->setCurrentRow(m_pSettings->getSelectedLanguage());
+    m_pList->setCurrentRow(m_pSettings->getSelectedLanguage());
     //by default language is English so there is no need to reload it
     if (0 != m_pSettings->getSelectedLanguage())
     {
@@ -353,32 +263,6 @@ void LanguagesWidget::loadLanguageSettings()
             nRow = 1;
         break;
     }
-    m_pMapsList->setCurrentRow(nRow);
+    m_pList->setCurrentRow(nRow);
 }
 //------------------------------------------------------------------------------
-
-void LanguagesWidget::changeEvent(QEvent* event)
-{
-    if (QEvent::LanguageChange == event->type())
-    {
-        //translate
-        m_pLangLabel->setText(getLabelLanguage());
-        m_pMapsLabel->setText(getLabelMap());
-    }
-    QWidget::changeEvent(event);
-}
-//------------------------------------------------------------------------------
-
-
-QString LanguagesWidget::getLabelMap() const
-{
-    return tr("Map:");
-}
-//------------------------------------------------------------------------------
-
-QString LanguagesWidget::getLabelLanguage() const
-{
-    return tr("Language:");
-}
-//------------------------------------------------------------------------------
-

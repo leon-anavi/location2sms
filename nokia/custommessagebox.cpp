@@ -61,6 +61,27 @@ QPushButton* CustomMessageBox::addButton(const QString& sText)
 }
 //------------------------------------------------------------------------------
 
+QCheckBox* CustomMessageBox::addCheckBox(const QString& sText)
+{
+    QCheckBox* pCheckBox = new QCheckBox(sText, this);
+
+    QString sItemsFont = "font-size: ";
+#ifdef Q_OS_SYMBIAN
+    sItemsFont += "7pt;";
+#else
+    sItemsFont += "18pt;";
+#endif
+    sItemsFont += "font-weight:bold;color: #FFFFFF;";
+
+    pCheckBox->setStyleSheet(sItemsFont);
+
+    pCheckBox->setMinimumHeight(40);
+
+    m_pLayout->addWidget(pCheckBox);
+    return pCheckBox;
+}
+//------------------------------------------------------------------------------
+
 QLabel* CustomMessageBox::addLabel(const QString& sText)
 {
     QLabel* pLabel = new QLabel(sText, this);
@@ -81,7 +102,7 @@ QLabel* CustomMessageBox::addLabel(const QString& sText)
 }
 //------------------------------------------------------------------------------
 
-void CustomMessageBox::finalizeWidget()
+void CustomMessageBox::addSpacer()
 {
     // Add a vertical spacer to take up the remaining available space
     QSpacerItem* pSpacer = new QSpacerItem( 20, 20, QSizePolicy::Minimum,

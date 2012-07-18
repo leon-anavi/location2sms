@@ -39,6 +39,9 @@ MainWidget::MainWidget(QWidget *parent) :
     m_pAboutWidget(NULL),
     m_pLangWidget(NULL),
     m_pMessageBox(NULL),
+    m_pOptionsMenu(NULL),
+    m_pSettingsMenu(NULL),
+    m_pSettingsMaps(NULL),
     m_pLabelCoordinates(NULL),
     m_pButtonSendMessage(NULL),
     m_pButtonSendEmail(NULL),
@@ -51,7 +54,8 @@ MainWidget::MainWidget(QWidget *parent) :
     m_nMapHeight(200),
     m_pBusyIndicator(NULL),
     m_pLoadingView(NULL),
-    m_pMapProvider(NULL)
+    m_pMapProvider(NULL),
+    m_pLocationDataCheckBox(NULL)
 {
     m_pSettings = new Settings(this);
 
@@ -161,8 +165,52 @@ MainWidget::MainWidget(QWidget *parent) :
     m_pAboutWidget = new AboutWidget(this);
     m_pAboutWidget->hide();
 
+    m_widgetsCtrl << m_pAboutWidget;
+
+    //options menu
+    m_pOptionsMenu = new CustomMessageBox(this);
+    m_pOptionsMenu->addButton(tr("Settings"));
+    m_pOptionsMenu->addButton(tr("About"));
+    m_pOptionsMenu->addSpacer();
+    m_pOptionsMenu->addButton(tr("Cancel"));
+    m_pOptionsMenu->hide();
+
+    m_widgetsCtrl << m_pOptionsMenu;
+
+    //settings menu
+    m_pSettingsMenu = new CustomMessageBox(this);
+    m_pSettingsMenu->addButton(tr("Language"));
+    m_pSettingsMenu->addButton(tr("Map"));
+    m_pLocationDataCheckBox = m_pSettingsMenu->addCheckBox(tr("Location Data"));
+    m_pLocationDataCheckBox->setChecked(m_pSettings->isLocationDataEnabled());
+    m_pSettingsMenu->addSpacer();
+    m_pSettingsMenu->addButton(tr("OK"));
+    m_pSettingsMenu->addButton(tr("Cancel"));
+    m_pSettingsMenu->hide();
+
+    m_widgetsCtrl << m_pSettingsMenu;
+
+    //settings view for maps
+    m_pSettingsMaps = new MapsWidget(m_pSettings, this);
+    m_pSettingsMaps->hide();
+
+    m_widgetsCtrl << m_pSettingsMaps;
+
     //languages
     m_pLangWidget = new LanguagesWidget(m_pSettings, this);
+
+    m_widgetsCtrl << m_pLangWidget;
+
+    //message box
+    m_pMessageBox = new CustomMessageBox(this);
+
+    m_pMessageBox->addLabel(tr("Do you authorize location2sms to use your location data?"));
+    m_pMessageBox->addButton(tr("OK"));
+    m_pMessageBox->addButton(tr("Exit"));
+    m_pMessageBox->addSpacer();
+    m_pMessageBox->hide();
+
+    m_widgetsCtrl << m_pMessageBox;
 
     m_pMessageManager = new QMessageService(this);
 
@@ -183,23 +231,30 @@ MainWidget::MainWidget(QWidget *parent) :
     connect(m_pReverseGeoCoder, SIGNAL(addressRetrieved()), this, SLOT(loadAddress()));
     // Save retrieved short URL
     connect(m_pUrlShortener, SIGNAL(shortUrlRetrieved()), this, SLOT(loadMapShortUrl()));
-    // Handle help
-    connect(m_pMainMenu, SIGNAL(showHelp()),this, SLOT(handleAbout()));
-    //handle languages
-    connect(m_pMainMenu, SIGNAL(showLang()),this, SLOT(handleLang()));
+    // Handle options menu
+    connect(m_pMainMenu, SIGNAL(showOptionsMenu()),this, SLOT(showOptionsMenu()));
 
-    connect(m_pAboutWidget, SIGNAL(aboutClosed()),this, SLOT(handleAbout()));
     connect(m_pTimeLine, SIGNAL(frameChanged(int)), this, SLOT(rotateSpinner(int)));
 
-    connect(m_pLangWidget, SIGNAL(mapChanged()), this, SLOT(mapChanged()));
+    connect(m_pSettingsMaps, SIGNAL(newMapSelected()), this, SLOT(mapChanged()));
 
     connect( m_pMapProvider, SIGNAL(downloaded()), SLOT(loadMap()) );
 
-    connect( m_pLangWidget, SIGNAL(langWidgetClosed()),
+    connect( m_pLangWidget, SIGNAL(settingsWidgetClosed()),
             this, SLOT(enableLocationData()) );
 
+    connect( m_pOptionsMenu, SIGNAL(buttonClicked()),
+             this, SLOT(handleOptionsMenu()) );
+
+    connect( m_pSettingsMenu, SIGNAL(buttonClicked()),
+             this, SLOT(handleSettingsMenu()) );
+
+    //handle message box signal
+    connect( m_pMessageBox, SIGNAL(buttonClicked()),
+            this, SLOT(handleMessageBox()) );
+
     //Now when everything is constructed load languages
-    m_pLangWidget->loadLanguageSettings();
+    m_pLangWidget->loadSettings();
 
     //handle views
     if (true == m_pSettings->isAppStartedForFirstTime())
@@ -249,11 +304,10 @@ void MainWidget::startLocationAPI()
 
         // When the position is changed the positionUpdated function is called
         connect(m_pLocationInfo, SIGNAL(positionUpdated(QGeoPositionInfo)),
-                      this, SLOT(positionUpdated(QGeoPositionInfo)));
-
-        // Start listening for position updates
-        m_pLocationInfo->startUpdates();
+                      this, SLOT(positionUpdated(QGeoPositionInfo)));    
     }
+    // Start listening for position updates
+    m_pLocationInfo->startUpdates();
 
     if (!m_pLocationInfoSat)
     {
@@ -266,10 +320,22 @@ void MainWidget::startLocationAPI()
 
         // When the position is changed the positionUpdated function is called
         connect(m_pLocationInfoSat, SIGNAL(positionUpdated(QGeoPositionInfo)),
-                      this, SLOT(positionUpdated(QGeoPositionInfo)));
+                      this, SLOT(positionUpdated(QGeoPositionInfo))); 
+    }
+    // Start listening for position updates
+    m_pLocationInfoSat->startUpdates();
+}
+//------------------------------------------------------------------------------
 
-        // Start listening for position updates
-        m_pLocationInfoSat->startUpdates();
+void MainWidget::stopLocationAPI()
+{
+    if (m_pLocationInfo)
+    {
+        m_pLocationInfo->stopUpdates();
+    }
+    if (m_pLocationInfoSat)
+    {
+        m_pLocationInfoSat->stopUpdates();
     }
 }
 //------------------------------------------------------------------------------
@@ -427,22 +493,9 @@ QString MainWidget::getCoordinatesAsText() const
 }
 //------------------------------------------------------------------------------
 
-void MainWidget::handleAbout()
+void MainWidget::showOptionsMenu()
 {
-    if (NULL == m_pAboutWidget)
-    {
-        return;
-    }
-    if (m_pAboutWidget->isVisible())
-    {
-        m_pAboutWidget->hide();
-    }
-    else
-    {
-        //make sure that the Language settings view is hidden
-        m_pLangWidget->hide();
-        m_pAboutWidget->show();
-    }
+    showWidget(m_pOptionsMenu);
 }
 //------------------------------------------------------------------------------
 
@@ -491,13 +544,13 @@ void MainWidget::resizeAboutAndLang()
     int nPosY = m_pMainMenu->height() + nSpace;
     int nWidth = Screen.width()-2*nSpace;
     int nHeight = Screen.height()-nPosY-nSpace;
-    m_pAboutWidget->setGeometry(nSpace, nPosY, nWidth, nHeight);
 
-    m_pLangWidget->resizeGUI(nSpace, nPosY, nWidth, nHeight);
-
-    if (NULL != m_pMessageBox)
+    foreach(QWidget* pSubView, m_widgetsCtrl)
     {
-        m_pMessageBox->setGeometry(nSpace, nPosY, nWidth, nHeight);
+        if (NULL != pSubView)
+        {
+            pSubView->setGeometry(nSpace, nPosY, nWidth, nHeight);
+        }
     }
 }
 //------------------------------------------------------------------------------
@@ -598,7 +651,7 @@ QString MainWidget::getMapUrl(int nZoom, int nMapWidth, int nMapHeight) const
         sUrl += QString::number(nMapWidth);
         sUrl += QString("&nord");
     }
-    else if (Settings::openstreetmaps == m_pSettings->getSelectedMap())
+    else if (Settings::openstreetmap == m_pSettings->getSelectedMap())
     {
         sUrl += QString("http://staticmap.openstreetmap.de/staticmap.php?center=");
         sUrl += QString("%1,%2/").arg(m_sLatitude).arg(m_sLongitude);
@@ -650,19 +703,7 @@ void MainWidget::enableLocationData()
 
 void MainWidget::showEnableLocationDataMsg()
 {
-    createMessageBox();
-
-    m_pMessageBox->addLabel(tr("Do you authorize location2sms to use your location data?"));
-    m_pMessageBox->addButton(tr("OK"));
-    m_pMessageBox->addButton(tr("Exit"));
-    m_pMessageBox->finalizeWidget();
-
-    connect( m_pMessageBox, SIGNAL(buttonClicked()),
-            this, SLOT(handleMessageBox()) );
-
-    resizeAboutAndLang();
-
-    m_pMessageBox->show();
+    showWidget(m_pMessageBox);
 }
 //------------------------------------------------------------------------------
 
@@ -693,17 +734,72 @@ void MainWidget::handleMessageBox()
 
     //Enable location data and start searching for position
     m_pSettings->setIsLocationDataEnabled(true);
+    m_pLocationDataCheckBox->setChecked(true);
     startLocationAPI();
 }
 //------------------------------------------------------------------------------
 
-void MainWidget::createMessageBox()
+void MainWidget::handleOptionsMenu()
 {
-    if (NULL != m_pMessageBox)
+    if (NULL == m_pOptionsMenu)
     {
         return;
     }
-    m_pMessageBox = new CustomMessageBox(this);
+    QPushButton* pButton = m_pOptionsMenu->getLastClickedButton();
+    //get last clicked button
+    if (pButton->text() == tr("Settings"))
+    {
+        //show settings
+        showWidget(m_pSettingsMenu);
+    }
+    else if (pButton->text() == tr("About"))
+    {
+        //show about
+        showWidget(m_pAboutWidget);
+
+    }
+    m_pOptionsMenu->hide();
+}
+//------------------------------------------------------------------------------
+
+void MainWidget::handleSettingsMenu()
+{
+    if (NULL == m_pSettingsMenu)
+    {
+        return;
+    }
+    QPushButton* pButton = m_pSettingsMenu->getLastClickedButton();
+    //get last clicked button
+    if (pButton->text() == tr("Language"))
+    {
+        //show settings view for language
+        showWidget(m_pLangWidget);
+    }
+    else if (pButton->text() == tr("Map"))
+    {
+        //show settings view for map
+        showWidget(m_pSettingsMaps);
+    }
+    else if (pButton->text() == tr("OK"))
+    {
+        //enable/disable location
+        bool bIsLocationDataEnabled = m_pLocationDataCheckBox->isChecked();
+        m_pSettings->setIsLocationDataEnabled(bIsLocationDataEnabled);
+        if (false == bIsLocationDataEnabled)
+        {
+            //disable location api
+            stopLocationAPI();
+            showEnableLocationDataMsg();
+        }
+    }
+    else
+    {
+        //cancel
+        m_pLocationDataCheckBox->setChecked(
+                    m_pSettings->isLocationDataEnabled());
+    }
+
+    m_pSettingsMenu->hide();
 }
 //------------------------------------------------------------------------------
 
@@ -729,6 +825,15 @@ void MainWidget::coordinatesToStrings(const QString& sCoordinates)
         //unable to retrieve coordinates from string
         m_sLatitude = QString::number(m_nLatitude);
         m_sLongitude = QString::number(m_nLongitude);
+    }
+}
+//------------------------------------------------------------------------------
+
+void MainWidget::showWidget(QWidget* pWidget)
+{
+    foreach( QWidget* pView, m_widgetsCtrl )
+    {
+        pView->setVisible(pView == pWidget);
     }
 }
 //------------------------------------------------------------------------------

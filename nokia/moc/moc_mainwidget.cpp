@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwidget.h'
 **
-** Created: Tue 17. Jul 19:39:59 2012
+** Created: Wed 18. Jul 09:46:16 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWidget[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-      14,   14, // methods
+      16,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -39,12 +39,14 @@ static const uint qt_meta_data_MainWidget[] = {
      131,   11,   11,   11, 0x08,
      145,   11,   11,   11, 0x08,
      163,   11,   11,   11, 0x08,
-     177,   11,   11,   11, 0x08,
-     197,  190,   11,   11, 0x08,
-     216,   11,   11,   11, 0x08,
-     229,   11,   11,   11, 0x08,
-     250,   11,   11,   11, 0x08,
-     278,   11,   11,   11, 0x08,
+     181,   11,   11,   11, 0x08,
+     201,  194,   11,   11, 0x08,
+     220,   11,   11,   11, 0x08,
+     233,   11,   11,   11, 0x08,
+     254,   11,   11,   11, 0x08,
+     282,   11,   11,   11, 0x08,
+     301,   11,   11,   11, 0x08,
+     321,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -54,11 +56,12 @@ static const char qt_meta_stringdata_MainWidget[] = {
     "positionUpdated(QGeoPositionInfo)\0"
     "handleSmsSendButton()\0handleEmailSendButton()\0"
     "requestMap()\0loadMap()\0loadAddress()\0"
-    "loadMapShortUrl()\0handleAbout()\0"
+    "loadMapShortUrl()\0showOptionsMenu()\0"
     "handleLang()\0nValue\0rotateSpinner(int)\0"
     "mapChanged()\0enableLocationData()\0"
     "showEnableLocationDataMsg()\0"
-    "handleMessageBox()\0"
+    "handleMessageBox()\0handleOptionsMenu()\0"
+    "handleSettingsMenu()\0"
 };
 
 const QMetaObject MainWidget::staticMetaObject = {
@@ -97,16 +100,18 @@ int MainWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 4: loadMap(); break;
         case 5: loadAddress(); break;
         case 6: loadMapShortUrl(); break;
-        case 7: handleAbout(); break;
+        case 7: showOptionsMenu(); break;
         case 8: handleLang(); break;
         case 9: rotateSpinner((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 10: mapChanged(); break;
         case 11: enableLocationData(); break;
         case 12: showEnableLocationDataMsg(); break;
         case 13: handleMessageBox(); break;
+        case 14: handleOptionsMenu(); break;
+        case 15: handleSettingsMenu(); break;
         default: ;
         }
-        _id -= 14;
+        _id -= 16;
     }
     return _id;
 }

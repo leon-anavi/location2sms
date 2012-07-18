@@ -23,6 +23,7 @@
 #include <QGraphicsView>
 #include <QTimeLine>
 #include <QtCore/qmath.h>
+#include <QList>
 
 //Qt mobility
 #include <qgeopositioninfo.h>
@@ -42,6 +43,7 @@
 #include "settings.h"
 #include "filedownloader.h"
 #include "custommessagebox.h"
+#include "mapswidget.h"
 
 // QtMobility namespace
 QTM_USE_NAMESPACE
@@ -79,6 +81,9 @@ private:
     //main menu
     MenuWidget* m_pMainMenu;
 
+    //all subviews
+    QList<QWidget*> m_widgetsCtrl;
+
     //about widget
     AboutWidget* m_pAboutWidget;
 
@@ -87,6 +92,13 @@ private:
 
     //Custom message
     CustomMessageBox* m_pMessageBox;
+
+    CustomMessageBox* m_pOptionsMenu;
+
+    CustomMessageBox* m_pSettingsMenu;
+
+    //settings view for maps
+    MapsWidget* m_pSettingsMaps;
 
     QLabel* m_pLabelCoordinates;
 
@@ -115,6 +127,8 @@ private:
     QGraphicsView* m_pLoadingView;
 
     FileDownloader* m_pMapProvider;
+
+    QCheckBox* m_pLocationDataCheckBox;
 
     static const QString m_sAppName;
 
@@ -184,7 +198,7 @@ private slots:
       *
       * @return nothing
       */
-    void handleAbout();
+    void showOptionsMenu();
 
     /**
       * Show or hide language settings view
@@ -230,6 +244,20 @@ private slots:
       */
     void handleMessageBox();
 
+    /**
+      * Handle options menu
+      *
+      * @return nothing
+      */
+    void handleOptionsMenu();
+
+    /**
+      * Handle settings menu
+      *
+      * @return nothing
+      */
+    void handleSettingsMenu();
+
 public:
 
     /**
@@ -263,6 +291,13 @@ private:
      * @return nothing
      */
     void startLocationAPI();
+
+    /**
+      * Stop location API
+      *
+      * @return nothing
+      */
+    void stopLocationAPI();
 
     /**
       * Get coordinates as text
@@ -361,19 +396,19 @@ private:
     void updateSlider();
 
     /**
-      * Create single instance of the message box
-      *
-      * @return nothing
-      */
-    void createMessageBox();
-
-    /**
       * Save coordinates as strings
       *
       *
       * @return nothing
       */
     void coordinatesToStrings(const QString& sCoordinates);
+
+    /**
+      * Show a sub view and close all other subvies
+      *
+      * @return nothing
+      */
+    void showWidget(QWidget* pWidget);
 
 };
 

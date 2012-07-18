@@ -30,15 +30,11 @@ public:
 
 signals:
 
-    void showHelp();
-
-    void showLang();
+    void showOptionsMenu();
 
 private slots:
 
     void handleHelp();
-
-    void handleLang();
 
     void handleExit();
 
@@ -51,9 +47,7 @@ private:
     //controls
     QLabel* m_pControlLabel;
 
-    QPushButton* m_pControlLang;
-
-    QPushButton* m_pControlHelp;
+    QPushButton* m_pControlOptions;
 
     QPushButton* m_pControlExit;
 

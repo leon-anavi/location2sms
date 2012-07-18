@@ -19,6 +19,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
+#include <QCheckBox>
 
 class CustomMessageBox : public QWidget
 {
@@ -31,9 +32,11 @@ public:
 
     QPushButton* addButton(const QString& sText);
 
+    QCheckBox* addCheckBox(const QString& sText);
+
     QLabel* addLabel(const QString& sText);
 
-    void finalizeWidget();
+    void addSpacer();
 
     QPushButton* getLastClickedButton();
 

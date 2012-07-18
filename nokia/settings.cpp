@@ -65,17 +65,17 @@ void Settings::loadSettings()
     m_nSelectedLanguage = settings.value("SelectedLanguage").toInt();
     //Map type
     QString sMapType = settings.value("MapType").toString();
-    if (1 == sMapType.compare(QString("bing")))
+    if (0 == sMapType.compare(QString("bing")))
     {
         setSelectedMap(bing);
     }
-    else if (2 == sMapType.compare(QString("nokia")))
+    else if (0 == sMapType.compare(QString("nokia")))
     {
         setSelectedMap(nokia);
     }
-    else if (3 == sMapType.compare(QString("openstreetmaps")))
+    else if (0 == sMapType.compare(QString("openstreetmap")))
     {
-        setSelectedMap(openstreetmaps);
+        setSelectedMap(openstreetmap);
     }
     else
     {
@@ -105,8 +105,8 @@ void Settings::saveSettings()
         case nokia:
             sMapType = "nokia";
         break;
-        case openstreetmaps:
-            sMapType = "openstreetmaps";
+        case openstreetmap:
+            sMapType = "openstreetmap";
         break;
     }
     settings.setValue("MapType", sMapType);
@@ -182,7 +182,7 @@ void Settings::setSelectedMap(MapTypes eMapType)
             m_nMapZoomMax = m_nMapZoomMaxNokia;
             m_nMapZoomDefault = m_nMapDefaultZoomNokia;
         break;
-        case openstreetmaps:
+        case openstreetmap:
             m_nMapZoomMin = m_nMapZoomMinOpenstreetMap;
             m_nMapZoomMax = m_nMapZoomMaxOpenstreetMap;
             m_nMapZoomDefault = m_nMapDefaultZoomOpenstreetMap;
