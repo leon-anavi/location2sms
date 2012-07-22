@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwidget.h'
 **
-** Created: Wed 18. Jul 09:46:16 2012
+** Created: Sun 22. Jul 00:23:50 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWidget[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+      17,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -35,18 +35,19 @@ static const uint qt_meta_data_MainWidget[] = {
       62,   11,   11,   11, 0x08,
       84,   11,   11,   11, 0x08,
      108,   11,   11,   11, 0x08,
-     121,   11,   11,   11, 0x08,
-     131,   11,   11,   11, 0x08,
-     145,   11,   11,   11, 0x08,
-     163,   11,   11,   11, 0x08,
-     181,   11,   11,   11, 0x08,
-     201,  194,   11,   11, 0x08,
-     220,   11,   11,   11, 0x08,
-     233,   11,   11,   11, 0x08,
-     254,   11,   11,   11, 0x08,
-     282,   11,   11,   11, 0x08,
-     301,   11,   11,   11, 0x08,
+     128,   11,   11,   11, 0x08,
+     141,   11,   11,   11, 0x08,
+     151,   11,   11,   11, 0x08,
+     165,   11,   11,   11, 0x08,
+     183,   11,   11,   11, 0x08,
+     201,   11,   11,   11, 0x08,
+     221,  214,   11,   11, 0x08,
+     240,   11,   11,   11, 0x08,
+     253,   11,   11,   11, 0x08,
+     274,   11,   11,   11, 0x08,
+     302,   11,   11,   11, 0x08,
      321,   11,   11,   11, 0x08,
+     341,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -55,11 +56,11 @@ static const char qt_meta_stringdata_MainWidget[] = {
     "MainWidget\0\0geoPositionInfo\0"
     "positionUpdated(QGeoPositionInfo)\0"
     "handleSmsSendButton()\0handleEmailSendButton()\0"
-    "requestMap()\0loadMap()\0loadAddress()\0"
-    "loadMapShortUrl()\0showOptionsMenu()\0"
-    "handleLang()\0nValue\0rotateSpinner(int)\0"
-    "mapChanged()\0enableLocationData()\0"
-    "showEnableLocationDataMsg()\0"
+    "handlePanicButton()\0requestMap()\0"
+    "loadMap()\0loadAddress()\0loadMapShortUrl()\0"
+    "showOptionsMenu()\0handleLang()\0nValue\0"
+    "rotateSpinner(int)\0mapChanged()\0"
+    "enableLocationData()\0showEnableLocationDataMsg()\0"
     "handleMessageBox()\0handleOptionsMenu()\0"
     "handleSettingsMenu()\0"
 };
@@ -96,22 +97,23 @@ int MainWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 0: positionUpdated((*reinterpret_cast< QGeoPositionInfo(*)>(_a[1]))); break;
         case 1: handleSmsSendButton(); break;
         case 2: handleEmailSendButton(); break;
-        case 3: requestMap(); break;
-        case 4: loadMap(); break;
-        case 5: loadAddress(); break;
-        case 6: loadMapShortUrl(); break;
-        case 7: showOptionsMenu(); break;
-        case 8: handleLang(); break;
-        case 9: rotateSpinner((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 10: mapChanged(); break;
-        case 11: enableLocationData(); break;
-        case 12: showEnableLocationDataMsg(); break;
-        case 13: handleMessageBox(); break;
-        case 14: handleOptionsMenu(); break;
-        case 15: handleSettingsMenu(); break;
+        case 3: handlePanicButton(); break;
+        case 4: requestMap(); break;
+        case 5: loadMap(); break;
+        case 6: loadAddress(); break;
+        case 7: loadMapShortUrl(); break;
+        case 8: showOptionsMenu(); break;
+        case 9: handleLang(); break;
+        case 10: rotateSpinner((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 11: mapChanged(); break;
+        case 12: enableLocationData(); break;
+        case 13: showEnableLocationDataMsg(); break;
+        case 14: handleMessageBox(); break;
+        case 15: handleOptionsMenu(); break;
+        case 16: handleSettingsMenu(); break;
         default: ;
         }
-        _id -= 16;
+        _id -= 17;
     }
     return _id;
 }

@@ -132,6 +132,10 @@ private:
 
     static const QString m_sAppName;
 
+    static const int m_nTagMsgLocationData = 1;
+
+    static const int m_nTagMsgSent = 2;
+
 public:
 
     explicit MainWidget(QWidget *parent = 0);
@@ -164,6 +168,14 @@ private slots:
       * @return nothing
       */
     void handleEmailSendButton();
+
+    /**
+      * Handle panic button by seding sms/email
+      * to specified recipients
+      *
+      * @return nothing
+      */
+    void handlePanicButton();
 
     /**
       * Request the map
@@ -387,6 +399,29 @@ private:
       * @return nothing
       */
     void handleSendButton(QMessage::Type type);
+
+    /**
+      * compose message text
+      *
+      * type SMS or E-mail
+      *
+      * @return QString
+      */
+    QString composeMessageContent(QMessage::Type type) const;
+
+    /**
+      * create and show message for location data
+      *
+      * @return nothing
+      */
+    void createAndShowMessageLocationData();
+
+    /**
+      * create and show message for sent panic msg
+      *
+      * @return nothing
+      */
+    void createAndShowMessageSent();
 
     /**
       * Update slider value and range based on the settings

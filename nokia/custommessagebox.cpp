@@ -15,11 +15,13 @@
 
 #include <QPainter>
 #include <QEvent>
+#include <QDebug>
 
 CustomMessageBox::CustomMessageBox(QWidget *parent) :
                                     QWidget(parent),
                                     m_pLayout(NULL),
-                                    m_pLastPressedButton(NULL)
+                                    m_pLastPressedButton(NULL),
+                                    m_nTag(0)
 {
     m_pLayout = new QVBoxLayout(this);
     m_pLayout->setSpacing(2);
@@ -131,3 +133,50 @@ QPushButton* CustomMessageBox::getLastClickedButton()
     return m_pLastPressedButton;
 }
 //------------------------------------------------------------------------------
+
+void CustomMessageBox::clear()
+{
+    if (NULL != m_pLayout)
+    {
+        qDebug() << "clear";
+        clearLayout(dynamic_cast<QLayout*>(m_pLayout));
+        repaint();
+    }
+}
+//------------------------------------------------------------------------------
+
+int CustomMessageBox::getTag() const
+{
+    return m_nTag;
+}
+//------------------------------------------------------------------------------
+
+void CustomMessageBox::setTag(int nTag)
+{
+    m_nTag = nTag;
+}
+//------------------------------------------------------------------------------
+
+void CustomMessageBox::clearLayout(QLayout* pLayout)
+{
+    QLayoutItem* pItem = NULL;
+    while(pItem = pLayout->takeAt(0))
+    {
+        qDebug() << "delete item";
+        if (0 != pItem->layout())
+        {
+            qDebug() << "recursion";
+            //recursively delete other layout inside the main layout
+            clearLayout(pItem->layout());
+        }
+        QWidget* pWidget = pItem->widget();
+        if (0 != pWidget)
+        {
+            pLayout->removeWidget(pWidget);
+            delete pWidget;
+            pWidget = NULL;
+        }
+    }
+}
+//------------------------------------------------------------------------------
+

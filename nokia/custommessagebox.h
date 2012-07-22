@@ -26,6 +26,7 @@ class CustomMessageBox : public QWidget
     Q_OBJECT
 
 public:
+
     explicit CustomMessageBox(QWidget *parent = 0);
 
     virtual ~CustomMessageBox();
@@ -39,6 +40,28 @@ public:
     void addSpacer();
 
     QPushButton* getLastClickedButton();
+
+    void clear();
+
+    /**
+      * get message tag
+      *
+      * @return int
+      */
+    int getTag() const;
+
+    /**
+      * set message tag
+      *
+      * @param mTag
+      *
+      * @return nothing
+      */
+    void setTag(int nTag);
+
+private:
+
+    void clearLayout(QLayout* pLayout);
 
 protected:
 
@@ -58,6 +81,9 @@ private:
     QVBoxLayout* m_pLayout;
 
     QPushButton* m_pLastPressedButton;
+
+    //message identification
+    int m_nTag;
 };
 
 #endif // CUSTOMMESSAGEBOX_H

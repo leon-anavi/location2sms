@@ -20,6 +20,9 @@
 #include <QMessageBox>
 #include <QTimer>
 
+//Qt mobility
+#include <QMessageService>
+
 //Project specific includes
 #include "mainwidget.h"
 
@@ -203,11 +206,6 @@ MainWidget::MainWidget(QWidget *parent) :
 
     //message box
     m_pMessageBox = new CustomMessageBox(this);
-
-    m_pMessageBox->addLabel(tr("Do you authorize location2sms to use your location data?"));
-    m_pMessageBox->addButton(tr("OK"));
-    m_pMessageBox->addButton(tr("Exit"));
-    m_pMessageBox->addSpacer();
     m_pMessageBox->hide();
 
     m_widgetsCtrl << m_pMessageBox;
@@ -390,14 +388,49 @@ void MainWidget::handleEmailSendButton()
 }
 //------------------------------------------------------------------------------
 
+void MainWidget::handlePanicButton()
+{
+    //send panic email
+
+    // Create  a new email
+    QMessage msg;
+    msg.setType(QMessage::Email);
+    // Add required parameters
+
+    QMessageAddressList emailList;
+    emailList.append(QMessageAddress(QMessageAddress::Email, "leonanavi@gmail.com"));
+    emailList.append(QMessageAddress(QMessageAddress::Email, "mariaanavi@abv.bg"));
+
+
+    msg.setTo(emailList);
+    msg.setSubject(m_sAppName);
+
+    //Set message body
+    msg.setBody(composeMessageContent(QMessage::Email));
+
+    //Send email message
+    m_pMessageManager->send(msg);
+
+    //show message
+    createAndShowMessageSent();
+}
+//------------------------------------------------------------------------------
+
 void MainWidget::handleSendButton(QMessage::Type type)
 {   
     QMessage message;
     message.setType(type);
     message.setSubject(m_sAppName);
+    message.setBody(composeMessageContent(type));
+    m_pMessageManager->compose(message);
+}
+//------------------------------------------------------------------------------
+
+QString MainWidget::composeMessageContent(QMessage::Type type) const
+{
+    QString sLocation = "";
     if ( true == m_bIsPositionFound )
     {
-        QString sLocation;
         if (0 < m_pReverseGeoCoder->getAddress().length())
         {
             sLocation += tr("Address: ") + m_pReverseGeoCoder->getAddress() + "\n";
@@ -422,10 +455,35 @@ void MainWidget::handleSendButton(QMessage::Type type)
             sLocation += tr("Sent from ");
             sLocation += m_sAppName;
         }
-
-        message.setBody(sLocation);
     }
-    m_pMessageManager->compose(message);
+    return sLocation;
+}
+//------------------------------------------------------------------------------
+
+void MainWidget::createAndShowMessageLocationData()
+{
+    m_pMessageBox->clear();
+
+    m_pMessageBox->addLabel(tr("Do you authorize location2sms to use your location data?"));
+    m_pMessageBox->addButton(tr("OK"));
+    m_pMessageBox->addButton(tr("Exit"));
+    m_pMessageBox->addSpacer();
+
+    m_pMessageBox->setTag(m_nTagMsgLocationData);
+    showWidget(m_pMessageBox);
+}
+//------------------------------------------------------------------------------
+
+void MainWidget::createAndShowMessageSent()
+{
+    m_pMessageBox->clear();
+
+    m_pMessageBox->addLabel(tr("Message sent."));
+    m_pMessageBox->addSpacer();
+    m_pMessageBox->addButton(tr("OK"));
+    m_pMessageBox->setTag(m_nTagMsgSent);
+
+    showWidget(m_pMessageBox);
 }
 //------------------------------------------------------------------------------
 
@@ -703,7 +761,7 @@ void MainWidget::enableLocationData()
 
 void MainWidget::showEnableLocationDataMsg()
 {
-    showWidget(m_pMessageBox);
+    createAndShowMessageLocationData();
 }
 //------------------------------------------------------------------------------
 
@@ -721,21 +779,30 @@ void MainWidget::handleMessageBox()
     {
         return;
     }
-    QPushButton* pButton = m_pMessageBox->getLastClickedButton();
-    //get last clicked button
-    if (pButton->text() == tr("Exit"))
-    {
-        m_pSettings->setIsLocationDataEnabled(false);
-        //exit
-        QCoreApplication::quit();
-        return;
-    }
-    m_pMessageBox->hide();
 
-    //Enable location data and start searching for position
-    m_pSettings->setIsLocationDataEnabled(true);
-    m_pLocationDataCheckBox->setChecked(true);
-    startLocationAPI();
+    if (m_pMessageBox->getTag() == m_nTagMsgLocationData)
+    {
+        QPushButton* pButton = m_pMessageBox->getLastClickedButton();
+        //get last clicked button
+        if (pButton->text() == tr("Exit"))
+        {
+            m_pSettings->setIsLocationDataEnabled(false);
+            //exit
+            QCoreApplication::quit();
+            return;
+        }
+        m_pMessageBox->hide();
+
+        //Enable location data and start searching for position
+        m_pSettings->setIsLocationDataEnabled(true);
+        m_pLocationDataCheckBox->setChecked(true);
+        startLocationAPI();
+    }
+    else if (m_pMessageBox->getTag() == m_nTagMsgSent)
+    {
+        //just hide the message box
+        m_pMessageBox->hide();
+    }
 }
 //------------------------------------------------------------------------------
 
