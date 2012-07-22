@@ -724,6 +724,7 @@ QString MainWidget::getMapUrl(int nZoom, int nMapWidth, int nMapHeight) const
         sUrl += QString("&maptype=mapnik&markers=");
         sUrl += QString("%1,%2").arg(m_sLatitude).arg(m_sLongitude);
         sUrl += QString(",lightblue1");
+        qDebug() << sUrl;
     }
     else
     {

@@ -13,7 +13,7 @@
 <context>
     <name>LanguagesWidget</name>
     <message>
-        <location filename="languageswidget.cpp" line="287"/>
+        <location filename="languageswidget.cpp" line="275"/>
         <source>Language:</source>
         <translation>Език:</translation>
     </message>
@@ -22,7 +22,7 @@
         <translation type="obsolete">Карта:</translation>
     </message>
     <message>
-        <location filename="languageswidget.cpp" line="293"/>
+        <location filename="languageswidget.cpp" line="281"/>
         <source>OK</source>
         <translation>ОК</translation>
     </message>

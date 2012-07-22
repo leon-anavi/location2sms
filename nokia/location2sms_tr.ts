@@ -12,14 +12,14 @@
 <context>
     <name>LanguagesWidget</name>
     <message>
-        <location filename="languageswidget.cpp" line="287"/>
+        <location filename="languageswidget.cpp" line="275"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dil:</translation>
     </message>
     <message>
-        <location filename="languageswidget.cpp" line="293"/>
+        <location filename="languageswidget.cpp" line="281"/>
         <source>OK</source>
-        <translation type="unfinished">Tamam</translation>
+        <translation>Tamam</translation>
     </message>
 </context>
 <context>
@@ -53,7 +53,7 @@ Boylam: %2</translation>
     <message>
         <location filename="mainwidget.cpp" line="481"/>
         <source>Message sent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mesaj gönderildi.</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="511"/>
@@ -88,50 +88,50 @@ Boylam: %2</translation>
     <message>
         <location filename="mainwidget.cpp" line="467"/>
         <source>Do you authorize location2sms to use your location data?</source>
-        <translation type="unfinished"></translation>
+        <translation>Eğer location2sms bulunduğunuz verileri kullanmasına izin musunuz?</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="32"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ayarlar</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="33"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Hakkında</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="37"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Iptal</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="34"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Dil</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="35"/>
         <source>Map</source>
-        <translation type="unfinished"></translation>
+        <translation>Harita</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="927"/>
         <source>Location Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Yer Veri</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="36"/>
         <location filename="mainwidget.cpp" line="468"/>
         <location filename="mainwidget.cpp" line="483"/>
         <source>OK</source>
-        <translation type="unfinished">Tamam</translation>
+        <translation>Tamam</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="469"/>
         <location filename="mainwidget.cpp" line="791"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Çıkış</translation>
     </message>
 </context>
 <context>
@@ -139,12 +139,12 @@ Boylam: %2</translation>
     <message>
         <location filename="mapswidget.cpp" line="102"/>
         <source>Map:</source>
-        <translation type="unfinished"></translation>
+        <translation>Harita:</translation>
     </message>
     <message>
         <location filename="mapswidget.cpp" line="108"/>
         <source>OK</source>
-        <translation type="unfinished">Tamam</translation>
+        <translation>Tamam</translation>
     </message>
 </context>
 <context>
@@ -152,7 +152,7 @@ Boylam: %2</translation>
     <message>
         <location filename="settingslistwidget.cpp" line="55"/>
         <source>OK</source>
-        <translation type="unfinished">Tamam</translation>
+        <translation>Tamam</translation>
     </message>
 </context>
 </TS>

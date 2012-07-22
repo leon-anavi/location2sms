@@ -14,7 +14,7 @@
 <context>
     <name>LanguagesWidget</name>
     <message>
-        <location filename="languageswidget.cpp" line="287"/>
+        <location filename="languageswidget.cpp" line="275"/>
         <source>Language:</source>
         <translation>Taal:</translation>
     </message>
@@ -23,9 +23,9 @@
         <translation type="obsolete">Kaarten:</translation>
     </message>
     <message>
-        <location filename="languageswidget.cpp" line="293"/>
+        <location filename="languageswidget.cpp" line="281"/>
         <source>OK</source>
-        <translation type="unfinished">ОК</translation>
+        <translation>ОК</translation>
     </message>
 </context>
 <context>
@@ -64,7 +64,7 @@ Longitude: %2</source>
     <message>
         <location filename="mainwidget.cpp" line="481"/>
         <source>Message sent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bericht verzonden.</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="511"/>
@@ -94,32 +94,32 @@ Longitude: %2</source>
     <message>
         <location filename="mainwidget.cpp" line="467"/>
         <source>Do you authorize location2sms to use your location data?</source>
-        <translation type="unfinished"></translation>
+        <translation>Heeft u toestemming location2sms om uw locatie gegevens te gebruiken?</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="32"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Instellingen</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="33"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Over</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="37"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Annuleren</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="34"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Taal</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="35"/>
         <source>Map</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaarten</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="927"/>
@@ -131,13 +131,13 @@ Longitude: %2</source>
         <location filename="mainwidget.cpp" line="468"/>
         <location filename="mainwidget.cpp" line="483"/>
         <source>OK</source>
-        <translation type="unfinished">ОК</translation>
+        <translation>ОК</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="469"/>
         <location filename="mainwidget.cpp" line="791"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Uitgang</translation>
     </message>
 </context>
 <context>
@@ -145,12 +145,12 @@ Longitude: %2</source>
     <message>
         <location filename="mapswidget.cpp" line="102"/>
         <source>Map:</source>
-        <translation type="unfinished">Kaarten:</translation>
+        <translation>Kaarten:</translation>
     </message>
     <message>
         <location filename="mapswidget.cpp" line="108"/>
         <source>OK</source>
-        <translation type="unfinished">ОК</translation>
+        <translation>ОК</translation>
     </message>
 </context>
 <context>
@@ -165,7 +165,7 @@ Longitude: %2</source>
     <message>
         <location filename="settingslistwidget.cpp" line="55"/>
         <source>OK</source>
-        <translation type="unfinished">ОК</translation>
+        <translation>ОК</translation>
     </message>
 </context>
 </TS>

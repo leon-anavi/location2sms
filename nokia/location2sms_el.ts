@@ -12,7 +12,7 @@
 <context>
     <name>LanguagesWidget</name>
     <message>
-        <location filename="languageswidget.cpp" line="287"/>
+        <location filename="languageswidget.cpp" line="275"/>
         <source>Language:</source>
         <translation>Γλώσσα:</translation>
     </message>
@@ -22,9 +22,9 @@
         <translation type="obsolete">Χάρτης:</translation>
     </message>
     <message>
-        <location filename="languageswidget.cpp" line="293"/>
+        <location filename="languageswidget.cpp" line="281"/>
         <source>OK</source>
-        <translation type="unfinished">Εντάξει</translation>
+        <translation>Εντάξει</translation>
     </message>
 </context>
 <context>
@@ -52,7 +52,7 @@
     <message>
         <location filename="mainwidget.cpp" line="481"/>
         <source>Message sent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Το μήνυμα εστάλη.</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="511"/>
@@ -87,50 +87,50 @@
     <message>
         <location filename="mainwidget.cpp" line="467"/>
         <source>Do you authorize location2sms to use your location data?</source>
-        <translation type="unfinished"></translation>
+        <translation>Μην επιτρέπετε να χρησιμοποιήσετε location2sms δεδομένα θέσης σας;</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="32"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ρυθμίσεις</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="33"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Σχετικά με...</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="37"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Ακύρωση</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="34"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Γλώσσα</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="35"/>
         <source>Map</source>
-        <translation type="unfinished"></translation>
+        <translation>Χάρτες</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="927"/>
         <source>Location Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Τα δεδομένα θέσης</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="36"/>
         <location filename="mainwidget.cpp" line="468"/>
         <location filename="mainwidget.cpp" line="483"/>
         <source>OK</source>
-        <translation type="unfinished">Εντάξει</translation>
+        <translation>Εντάξει</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="469"/>
         <location filename="mainwidget.cpp" line="791"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Εξοδος</translation>
     </message>
 </context>
 <context>
@@ -138,12 +138,12 @@
     <message>
         <location filename="mapswidget.cpp" line="102"/>
         <source>Map:</source>
-        <translation type="unfinished">Χάρτης:</translation>
+        <translation>Χάρτης:</translation>
     </message>
     <message>
         <location filename="mapswidget.cpp" line="108"/>
         <source>OK</source>
-        <translation type="unfinished">Εντάξει</translation>
+        <translation>Εντάξει</translation>
     </message>
 </context>
 <context>
@@ -151,7 +151,7 @@
     <message>
         <location filename="settingslistwidget.cpp" line="55"/>
         <source>OK</source>
-        <translation type="unfinished">Εντάξει</translation>
+        <translation>Εντάξει</translation>
     </message>
 </context>
 </TS>

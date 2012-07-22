@@ -13,7 +13,7 @@
 <context>
     <name>LanguagesWidget</name>
     <message>
-        <location filename="languageswidget.cpp" line="287"/>
+        <location filename="languageswidget.cpp" line="275"/>
         <source>Language:</source>
         <translation>Jazyk: </translation>
     </message>
@@ -22,9 +22,9 @@
         <translation type="obsolete">Mapy: </translation>
     </message>
     <message>
-        <location filename="languageswidget.cpp" line="293"/>
+        <location filename="languageswidget.cpp" line="281"/>
         <source>OK</source>
-        <translation type="unfinished">ОК</translation>
+        <translation>ОК</translation>
     </message>
 </context>
 <context>
@@ -63,7 +63,7 @@ Longitude: %2</source>
     <message>
         <location filename="mainwidget.cpp" line="481"/>
         <source>Message sent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zpráva byla odeslána.</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="511"/>
@@ -93,50 +93,50 @@ Longitude: %2</source>
     <message>
         <location filename="mainwidget.cpp" line="467"/>
         <source>Do you authorize location2sms to use your location data?</source>
-        <translation type="unfinished"></translation>
+        <translation>Myslíte si, povolit location2sms použít vaše data o poloze?</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="32"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavení</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="33"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Informace</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="37"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušit</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="34"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="35"/>
         <source>Map</source>
-        <translation type="unfinished"></translation>
+        <translation>Mapy</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="927"/>
         <source>Location Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokalizační údaje</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="36"/>
         <location filename="mainwidget.cpp" line="468"/>
         <location filename="mainwidget.cpp" line="483"/>
         <source>OK</source>
-        <translation type="unfinished">ОК</translation>
+        <translation>ОК</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="469"/>
         <location filename="mainwidget.cpp" line="791"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Výstup</translation>
     </message>
 </context>
 <context>
@@ -144,12 +144,12 @@ Longitude: %2</source>
     <message>
         <location filename="mapswidget.cpp" line="102"/>
         <source>Map:</source>
-        <translation type="unfinished">Mapy: </translation>
+        <translation>Mapy: </translation>
     </message>
     <message>
         <location filename="mapswidget.cpp" line="108"/>
         <source>OK</source>
-        <translation type="unfinished">ОК</translation>
+        <translation>ОК</translation>
     </message>
 </context>
 <context>
@@ -164,7 +164,7 @@ Longitude: %2</source>
     <message>
         <location filename="settingslistwidget.cpp" line="55"/>
         <source>OK</source>
-        <translation type="unfinished">ОК</translation>
+        <translation>ОК</translation>
     </message>
 </context>
 </TS>

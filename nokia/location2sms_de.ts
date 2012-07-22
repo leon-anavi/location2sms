@@ -12,14 +12,14 @@
 <context>
     <name>LanguagesWidget</name>
     <message>
-        <location filename="languageswidget.cpp" line="287"/>
+        <location filename="languageswidget.cpp" line="275"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprache:</translation>
     </message>
     <message>
-        <location filename="languageswidget.cpp" line="293"/>
+        <location filename="languageswidget.cpp" line="281"/>
         <source>OK</source>
-        <translation type="unfinished">Ok</translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -53,7 +53,7 @@ Länge: %2</translation>
     <message>
         <location filename="mainwidget.cpp" line="481"/>
         <source>Message sent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nachricht wurde gesendet.</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="511"/>
@@ -88,50 +88,50 @@ Länge: %2</translation>
     <message>
         <location filename="mainwidget.cpp" line="467"/>
         <source>Do you authorize location2sms to use your location data?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sind Sie einverstanden location2sms Ihre Standortdaten zu verwenden?</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="32"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="33"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Über</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="37"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="34"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprache</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="35"/>
         <source>Map</source>
-        <translation type="unfinished"></translation>
+        <translation>Karte</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="927"/>
         <source>Location Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokationsdaten</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="36"/>
         <location filename="mainwidget.cpp" line="468"/>
         <location filename="mainwidget.cpp" line="483"/>
         <source>OK</source>
-        <translation type="unfinished">Ok</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="469"/>
         <location filename="mainwidget.cpp" line="791"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Beenden</translation>
     </message>
 </context>
 <context>
@@ -139,12 +139,12 @@ Länge: %2</translation>
     <message>
         <location filename="mapswidget.cpp" line="102"/>
         <source>Map:</source>
-        <translation type="unfinished"></translation>
+        <translation>Karte</translation>
     </message>
     <message>
         <location filename="mapswidget.cpp" line="108"/>
         <source>OK</source>
-        <translation type="unfinished">Ok</translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -152,7 +152,7 @@ Länge: %2</translation>
     <message>
         <location filename="settingslistwidget.cpp" line="55"/>
         <source>OK</source>
-        <translation type="unfinished">Ok</translation>
+        <translation>OK</translation>
     </message>
 </context>
 </TS>
