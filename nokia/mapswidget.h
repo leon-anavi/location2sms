@@ -36,6 +36,16 @@ public:
       */
     void loadSettings();
 
+protected:
+
+    //overload from QWidget
+    void changeEvent(QEvent* event);
+
+    //overload SettingsListWidget
+    QString getLabelText() const;
+
+    QString getButtonText() const;
+
 protected slots:
 
     void select();

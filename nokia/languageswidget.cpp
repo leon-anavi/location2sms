@@ -24,7 +24,8 @@
 LanguagesWidget::LanguagesWidget(Settings* pSettings, QWidget *parent) :
     SettingsListWidget(pSettings, parent)
 {
-    m_pTitle->setText(tr("Language:"));
+    m_pTitle->setText(getLabelText());
+    m_pButtonSelect->setText(getButtonText());
 
     new QListWidgetItem("English", m_pList);
     new QListWidgetItem(QString::fromUtf8("Български"), m_pList);
@@ -36,7 +37,6 @@ LanguagesWidget::LanguagesWidget(Settings* pSettings, QWidget *parent) :
     new QListWidgetItem(QString::fromUtf8("Čeština"), m_pList);
     new QListWidgetItem(QString::fromUtf8("Bahasa Indonesia"), m_pList);
     new QListWidgetItem(QString::fromUtf8("Русский"), m_pList);
-
 }
 //------------------------------------------------------------------------------
 
@@ -255,14 +255,29 @@ void LanguagesWidget::loadSettings()
     {
         loadSelectedLanguage();
     }
+}
+//------------------------------------------------------------------------------
 
-    int nRow = 0;
-    switch (m_pSettings->getSelectedMap())
+void LanguagesWidget::changeEvent(QEvent* event)
+{
+    if (QEvent::LanguageChange == event->type())
     {
-        case Settings::bing:
-            nRow = 1;
-        break;
+        //translate
+        m_pTitle->setText(getLabelText());
+        m_pButtonSelect->setText(getButtonText());
     }
-    m_pList->setCurrentRow(nRow);
+    QWidget::changeEvent(event);
+}
+//------------------------------------------------------------------------------
+
+QString LanguagesWidget::getLabelText() const
+{
+    return tr("Language:");
+}
+//------------------------------------------------------------------------------
+
+QString LanguagesWidget::getButtonText() const
+{
+    return tr("OK");
 }
 //------------------------------------------------------------------------------

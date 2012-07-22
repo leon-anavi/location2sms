@@ -20,6 +20,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QListWidget>
+#include <QEvent>
 
 //Project specific includes
 #include "settings.h"
@@ -51,6 +52,10 @@ protected:
     //overload from QWidget
     void resizeEvent(QResizeEvent* event);
 
+    virtual QString getLabelText() const = 0;
+
+    virtual QString getButtonText() const = 0;
+
 signals:
 
     void settingsWidgetClosed();
@@ -73,8 +78,6 @@ protected:
 
     QPushButton* m_pButtonSelect;
 
-private:
-    
 };
 
 #endif // SETTINGSWIDGET_H

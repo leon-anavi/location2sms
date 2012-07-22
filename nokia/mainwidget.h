@@ -136,6 +136,8 @@ private:
 
     static const int m_nTagMsgSent = 2;
 
+    static const char* m_constStrings[];
+
 public:
 
     explicit MainWidget(QWidget *parent = 0);
@@ -444,6 +446,10 @@ private:
       * @return nothing
       */
     void showWidget(QWidget* pWidget);
+
+    void createOptionsMenu();
+
+    void createSettingsMenu();
 
 };
 

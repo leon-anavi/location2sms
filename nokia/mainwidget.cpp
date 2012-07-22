@@ -28,6 +28,15 @@
 
 const QString MainWidget::m_sAppName = QString("location2sms");
 
+const char* MainWidget::m_constStrings[] = {
+    QT_TRANSLATE_NOOP("MainWidget", "Settings"),
+    QT_TRANSLATE_NOOP("MainWidget", "About"),
+    QT_TRANSLATE_NOOP("MainWidget", "Language"),
+    QT_TRANSLATE_NOOP("MainWidget", "Map"),
+    QT_TRANSLATE_NOOP("MainWidget", "OK"),
+    QT_TRANSLATE_NOOP("MainWidget", "Cancel"),
+ };
+
 MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent),
     m_pLocationInfo(NULL),
@@ -172,23 +181,14 @@ MainWidget::MainWidget(QWidget *parent) :
 
     //options menu
     m_pOptionsMenu = new CustomMessageBox(this);
-    m_pOptionsMenu->addButton(tr("Settings"));
-    m_pOptionsMenu->addButton(tr("About"));
-    m_pOptionsMenu->addSpacer();
-    m_pOptionsMenu->addButton(tr("Cancel"));
+    createOptionsMenu();
     m_pOptionsMenu->hide();
 
     m_widgetsCtrl << m_pOptionsMenu;
 
     //settings menu
     m_pSettingsMenu = new CustomMessageBox(this);
-    m_pSettingsMenu->addButton(tr("Language"));
-    m_pSettingsMenu->addButton(tr("Map"));
-    m_pLocationDataCheckBox = m_pSettingsMenu->addCheckBox(tr("Location Data"));
-    m_pLocationDataCheckBox->setChecked(m_pSettings->isLocationDataEnabled());
-    m_pSettingsMenu->addSpacer();
-    m_pSettingsMenu->addButton(tr("OK"));
-    m_pSettingsMenu->addButton(tr("Cancel"));
+    createSettingsMenu();
     m_pSettingsMenu->hide();
 
     m_widgetsCtrl << m_pSettingsMenu;
@@ -658,6 +658,10 @@ void MainWidget::changeEvent(QEvent* event)
         m_pButtonSendMessage->setText(getButtonSMSText());
         m_pButtonSendEmail->setText(getButtonEmailText());
 
+        //reload menus
+        createOptionsMenu();
+        createSettingsMenu();
+
         loadAddress();
     }
     QWidget::changeEvent(event);
@@ -814,12 +818,12 @@ void MainWidget::handleOptionsMenu()
     }
     QPushButton* pButton = m_pOptionsMenu->getLastClickedButton();
     //get last clicked button
-    if (pButton->text() == tr("Settings"))
+    if (pButton->text() == tr(m_constStrings[0]))
     {
         //show settings
         showWidget(m_pSettingsMenu);
     }
-    else if (pButton->text() == tr("About"))
+    else if (pButton->text() == tr(m_constStrings[1]))
     {
         //show about
         showWidget(m_pAboutWidget);
@@ -837,17 +841,17 @@ void MainWidget::handleSettingsMenu()
     }
     QPushButton* pButton = m_pSettingsMenu->getLastClickedButton();
     //get last clicked button
-    if (pButton->text() == tr("Language"))
+    if (pButton->text() == tr(m_constStrings[2]))
     {
         //show settings view for language
         showWidget(m_pLangWidget);
     }
-    else if (pButton->text() == tr("Map"))
+    else if (pButton->text() == tr(m_constStrings[3]))
     {
         //show settings view for map
         showWidget(m_pSettingsMaps);
     }
-    else if (pButton->text() == tr("OK"))
+    else if (pButton->text() == tr(m_constStrings[4]))
     {
         //enable/disable location
         bool bIsLocationDataEnabled = m_pLocationDataCheckBox->isChecked();
@@ -902,6 +906,29 @@ void MainWidget::showWidget(QWidget* pWidget)
     {
         pView->setVisible(pView == pWidget);
     }
+}
+//------------------------------------------------------------------------------
+
+void MainWidget::createOptionsMenu()
+{
+    m_pOptionsMenu->clear();
+    m_pOptionsMenu->addButton(tr(m_constStrings[0]));
+    m_pOptionsMenu->addButton(tr(m_constStrings[1]));
+    m_pOptionsMenu->addSpacer();
+    m_pOptionsMenu->addButton(tr(m_constStrings[5]));
+}
+//------------------------------------------------------------------------------
+
+void MainWidget::createSettingsMenu()
+{
+    m_pSettingsMenu->clear();
+    m_pSettingsMenu->addButton(tr(m_constStrings[2]));
+    m_pSettingsMenu->addButton(tr(m_constStrings[3]));
+    m_pLocationDataCheckBox = m_pSettingsMenu->addCheckBox(tr("Location Data"));
+    m_pLocationDataCheckBox->setChecked(m_pSettings->isLocationDataEnabled());
+    m_pSettingsMenu->addSpacer();
+    m_pSettingsMenu->addButton(tr(m_constStrings[4]));
+    m_pSettingsMenu->addButton(tr(m_constStrings[5]));
 }
 //------------------------------------------------------------------------------
 

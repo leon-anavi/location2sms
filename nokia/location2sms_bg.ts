@@ -13,17 +13,16 @@
 <context>
     <name>LanguagesWidget</name>
     <message>
-        <location filename="languageswidget.cpp" line="381"/>
+        <location filename="languageswidget.cpp" line="287"/>
         <source>Language:</source>
         <translation>Език:</translation>
     </message>
     <message>
-        <location filename="languageswidget.cpp" line="375"/>
         <source>Map:</source>
-        <translation>Карта:</translation>
+        <translation type="obsolete">Карта:</translation>
     </message>
     <message>
-        <location filename="languageswidget.cpp" line="75"/>
+        <location filename="languageswidget.cpp" line="293"/>
         <source>OK</source>
         <translation>ОК</translation>
     </message>
@@ -31,12 +30,12 @@
 <context>
     <name>MainWidget</name>
     <message>
-        <location filename="mainwidget.cpp" line="550"/>
+        <location filename="mainwidget.cpp" line="673"/>
         <source>Please wait...</source>
         <translation>Моля, изчакайте...</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="333"/>
+        <location filename="mainwidget.cpp" line="436"/>
         <source>Address: </source>
         <translation>Адрес: </translation>
     </message>
@@ -47,60 +46,111 @@ Longitude: %2</source>
 Дължина: %2</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="335"/>
+        <location filename="mainwidget.cpp" line="438"/>
         <source>Latitude: </source>
         <translation>Ширина: </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="338"/>
+        <location filename="mainwidget.cpp" line="441"/>
         <source>Longitude: </source>
         <translation>Дължина: </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="352"/>
+        <location filename="mainwidget.cpp" line="455"/>
         <source>Sent from </source>
         <translation>Изпратено от </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="383"/>
+        <location filename="mainwidget.cpp" line="481"/>
+        <source>Message sent.</source>
+        <translation>Съобщението е изпратено.</translation>
+    </message>
+    <message>
+        <location filename="mainwidget.cpp" line="511"/>
         <source>Address </source>
         <translation>Адрес </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="406"/>
+        <location filename="mainwidget.cpp" line="534"/>
         <source>Latitude </source>
         <translation>Ширина </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="416"/>
+        <location filename="mainwidget.cpp" line="544"/>
         <source>Longitude </source>
         <translation>Дължина </translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="557"/>
+        <location filename="mainwidget.cpp" line="680"/>
         <source>SMS</source>
         <translation>SMS</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="563"/>
+        <location filename="mainwidget.cpp" line="686"/>
         <source>E-mail</source>
         <translation>E-поща</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="647"/>
+        <location filename="mainwidget.cpp" line="467"/>
         <source>Do you authorize location2sms to use your location data?</source>
         <translation>Позволявате ли на location2sms да използва Вашето местоположение?</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="648"/>
+        <location filename="mainwidget.cpp" line="32"/>
+        <source>Settings</source>
+        <translation>Настройки</translation>
+    </message>
+    <message>
+        <location filename="mainwidget.cpp" line="33"/>
+        <source>About</source>
+        <translation>Информация</translation>
+    </message>
+    <message>
+        <location filename="mainwidget.cpp" line="37"/>
+        <source>Cancel</source>
+        <translation>Отказ</translation>
+    </message>
+    <message>
+        <location filename="mainwidget.cpp" line="34"/>
+        <source>Language</source>
+        <translation>Език</translation>
+    </message>
+    <message>
+        <location filename="mainwidget.cpp" line="35"/>
+        <source>Map</source>
+        <translation>Карта</translation>
+    </message>
+    <message>
+        <location filename="mainwidget.cpp" line="927"/>
+        <source>Location Data</source>
+        <translation>Данни за местоположение</translation>
+    </message>
+    <message>
+        <location filename="mainwidget.cpp" line="36"/>
+        <location filename="mainwidget.cpp" line="468"/>
+        <location filename="mainwidget.cpp" line="483"/>
         <source>OK</source>
         <translatorcomment>OK</translatorcomment>
         <translation>ОК</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="649"/>
+        <location filename="mainwidget.cpp" line="469"/>
+        <location filename="mainwidget.cpp" line="791"/>
         <source>Exit</source>
         <translation>Изход</translation>
+    </message>
+</context>
+<context>
+    <name>MapsWidget</name>
+    <message>
+        <location filename="mapswidget.cpp" line="102"/>
+        <source>Map:</source>
+        <translation>Карта:</translation>
+    </message>
+    <message>
+        <location filename="mapswidget.cpp" line="108"/>
+        <source>OK</source>
+        <translation>ОК</translation>
     </message>
 </context>
 <context>
@@ -108,6 +158,15 @@ Longitude: %2</source>
     <message>
         <source>SMS</source>
         <translation type="obsolete">SMS</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsListWidget</name>
+    <message>
+        <location filename="settingslistwidget.cpp" line="55"/>
+        <source>OK</source>
+        <translatorcomment>ОК</translatorcomment>
+        <translation>ОК</translation>
     </message>
 </context>
 </TS>

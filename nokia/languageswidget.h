@@ -45,6 +45,16 @@ private:
 
     QTranslator m_Translator;
 
+protected:
+
+    //overload from QWidget
+    void changeEvent(QEvent* event);
+
+    //overload SettingsListWidget
+    QString getLabelText() const;
+
+    QString getButtonText() const;
+
 private:
 
     void loadBulgarian();

@@ -19,7 +19,9 @@
 MapsWidget::MapsWidget(Settings* pSettings, QWidget *parent) :
     SettingsListWidget(pSettings, parent)
 {
-    m_pTitle->setText(tr("Map:"));
+    m_pTitle->setText(getLabelText());
+    m_pButtonSelect->setText(getButtonText());
+
     new QListWidgetItem("Google", m_pList);
     new QListWidgetItem("Bing", m_pList);
     new QListWidgetItem("Nokia", m_pList);
@@ -83,3 +85,26 @@ void MapsWidget::select()
 }
 //------------------------------------------------------------------------------
 
+void MapsWidget::changeEvent(QEvent* event)
+{
+    if (QEvent::LanguageChange == event->type())
+    {
+        //translate
+        m_pTitle->setText(getLabelText());
+        m_pButtonSelect->setText(getButtonText());
+    }
+    QWidget::changeEvent(event);
+}
+//------------------------------------------------------------------------------
+
+QString MapsWidget::getLabelText() const
+{
+    return tr("Map:");
+}
+//------------------------------------------------------------------------------
+
+QString MapsWidget::getButtonText() const
+{
+    return tr("OK");
+}
+//------------------------------------------------------------------------------
