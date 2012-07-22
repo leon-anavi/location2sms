@@ -69,7 +69,8 @@ void MenuWidget::initGui()
 
     QString sButtonStyle = sFontStyleTop+sStyleBackground+sButtonBorder;
 
-    m_pControlOptions = new QPushButton("  O  ", this);
+    m_pControlOptions = new QPushButton("", this);
+    m_pControlOptions->setIcon(QIcon(":/images/options.png"));
     m_pControlOptions->setMinimumWidth(nMinWidth);
     m_pControlOptions->setMinimumHeight(nMinHeight);
     m_pControlOptions->setStyleSheet(sButtonStyle);

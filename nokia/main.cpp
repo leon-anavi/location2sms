@@ -8,11 +8,24 @@
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
+    QString sCheckBoxStyle = "QCheckBox::indicator { width: 30px; height: 30px; }";
+    sCheckBoxStyle += " QCheckBox::indicator:unchecked { image: url(:/images/checkbox_unchecked.png); }";
+    sCheckBoxStyle += "QCheckBox::indicator:unchecked:hover { image: url(:/images/checkbox_unchecked.png); }";
+    sCheckBoxStyle += "QCheckBox::indicator:unchecked:pressed { image: url(:/images/checkbox_unchecked.png); }";
+    sCheckBoxStyle += " QCheckBox::indicator:checked { image: url(:/images/checkbox_checked.png); }";
+    sCheckBoxStyle += "QCheckBox::indicator:checked:hover { image: url(:/images/checkbox_checked.png); }";
+    sCheckBoxStyle += "QCheckBox::indicator:checked:pressed { image: url(:/images/checkbox_checked.png); }";
+    sCheckBoxStyle += "QCheckBox::indicator:indeterminate:hover { image: url(:/images/checkbox_checked.png); }";
+    sCheckBoxStyle += "QCheckBox::indicator:indeterminate:pressed { image: url(:/images/checkbox_checked.png); }";
+
 #ifdef Q_OS_SYMBIAN
     QApplication app(argc, argv);
     MainWindow mainWindow;
     mainWindow.setOrientation(MainWindow::ScreenOrientationAuto);
     mainWindow.showExpanded();
+
+    app.setStyleSheet(sCheckBoxStyle);
+
     return app.exec();
 #else
     QScopedPointer<QApplication> app(createApplication(argc, argv));
@@ -23,6 +36,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
     viewer->setMainQmlFile(QLatin1String("qml/TestView/main.qml"));
     viewer->showExpanded();
+
+    app->setStyleSheet(sCheckBoxStyle);
 
     return app->exec();
 #endif

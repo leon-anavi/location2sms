@@ -10,4 +10,9 @@
         <file>location2sms_nl.qm</file>
         <file>location2sms_ru.qm</file>
     </qresource>
+    <qresource prefix="/images">
+        <file alias="checkbox_checked.png">images/checkbox_checked.png</file>
+        <file alias="checkbox_unchecked.png">images/checkbox_unchecked.png</file>
+        <file alias="options.png">images/options.png</file>
+    </qresource>
 </RCC>
