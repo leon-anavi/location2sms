@@ -1,3 +1,8 @@
+location2sms (2.1.7) stable; urgency=low
+  * Privacy policy added.
+
+ -- unknown <>  Fri, 27 Jul 2012 01:10:05 +0300
+
 location2sms (2.1.6) stable; urgency=low
   * Accuracy improved. UI of the options menu modified.
 

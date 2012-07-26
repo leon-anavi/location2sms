@@ -8,6 +8,16 @@
         <source>This is an open source application available under GPLv3 licence at Gitorious: https://gitorious.org/location2sms. The application depends on GPS quality that the device delivers. It is powered by Google Maps API and requires Internet connection.Position accuracy of about 20 meters can be expected. </source>
         <translation>Bu uygulama açık kaynaklı bir yazılım olup GPLv3 lisansıyla Gitorius: https://gitorious.org/location2sms adresinde bulunmaktadır. Bu uygulama cihazınızın GPS kalitesine bağlıdır. Google Maps API&apos;sini kullanır ve internet bağlantısı gerektirir. 20 metrelik yanılsamalar olağandır. </translation>
     </message>
+    <message>
+        <location filename="aboutwidget.cpp" line="88"/>
+        <source>Privacy Policy</source>
+        <translation>Gizlilik Politikası</translation>
+    </message>
+    <message>
+        <location filename="aboutwidget.cpp" line="90"/>
+        <source>The Application does not collect or transmits personally identifiable information and does not monitor your personal use of the Application.</source>
+        <translation>Uygulama toplamak veya kişisel kimlik bilgilerini aktarır ve Uygulama kişisel kullanımınız izlemek yapmaz.</translation>
+    </message>
 </context>
 <context>
     <name>LanguagesWidget</name>
@@ -116,7 +126,7 @@ Boylam: %2</translation>
         <translation>Harita</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="927"/>
+        <location filename="mainwidget.cpp" line="928"/>
         <source>Location Data</source>
         <translation>Yer Veri</translation>
     </message>
@@ -129,7 +139,7 @@ Boylam: %2</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="469"/>
-        <location filename="mainwidget.cpp" line="791"/>
+        <location filename="mainwidget.cpp" line="792"/>
         <source>Exit</source>
         <translation>Çıkış</translation>
     </message>

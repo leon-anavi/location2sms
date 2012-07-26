@@ -8,6 +8,16 @@
         <source>This is an open source application available under GPLv3 licence at Gitorious: https://gitorious.org/location2sms. The application depends on GPS quality that the device delivers. It is powered by Google Maps API and requires Internet connection.Position accuracy of about 20 meters can be expected. </source>
         <translation>Diese Opensource-Anwendung (s. gitorius: https://gitorious.org/location2sms) steht unter der GPLv3 Lizenz. Die Anwendung verwendet die GPS Genauigkeit, die vom jeweiligen Gerät bereitgestellt wird. Es wird Google Maps verwendet und eine Internetverbindung benötigt. Mit einer Positionsgenauigkeit mit Abweichung von 20 Metern muss gerechnet werden.</translation>
     </message>
+    <message>
+        <location filename="aboutwidget.cpp" line="88"/>
+        <source>Privacy Policy</source>
+        <translation>Datenschutz</translation>
+    </message>
+    <message>
+        <location filename="aboutwidget.cpp" line="90"/>
+        <source>The Application does not collect or transmits personally identifiable information and does not monitor your personal use of the Application.</source>
+        <translation>Die Anwendung sammelt keine oder übermittelt persönliche Daten und überwacht nicht den persönlichen Gebrauch der Anwendung.</translation>
+    </message>
 </context>
 <context>
     <name>LanguagesWidget</name>
@@ -116,7 +126,7 @@ Länge: %2</translation>
         <translation>Karte</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="927"/>
+        <location filename="mainwidget.cpp" line="928"/>
         <source>Location Data</source>
         <translation>Lokationsdaten</translation>
     </message>
@@ -129,7 +139,7 @@ Länge: %2</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="469"/>
-        <location filename="mainwidget.cpp" line="791"/>
+        <location filename="mainwidget.cpp" line="792"/>
         <source>Exit</source>
         <translation>Beenden</translation>
     </message>

@@ -9,6 +9,16 @@
         <oldsource>This is an open source application available under GPLv3 licence at Gitorious: https://gitorious.org/location2sms. The application depends on GPS quality that the device delivers. Position accuracy of about 20 meters can be expected. It is powered by Google Maps API and requires Internet connection.</oldsource>
         <translation>Это приложение с открытым кодом, выпускается под GPLv3 лицензией  в Gitorious: https://gitorious.org/location2sms. Применение зависит от качества GPS устройства. Оно пользует Google Maps API и требует подключение к Интернету. Можно ожидать точность позиционирования 20 метров. </translation>
     </message>
+    <message>
+        <location filename="aboutwidget.cpp" line="88"/>
+        <source>Privacy Policy</source>
+        <translation>Политика конфиденциальности</translation>
+    </message>
+    <message>
+        <location filename="aboutwidget.cpp" line="90"/>
+        <source>The Application does not collect or transmits personally identifiable information and does not monitor your personal use of the Application.</source>
+        <translation>Приложение не собирает и не передает личную информацию и не контролирует вашу личную использования приложений.</translation>
+    </message>
 </context>
 <context>
     <name>LanguagesWidget</name>
@@ -99,7 +109,7 @@ Longitude: %2</source>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="469"/>
-        <location filename="mainwidget.cpp" line="791"/>
+        <location filename="mainwidget.cpp" line="792"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
@@ -134,7 +144,7 @@ Longitude: %2</source>
         <translation>е-мейл</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="927"/>
+        <location filename="mainwidget.cpp" line="928"/>
         <source>Location Data</source>
         <translation>Данные о местонахождении</translation>
     </message>

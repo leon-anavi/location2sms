@@ -36,13 +36,13 @@ symbian:
 
     # symbian capabilities
     TARGET.CAPABILITY += NetworkServices \
-                            Location \
-                            ReadUserData \
-                            WriteUserData \
-                            ReadDeviceData \
-                            WriteDeviceData
+                            Location #\
+                            #ReadUserData \
+                            #WriteUserData \
+                            #ReadDeviceData \
+                            #WriteDeviceData
 
-    packageheader = "$${LITERAL_HASH}{\"location2sms\"}, ($${TARGET.UID3}), 2, 1, 6"
+    packageheader = "$${LITERAL_HASH}{\"location2sms\"}, ($${TARGET.UID3}), 2, 1, 7"
     name_deployment.pkg_prerules = packageheader
     DEPLOYMENT += name_deployment
 

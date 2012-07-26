@@ -599,9 +599,9 @@ void MainWidget::resizeAboutAndLang()
 {
     QRect Screen = rect();
     int nSpace = 20;
-    int nPosY = m_pMainMenu->height() + nSpace;
+    int nPosY = nSpace;
     int nWidth = Screen.width()-2*nSpace;
-    int nHeight = Screen.height()-nPosY-nSpace;
+    int nHeight = Screen.height()-nSpace;
 
     foreach(QWidget* pSubView, m_widgetsCtrl)
     {

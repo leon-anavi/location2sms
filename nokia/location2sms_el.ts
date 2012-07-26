@@ -8,6 +8,16 @@
         <source>This is an open source application available under GPLv3 licence at Gitorious: https://gitorious.org/location2sms. The application depends on GPS quality that the device delivers. It is powered by Google Maps API and requires Internet connection.Position accuracy of about 20 meters can be expected. </source>
         <translation>Το παρόν λογισμικό είναι λογισμικό ανοικτού κώδικα και είναι διαθέσιμο, υπό την άδεια GPLv3, στο Gitorious: https://gitorious.org/location2sms. Το λογισμικό εξαρτάται απο την ποιότητα του GPS που προσφέρει η τηλεφωνική σας συσκευή. Τροφοδοτείται απο το API των χαρτών της Google και προϋποθέτει ένωση στο διαδίκτυο. Αναμένετε ακρίβεια τοποθεσίας με απόκλιση 20 μέτρων.</translation>
     </message>
+    <message>
+        <location filename="aboutwidget.cpp" line="88"/>
+        <source>Privacy Policy</source>
+        <translation>Πολιτική Προστασίας Προσωπικών Δεδομένων</translation>
+    </message>
+    <message>
+        <location filename="aboutwidget.cpp" line="90"/>
+        <source>The Application does not collect or transmits personally identifiable information and does not monitor your personal use of the Application.</source>
+        <translation>Η εφαρμογή δεν συλλέγει ή μεταδίδει προσωπικές πληροφορίες και δεν παρακολουθεί την προσωπική σας χρήση της Εφαρμογής.</translation>
+    </message>
 </context>
 <context>
     <name>LanguagesWidget</name>
@@ -115,7 +125,7 @@
         <translation>Χάρτες</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="927"/>
+        <location filename="mainwidget.cpp" line="928"/>
         <source>Location Data</source>
         <translation>Τα δεδομένα θέσης</translation>
     </message>
@@ -128,7 +138,7 @@
     </message>
     <message>
         <location filename="mainwidget.cpp" line="469"/>
-        <location filename="mainwidget.cpp" line="791"/>
+        <location filename="mainwidget.cpp" line="792"/>
         <source>Exit</source>
         <translation>Εξοδος</translation>
     </message>

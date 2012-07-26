@@ -18,6 +18,8 @@
 #include <QPainter>
 #include <QDebug>
 #include <QEvent>
+#include <QApplication>
+#include <QDesktopWidget>
 
 AboutWidget::AboutWidget(QWidget *parent) :
     QWidget(parent),
@@ -27,9 +29,19 @@ AboutWidget::AboutWidget(QWidget *parent) :
     m_pAboutInfo = new QLabel(getInfoText(), this);
     QString sItemsFont = "font-size:";
 #ifdef Q_OS_SYMBIAN
-    sItemsFont += "5pt;";
+    QRect Screen = QApplication::desktop()->screenGeometry();
+    if ( ( (640 == Screen.width()) && (480 == Screen.height()) ) ||
+       ( (480 == Screen.width()) && (640 == Screen.height()) ) )
+    {
+        //Nokia E6
+        sItemsFont += "4pt;";
+    }
+    else
+    {
+        sItemsFont += "5pt;";
+    }
 #else
-    sItemsFont += "16pt;";
+    sItemsFont += "12pt;";
 #endif
     sItemsFont += "font-weight:bold;color: #FFFFFF;";
     m_pAboutInfo->setStyleSheet(sItemsFont);
@@ -76,7 +88,7 @@ void AboutWidget::changeEvent(QEvent* event)
 QString AboutWidget::getInfoText() const
 {
     QString sText = "<h2><i>location<span style=\"color: #006BC2;\">2</span>sms</i></h2>\n";
-    sText += "2.1.6<br />\n";
+    sText += "2.1.7<br />\n";
     sText += QChar(0x00A9);
     sText += " 2011-2012 Leon Anavi<br />\n"
         "http://anavi.org/<br />\n<br />\n";
@@ -85,6 +97,11 @@ QString AboutWidget::getInfoText() const
         "It is powered by Google Maps API and requires Internet connection."
         "Position accuracy of about 20 meters can be expected. ");
     sText += "<br />\n<br />\n";
+    sText += tr("Privacy Policy");
+    sText += "<br />\n";
+    sText += tr("The Application does not collect or transmits personally "
+                "identifiable information and does not monitor your "
+                "personal use of the Application.");
     return sText;
 }
 //------------------------------------------------------------------------------

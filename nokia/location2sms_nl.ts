@@ -10,6 +10,16 @@
         <translatorcomment>Dit is een open source applicatie  en volgt de GPLv3 licentievoorwaarden. Location2sms is afhankelijk van de GPS nauwkeurigheid van uw smartphone. Google Maps wordt gebruikt en internetverbinding is nodig voor goede werking. De te verwachten nauwkeurigheid van de positie is 20 meter</translatorcomment>
         <translation>Dit is een open source applicatie  en volgt de GPLv3 licentievoorwaarden. Location2sms is afhankelijk van de GPS nauwkeurigheid van uw smartphone. Google Maps wordt gebruikt en internetverbinding is nodig voor goede werking. De te verwachten nauwkeurigheid van de positie is 20 meter.</translation>
     </message>
+    <message>
+        <location filename="aboutwidget.cpp" line="88"/>
+        <source>Privacy Policy</source>
+        <translation>Privacy Policy</translation>
+    </message>
+    <message>
+        <location filename="aboutwidget.cpp" line="90"/>
+        <source>The Application does not collect or transmits personally identifiable information and does not monitor your personal use of the Application.</source>
+        <translation>De aanvraag niet verzamelt of verstuurt persoonlijk identificeerbare informatie en niet te controleren uw persoonlijke gebruik van de Applicatie.</translation>
+    </message>
 </context>
 <context>
     <name>LanguagesWidget</name>
@@ -122,7 +132,7 @@ Longitude: %2</source>
         <translation>Kaarten</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="927"/>
+        <location filename="mainwidget.cpp" line="928"/>
         <source>Location Data</source>
         <translation type="unfinished"></translation>
     </message>
@@ -135,7 +145,7 @@ Longitude: %2</source>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="469"/>
-        <location filename="mainwidget.cpp" line="791"/>
+        <location filename="mainwidget.cpp" line="792"/>
         <source>Exit</source>
         <translation>Uitgang</translation>
     </message>

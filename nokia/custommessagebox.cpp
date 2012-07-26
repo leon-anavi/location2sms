@@ -15,7 +15,6 @@
 
 #include <QPainter>
 #include <QEvent>
-#include <QDebug>
 
 CustomMessageBox::CustomMessageBox(QWidget *parent) :
                                     QWidget(parent),
@@ -138,7 +137,6 @@ void CustomMessageBox::clear()
 {
     if (NULL != m_pLayout)
     {
-        qDebug() << "clear";
         clearLayout(dynamic_cast<QLayout*>(m_pLayout));
         repaint();
     }
@@ -162,10 +160,8 @@ void CustomMessageBox::clearLayout(QLayout* pLayout)
     QLayoutItem* pItem = NULL;
     while(pItem = pLayout->takeAt(0))
     {
-        qDebug() << "delete item";
         if (0 != pItem->layout())
         {
-            qDebug() << "recursion";
             //recursively delete other layout inside the main layout
             clearLayout(pItem->layout());
         }
