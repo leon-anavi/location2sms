@@ -2,9 +2,12 @@ package com.anavi.location2sms;
 
 import java.io.IOException;
 import java.net.URL;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Criteria;
@@ -12,7 +15,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -102,15 +104,30 @@ public class Location2smsActivity extends Activity implements LocationListener, 
  		
         //send location as SMS
         Button buttonMainLeft = (Button) findViewById(R.id.buttonMainLeft);
-        buttonMainLeft.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	
-            	Intent sendIntent = new Intent(Intent.ACTION_VIEW);         
-            	sendIntent.setData(Uri.parse("sms:"));
-            	sendIntent.putExtra("sms_body", composeMessageContent(false));
-            	startActivity(sendIntent);
-            }
-        });
+        if(false == getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY))
+        {
+        	//Hide the button if the device cannot send SMS
+        	buttonMainLeft.setVisibility(View.GONE);
+        }
+        else
+        {
+	        buttonMainLeft.setOnClickListener(new View.OnClickListener() {
+	            public void onClick(View v) {
+	            	
+	            	Intent sendIntent = new Intent(Intent.ACTION_VIEW);         
+	            	sendIntent.setData(Uri.parse("sms:"));
+	            	sendIntent.putExtra("sms_body", composeMessageContent(false));
+	            	try 
+	            	{
+						startActivity(sendIntent);
+					} 
+	            	catch (ActivityNotFoundException e) 
+					{
+						//Nothing to do
+					}
+	            }
+	        });
+        }
 		
         //send location as e-mail
         Button buttonMainRight = (Button) findViewById(R.id.buttonMainRight);
@@ -121,7 +138,14 @@ public class Location2smsActivity extends Activity implements LocationListener, 
             	sendIntent.setData(Uri.parse("mailto:"));
             	sendIntent.putExtra(Intent.EXTRA_SUBJECT, m_sAppName);
             	sendIntent.putExtra(Intent.EXTRA_TEXT, composeMessageContent(true));
-            	startActivity(sendIntent);
+            	try 
+            	{
+					startActivity(sendIntent);
+				} 
+            	catch (ActivityNotFoundException e) 
+				{
+					//Nothing to do
+				}
             }
         });
 
