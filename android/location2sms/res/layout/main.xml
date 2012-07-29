@@ -16,6 +16,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold|italic"
+        android:textSize="16dip"
         android:layout_weight="0" />
     	
 	<ImageView 
@@ -40,6 +41,8 @@
     	android:id="@+id/labelCoordinates"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textSize="16dip"
         android:layout_weight="1" />
       	
    	<LinearLayout

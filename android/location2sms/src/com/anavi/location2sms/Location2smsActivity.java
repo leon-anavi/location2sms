@@ -3,6 +3,8 @@ package com.anavi.location2sms;
 import java.io.IOException;
 import java.net.URL;
 
+import org.apache.http.client.ClientProtocolException;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -19,7 +21,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Html;
-import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -36,11 +37,6 @@ import android.widget.TextView;
 
 public class Location2smsActivity extends Activity implements LocationListener, OnSeekBarChangeListener
 {
-	private static final String TAG = "l2m";
-	private static final String[] S = { "Out of Service",
-			"Temporarily Unavailable", "Available" };
-	
-	private boolean m_bIsPositionFound = false;
 
 	private LocationManager m_locationManager;
 	
@@ -63,6 +59,8 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	private static String m_sAppName = "location2sms";
 	
 	private ProgressDialog m_dialogWait = null;
+	
+	private UrlShortener m_urlShortener;
 	
     /** Called when the activity is first created. */
     @Override
@@ -90,17 +88,19 @@ public class Location2smsActivity extends Activity implements LocationListener, 
  		if (display.getWidth() >= display.getHeight())
  		{
  			//landscape
- 			m_nMapHeight = (int)(0.55*display.getHeight());
+ 			m_nMapHeight = (int)(0.52*display.getHeight());
  		}
  		else
  		{
  			//portrait
- 			m_nMapHeight = (int)(0.66*display.getHeight());
+ 			m_nMapHeight = (int)(0.65*display.getHeight());
  		}
  		
  		m_mapZoomSlider = (SeekBar)findViewById(R.id.map_zoom_slider);
  		m_mapZoomSlider.setOnSeekBarChangeListener(this);
  		m_mapZoomSlider.setMax(18);
+ 		
+ 		m_urlShortener = new UrlShortener();
  		
         //send location as SMS
         Button buttonMainLeft = (Button) findViewById(R.id.buttonMainLeft);
@@ -186,7 +186,7 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	
 	private String composeMessageContent(boolean bIsEmail)
 	{
-		if ( (null == m_location) || (false == m_bIsPositionFound) )
+		if (null == m_location)
 		{
 			return "";
 		}
@@ -203,6 +203,14 @@ public class Location2smsActivity extends Activity implements LocationListener, 
         sLocation += "\n";
 
         //TODO: Add URL to map if available
+        if (null != m_urlShortener)
+        {
+        	String sShortUrl = m_urlShortener.getShortUrl();
+        	if (0 < sShortUrl.length())
+        	{
+        		sLocation += sShortUrl;
+        	}
+        }
 
         //Append app signature to e-mails
         if (true == bIsEmail)
@@ -217,7 +225,6 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 
 	public void onLocationChanged(Location location) 
 	{
-		m_bIsPositionFound = true;
 		m_location = location;
 		printLocation();
 	}
@@ -254,7 +261,7 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 		
 		try
 		{
-			loadImage(getMapUrl());
+			loadImage(getMapUrl(m_mapZoomSlider.getProgress(), m_nMapWidth, m_nMapHeight));
 		}
 		catch (Exception e) 
 		{
@@ -269,9 +276,22 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 			{
 				if (0 == msg.what)
 				{
+					//retrieve address
 					reverseGeocoder.loadAddress();
 					m_sAddress = reverseGeocoder.getAddress();
 					loadAddress();
+					//retrieve short URL
+					try 
+					{
+						m_urlShortener.requestShortUrl(getMapUrl(14, 400, 400));
+					} catch (ClientProtocolException e) 
+					{
+						//Nothing to do
+					} 
+					catch (IOException e) 
+					{
+						//Nothing to do
+					}
 				}
 				loading(false);
 			}
@@ -297,18 +317,18 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	}
 	//------------------------------------------------------------------------------
 
-	private String getMapUrl()
+	private String getMapUrl(int nZoom, int nMapWidth, int nMapHeight)
 	{
 		String sCoord = String.format("%.5f,%.5f", m_location.getLatitude(), m_location.getLongitude());
 		
 		String sUrl = "http://maps.googleapis.com/maps/api/staticmap?center=";
         sUrl += sCoord;
         sUrl += "&zoom=";
-        sUrl += m_mapZoomSlider.getProgress();
+        sUrl += nZoom;
         sUrl += "&size=";
-        sUrl += m_nMapWidth;
+        sUrl += nMapWidth;
         sUrl += "x";
-        sUrl += m_nMapHeight;
+        sUrl += nMapHeight;
         sUrl += "&sensor=false&markers=color:blue|label:O|";
         sUrl += sCoord;
         
@@ -376,9 +396,9 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) 
 	{
 		//reload map
-		if (true == m_bIsPositionFound)
+		if (null != m_location)
 		{
-			loadImage(getMapUrl());
+			loadImage(getMapUrl(m_mapZoomSlider.getProgress(), m_nMapWidth, m_nMapHeight));
 		}
 	}
 	//------------------------------------------------------------------------------
