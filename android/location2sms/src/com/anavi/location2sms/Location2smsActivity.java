@@ -12,6 +12,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -26,6 +27,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
@@ -58,7 +60,7 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	
 	private static String m_sAppName = "location2sms";
 	
-	private ProgressDialog m_dialogWait;
+	private ProgressDialog m_dialogWait = null;
 	
     /** Called when the activity is first created. */
     @Override
@@ -73,8 +75,8 @@ public class Location2smsActivity extends Activity implements LocationListener, 
         
         setContentView(R.layout.main);
         
-        m_dialogWait = ProgressDialog.show(this, "", "Please wait...", true);
-    
+        loading(true);
+            
     	// Get the location manager
  		m_locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
  		//get the best provider
@@ -251,7 +253,7 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 					m_sAddress = reverseGeocoder.getAddress();
 					loadAddress();
 				}
-				m_dialogWait.dismiss();
+				loading(false);
 			}
 		};
 		
@@ -395,5 +397,24 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	    }
 	}
 	//------------------------------------------------------------------------------
-		
+
+	private void loading(boolean bStart)
+	{
+		LinearLayout layoutMain = (LinearLayout) findViewById(R.id.layout_main);
+		if (true == bStart)
+		{
+			layoutMain.setVisibility(View.GONE);
+			m_dialogWait = ProgressDialog.show(this, "", "Please wait...", true);
+		}
+		else 
+		{
+			layoutMain.setVisibility(View.VISIBLE);
+			if (null != m_dialogWait)
+			{
+				m_dialogWait.dismiss();
+			}
+		}
+	}
+	//------------------------------------------------------------------------------
+
 }

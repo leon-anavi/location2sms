@@ -5,6 +5,7 @@
     android:orientation="vertical" >
 
 	<LinearLayout
+		android:id="@+id/layout_main"
     	android:orientation="vertical"
     	android:layout_width="fill_parent"
     	android:layout_height="fill_parent"
@@ -14,7 +15,8 @@
     	android:id="@+id/labelApp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        android:layout_weight="0" />
     	
 	<ImageView 
 		android:id="@+id/image_map"
@@ -31,15 +33,15 @@
         android:layout_marginTop="2dp"
         android:layout_marginBottom="2dp"
 		android:progressDrawable="@drawable/seekbar_progress"
-		android:thumb="@drawable/thumb_drawable" />
+		android:thumb="@drawable/thumb_drawable"
+		android:layout_weight="0" />
     	
     <TextView
     	android:id="@+id/labelCoordinates"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-   
-   	</LinearLayout>
-   	
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+      	
    	<LinearLayout
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
@@ -71,6 +73,8 @@
     		android:layout_marginTop="2dp"
     		android:layout_marginBottom="2dp" />
 			  
+    </LinearLayout>
+    
     </LinearLayout>
 
 </LinearLayout>
