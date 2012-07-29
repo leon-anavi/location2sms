@@ -37,6 +37,7 @@ import android.widget.TextView;
 
 public class Location2smsActivity extends Activity implements LocationListener, OnSeekBarChangeListener
 {
+	private static boolean m_bPlaybook = true;
 
 	private LocationManager m_locationManager;
 	
@@ -80,7 +81,7 @@ public class Location2smsActivity extends Activity implements LocationListener, 
     	// Get the location manager
  		m_locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
  		//get the best provider
- 		m_sBestProvider = m_locationManager.getBestProvider(new Criteria(), false);
+ 		m_sBestProvider = (true == m_bPlaybook) ? "gps" : m_locationManager.getBestProvider(new Criteria(), false);
  		
  		m_ImageMap = (ImageView) findViewById(R.id.image_map);
  		Display display = getWindowManager().getDefaultDisplay();
@@ -134,8 +135,17 @@ public class Location2smsActivity extends Activity implements LocationListener, 
         buttonMainRight.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) 
             {
-            	Intent sendIntent = new Intent(Intent.ACTION_VIEW);   
-            	sendIntent.setData(Uri.parse("mailto:"));
+            	Intent sendIntent = null;
+            	if (true == m_bPlaybook)
+            	{
+            		sendIntent = new Intent(Intent.ACTION_SEND);
+            		sendIntent.setType("text/plain");
+            	}
+            	else
+            	{
+            		sendIntent = new Intent(Intent.ACTION_VIEW);
+            		sendIntent.setData(Uri.parse("mailto:"));
+            	}
             	sendIntent.putExtra(Intent.EXTRA_SUBJECT, m_sAppName);
             	sendIntent.putExtra(Intent.EXTRA_TEXT, composeMessageContent(true));
             	try 
