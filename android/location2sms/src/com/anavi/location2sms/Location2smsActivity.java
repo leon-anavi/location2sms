@@ -202,7 +202,7 @@ public class Location2smsActivity extends Activity implements LocationListener, 
         sLocation += String.format("%.5f", m_location.getLongitude());
         sLocation += "\n";
 
-        //TODO: Add URL to map if available
+        //Add short URL to map if available
         if (null != m_urlShortener)
         {
         	String sShortUrl = m_urlShortener.getShortUrl();
