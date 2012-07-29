@@ -155,7 +155,6 @@ public class Location2smsActivity extends Activity implements LocationListener, 
  		
  		m_mapZoomSlider.setProgress(14);
  		
- 		Log.v(TAG, "\n\nLocations (starting with last known):");
  		m_location = m_locationManager.getLastKnownLocation(m_sBestProvider);
  		printLocation();
     }
@@ -228,7 +227,6 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	{
 		// let okProvider be bestProvider
 		// re-register for updates
-		Log.v(TAG, "\n\nProvider Disabled: " + provider);
 	}
 	//------------------------------------------------------------------------------
 
@@ -236,14 +234,12 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	{
 		// is provider better than bestProvider?
 		// is yes, bestProvider = provider
-		Log.v(TAG, "\n\nProvider Enabled: " + provider);
 	}
 	//------------------------------------------------------------------------------
 
 	public void onStatusChanged(String provider, int status, Bundle extras) 
 	{
-		Log.v(TAG, "\n\nProvider Status Changed: " + provider + ", Status="
-				+ S[status] + ", Extras=" + extras);
+		//Handle change of provider
 	}
 	//------------------------------------------------------------------------------
 
@@ -262,7 +258,7 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 		}
 		catch (Exception e) 
 		{
-			Log.v(TAG, "Exception: "+e.getMessage());
+			//unable to load image
 		}
 		
 		final ReverseGeocoding reverseGeocoder = new ReverseGeocoding();
@@ -293,7 +289,6 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 				} 
 				catch (IOException e) 
 				{
-					//Nothing to do
 					handler.sendEmptyMessage(1);
 				}
 			}
@@ -316,8 +311,6 @@ public class Location2smsActivity extends Activity implements LocationListener, 
         sUrl += m_nMapHeight;
         sUrl += "&sensor=false&markers=color:blue|label:O|";
         sUrl += sCoord;
-        
-        Log.v(TAG, "Map URL: "+sUrl);
         
         return sUrl;
 	}
@@ -371,12 +364,9 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 			m_ImageMap.setImageBitmap(bmp);
 						
 			m_ImageMap.setVisibility(View.VISIBLE);
-			
-			Log.v(TAG, "Map loaded");
 		} 
 		catch (IOException e) 
 		{
-			Log.v(TAG, "IOException");
 			//hide the image
 			m_ImageMap.setVisibility(View.GONE);
 		}
