@@ -11,7 +11,6 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.location.LocationProvider;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +20,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -38,11 +38,11 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	
 	private boolean m_bIsPositionFound = false;
 
-	private LocationManager locationManager;
+	private LocationManager m_locationManager;
 	
-	private String bestProvider;
+	private String m_sBestProvider;
 	
-	private Location m_location;
+	private Location m_location  = null;
 	
 	private String m_sAddress = "";
 	
@@ -58,6 +58,8 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	
 	private static String m_sAppName = "location2sms";
 	
+	private ProgressDialog m_dialogWait;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,13 +72,13 @@ public class Location2smsActivity extends Activity implements LocationListener, 
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
         setContentView(R.layout.main);
+        
+        m_dialogWait = ProgressDialog.show(this, "", "Please wait...", true);
     
     	// Get the location manager
- 		locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+ 		m_locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
  		//get the best provider
- 		bestProvider = locationManager.getBestProvider(new Criteria(), false);
- 		Log.v(TAG, "\n\nBEST Provider:\n");
- 		printProvider(bestProvider);
+ 		m_sBestProvider = m_locationManager.getBestProvider(new Criteria(), false);
  		
  		m_ImageMap = (ImageView) findViewById(R.id.image_map);
  		Display display = getWindowManager().getDefaultDisplay();
@@ -128,7 +130,7 @@ public class Location2smsActivity extends Activity implements LocationListener, 
  		m_mapZoomSlider.setProgress(14);
  		
  		Log.v(TAG, "\n\nLocations (starting with last known):");
- 		m_location = locationManager.getLastKnownLocation(bestProvider);
+ 		m_location = m_locationManager.getLastKnownLocation(m_sBestProvider);
  		printLocation();
     }
     
@@ -137,7 +139,7 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	protected void onResume() 
 	{
 		super.onResume();
-		locationManager.requestLocationUpdates(bestProvider, 20000, 1, this);
+		m_locationManager.requestLocationUpdates(m_sBestProvider, 20000, 1, this);
 	}
 
 	/** Stop the updates when Activity is paused */
@@ -145,7 +147,7 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	protected void onPause() 
 	{
 		super.onPause();
-		locationManager.removeUpdates(this);
+		m_locationManager.removeUpdates(this);
 	}
 	//------------------------------------------------------------------------------
 
@@ -159,16 +161,20 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	
 	private String composeMessageContent(boolean bIsEmail)
 	{
+		if ( (null == m_location) || (false == m_bIsPositionFound) )
+		{
+			return "";
+		}
 		String sLocation = "";
 		if (0 < m_sAddress.length())
         {
             sLocation += "Address: " + m_sAddress + "\n";
         }
         sLocation += "Latitude: ";
-        sLocation += m_location.getLatitude();
+        sLocation += String.format("%.5f", m_location.getLatitude());
         sLocation += "\n";
         sLocation += "Longitude: ";
-        sLocation += m_location.getLongitude();
+        sLocation += String.format("%.5f", m_location.getLongitude());
         sLocation += "\n";
 
         //TODO: Add URL to map if available
@@ -215,20 +221,12 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	}
 	//------------------------------------------------------------------------------
 
-	private void printProvider(String provider) 
-	{
-		LocationProvider info = locationManager.getProvider(provider);
-		Log.v(TAG, info.toString() + "\n\n");
-	}
-	//------------------------------------------------------------------------------
-
 	private void printLocation() 
 	{
 		if (null == m_location)
 		{
 			return;
 		}
-		Log.v(TAG, "\n\n" + m_location.toString());
 		
 		m_labelCoordinates = (TextView) findViewById(R.id.labelCoordinates);
 		
@@ -243,8 +241,6 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 		
 		final ReverseGeocoding reverseGeocoder = new ReverseGeocoding();
 		
-		final ProgressDialog dialog = ProgressDialog.show(this, "", 
-		"Please wait...", true);
 		final Handler handler = new Handler() 
 		{
 			public void handleMessage(Message msg) 
@@ -255,7 +251,7 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 					m_sAddress = reverseGeocoder.getAddress();
 					loadAddress();
 				}
-				dialog.dismiss();
+				m_dialogWait.dismiss();
 			}
 		};
 		
@@ -383,4 +379,21 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	}
 	//------------------------------------------------------------------------------
 
+	@Override public boolean onOptionsItemSelected(MenuItem item) 
+	{
+	    // Handle item selection
+	    switch (item.getItemId()) 
+	    {
+	    case R.id.menu_about:
+	    {
+	    	Intent switchView = new Intent(this, AboutActivity.class);
+            startActivityForResult(switchView, 0);
+	    	return true;
+	    }
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    }
+	}
+	//------------------------------------------------------------------------------
+		
 }
