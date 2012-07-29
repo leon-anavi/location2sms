@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.4.1, 2012-07-27T02:16:08. -->
+<!-- Written by Qt Creator 2.4.1, 2012-07-29T11:17:36. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
-  <value type="int">1</value>
+  <value type="int">0</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.EditorSettings</variable>
@@ -180,6 +180,7 @@
        <value type="QString">C:/gitorious/location2sms/location2sms_2.1.3_armel.deb</value>
        <value type="QString">C:/gitorious/location2sms/nokia/location2sms_2.1.5_armel.deb</value>
        <value type="QString">C:/gitorious/location2sms/nokia/location2sms_2.1.6_armel.deb</value>
+       <value type="QString">C:/gitorious/location2sms/nokia/location2sms_2.1.7_armel.deb</value>
        <value type="QString">C:/gitorious/location2sms/location2sms_2.1.1_armel.deb</value>
        <value type="QString">C:/gitorious/location2sms/location2sms_2.1.1_armel.deb</value>
        <value type="QString">C:/gitorious/location2sms/location2sms_2.1.4_armel.deb</value>
@@ -196,6 +197,7 @@
        <value type="QString">192.168.4.103</value>
        <value type="QString">192.168.4.102</value>
        <value type="QString">192.168.4.102</value>
+       <value type="QString">192.168.4.105</value>
        <value type="QString">192.168.4.102</value>
        <value type="QString">192.168.4.103</value>
        <value type="QString">192.168.4.103</value>
@@ -219,6 +221,7 @@
        <value type="QString"></value>
        <value type="QString"></value>
        <value type="QString"></value>
+       <value type="QString"></value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedTimes">
        <value type="QDateTime">2012-04-29T12:11:08</value>
@@ -228,6 +231,7 @@
        <value type="QDateTime">2012-05-13T23:41:57</value>
        <value type="QDateTime">2012-07-23T01:08:27</value>
        <value type="QDateTime">2012-07-23T09:48:45</value>
+       <value type="QDateTime">2012-07-27T02:55:01</value>
        <value type="QDateTime">2012-04-29T12:53:06</value>
        <value type="QDateTime">2012-05-12T15:27:55</value>
        <value type="QDateTime">2012-06-26T23:42:35</value>
@@ -749,8 +753,8 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.S60SignBuildStep</value>
       <value type="QString" key="Qt4ProjectManager.S60CreatePackageStep.Certificate">C:/Symbian/Carbide/workspace/UBrowser/sis/certificate_v1.cer</value>
       <value type="QString" key="Qt4ProjectManager.S60CreatePackageStep.Keyfile">C:/Symbian/Carbide/workspace/UBrowser/sis/developercertificate.key</value>
-      <value type="int" key="Qt4ProjectManager.S60CreatePackageStep.SignMode">0</value>
-      <value type="bool" key="Qt4ProjectManager.S60CreatorPackageStep.SmartInstaller">false</value>
+      <value type="int" key="Qt4ProjectManager.S60CreatePackageStep.SignMode">2</value>
+      <value type="bool" key="Qt4ProjectManager.S60CreatorPackageStep.SmartInstaller">true</value>
       <value type="bool" key="Qt4ProjectManager.S60CreatorPackageStep.SuppressPatchWarningDialog">false</value>
      </valuemap>
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">

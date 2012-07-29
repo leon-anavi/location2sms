@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+	<LinearLayout
+    	android:orientation="vertical"
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:layout_weight="1">
+    	
+    <TextView
+    	android:id="@+id/labelApp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold|italic" />
+    	
+	<ImageView 
+		android:id="@+id/image_map"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:adjustViewBounds="true"
+		android:layout_weight="0"
+		android:layout_gravity="center_horizontal"
+		/>
+		
+	<SeekBar android:id="@+id/map_zoom_slider"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+		android:progressDrawable="@drawable/seekbar_progress"
+		android:thumb="@drawable/thumb_drawable" />
+    	
+    <TextView
+    	android:id="@+id/labelCoordinates"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+   
+   	</LinearLayout>
+   	
+   	<LinearLayout
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal" >
+    
+    	<Button 
+			android:text="@string/buttonMainLeft"
+			android:background="@drawable/btn_custom"
+			android:textColor="#FFFFFF"
+			android:id="@+id/buttonMainLeft"
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"
+			android:layout_marginLeft="2dp"
+    		android:layout_marginRight="2dp"
+    		android:layout_marginTop="2dp"
+    		android:layout_marginBottom="2dp"  />
+			
+		<Button 
+			android:text="@string/buttonMainRight"
+			android:background="@drawable/btn_custom"
+			android:textColor="#FFFFFF"
+			android:id="@+id/buttonMainRight"
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"
+			android:layout_marginLeft="2dp"
+    		android:layout_marginRight="2dp"
+    		android:layout_marginTop="2dp"
+    		android:layout_marginBottom="2dp" />
+			  
+    </LinearLayout>
+
+</LinearLayout>

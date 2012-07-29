@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+﻿    <item 
+		android:state_enabled="false">
+		<shape
+    		android:shape="rectangle" >
+    		<corners
+                android:radius="10dp" />
+    		<padding
+                android:left="10dp"
+                android:top="10dp"
+                android:right="10dp"
+                android:bottom="10dp" />
+    		<gradient
+				android:startColor="#4c4c4c"
+				android:endColor="#202020"
+				android:angle="90"/>
+		</shape>
+	</item>
+    <item 
+    	android:state_pressed="true" 
+    	android:state_enabled="true" >
+		
+        <shape
+    		android:shape="rectangle" >
+    		<corners
+                android:radius="10dp" />
+    		<padding
+                android:left="10dp"
+                android:top="10dp"
+                android:right="10dp"
+                android:bottom="10dp" />
+    		<gradient
+				android:startColor="#44ABFF"
+				android:endColor="#006BC2"
+				android:angle="90"/>
+		</shape>
+        
+	</item>
+    
+    <item 
+    	android:state_focused="true" 
+    	android:state_enabled="true" >
+        
+		<shape
+    		android:shape="rectangle" >
+    		<corners
+                android:radius="10dp" />
+    		<padding
+                android:left="10dp"
+                android:top="10dp"
+                android:right="10dp"
+                android:bottom="10dp" />
+    		<gradient
+				android:startColor="#4c4c4c"
+				android:endColor="#202020"
+				android:angle="90"/>
+		</shape>
+        
+    </item>
+    
+    <item 
+    	android:state_enabled="true"
+    	android:textColor="#FFFFFF" >
+    	<shape
+    		android:shape="rectangle" >
+    		<corners
+                android:radius="10dp" />
+    		<padding
+                android:left="10dp"
+                android:top="10dp"
+                android:right="10dp"
+                android:bottom="10dp" />
+    		<gradient
+				android:startColor="#4c4c4c"
+				android:endColor="#202020"
+				android:angle="90"/>
+		</shape>
+    </item>
+    
+</selector>

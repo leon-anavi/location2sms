@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">location2sms</string>
+    <string name="buttonMainLeft">SMS</string>
+    <string name="buttonMainRight">E-mail</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_about">About</string>
+
+</resources>
