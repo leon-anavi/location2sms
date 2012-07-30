@@ -34,13 +34,12 @@ public class AboutActivity extends Activity {
 	    sText += "2.2.1<br />\n";
 	    sText += "© 2012 Leon Anavi<br />\n";
 	    sText += "http://anavi.org/<br />\n<br />\n";
-	    sText += "This is an open source application available under GPLv3 licence at ";
-	    
+    
 	    String sLic = "This is an open source application available under GPLv3 licence at %sGitorious: https://gitorious.org/location2sms%s. ";
 	    sText += String.format(sLic, "<font color=\"#006BC2\"><a href=\"https://gitorious.org/location2sms\">", "</a></font>");
 	    
 	    sText += "The application depends on GPS quality that the device delivers. ";
-	    sText += "It is powered by Google Maps API and requires Internet connection.";
+	    sText += "It is powered by Google Maps API and requires Internet connection. ";
 	    sText += "Position accuracy of about 20 meters can be expected. ";
 	    sText += "<br />\n<br />\n";
 	    sText += "<b>Privacy Policy</b>";

@@ -83,18 +83,27 @@ public class Location2smsActivity extends Activity implements LocationListener, 
  		//get the best provider
  		m_sBestProvider = (true == m_bPlaybook) ? "gps" : m_locationManager.getBestProvider(new Criteria(), false);
  		
+ 		boolean bIsTablet = getResources().getBoolean(R.bool.isTablet);
+ 		double nMapCoefLandscape = 0.52;
+ 		double nMapCoefPortrait = 0.65;
+ 		if (true == bIsTablet)
+ 		{
+ 			nMapCoefLandscape = 0.72;
+ 			nMapCoefPortrait = 0.75;
+ 		}
+ 		
  		m_ImageMap = (ImageView) findViewById(R.id.image_map);
  		Display display = getWindowManager().getDefaultDisplay();
  		m_nMapWidth = display.getWidth();
  		if (display.getWidth() >= display.getHeight())
  		{
  			//landscape
- 			m_nMapHeight = (int)(0.52*display.getHeight());
+ 			m_nMapHeight = (int)(nMapCoefLandscape*display.getHeight());
  		}
  		else
  		{
  			//portrait
- 			m_nMapHeight = (int)(0.65*display.getHeight());
+ 			m_nMapHeight = (int)(nMapCoefPortrait*display.getHeight());
  		}
  		
  		m_mapZoomSlider = (SeekBar)findViewById(R.id.map_zoom_slider);
