@@ -3,6 +3,7 @@ package com.anavi.location2sms;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.Locale;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
+
 import android.util.Xml;
 
 public class ReverseGeocoding 
@@ -80,7 +82,7 @@ public class ReverseGeocoding
 	{	
 		String sUrl = "http://maps.googleapis.com/maps/api/geocode/";
 		sUrl += "xml?latlng=";
-		sUrl += String.format("%.5f,%.5f", nLatitude, nLongitude);
+		sUrl += String.format(Locale.ENGLISH, "%.5f,%.5f", nLatitude, nLongitude);
 		sUrl += "&sensor=false";
 		HttpGet httpReq = new HttpGet(sUrl);
 		HttpClient httpclient = new DefaultHttpClient();

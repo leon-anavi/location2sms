@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">location2sms</string>
+    <string name="buttonMainLeft">SMS</string>
+    <string name="buttonMainRight">E-mail</string>
+    <string name="menu_settings">Nastavení</string>
+    <string name="menu_about">Informace</string>
+    <string name="main_address">Adresa:&#160;</string>
+    <string name="main_latitude">Zem. šířka:&#160;</string>
+    <string name="main_longitude">Zem. délka:&#160;</string>
+    <string name="main_sent_from">Odesláno z %s</string>
+    <string name="main_latitude_label">Zem. šířka&#160;</string>
+    <string name="main_longitude_label">Zem. délka&#160;</string>
+    <string name="main_address_label">Adresa&#160;</string>
+    <string name="about_info1">Location2sms je open source aplikace, jejíž zdrojové kódy najdete v repozitáři na %1$shttps://gitorious.org/location2sms%2$s a to pod licencí GPLv3.&#160;</string>
+    <string name="about_info2">Přesnost aplikace závisí na kvalitě GPS modulu zařízení. Aplikace využívá Google Maps API a vyžaduje připojení k Internetu. Můžete očekávat přesnost cca na 20 metrů. </string>
+    <string name="about_privacy_policy_title">Ochrana osobních údajů</string>
+    <string name="about_privacy_policy_text">Aplikace neshromažďuje ani přenáší osobní informace a nesleduje osobní využití aplikace.</string>
+	
+</resources>

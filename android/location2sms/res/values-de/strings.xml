@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">location2sms</string>
+    <string name="buttonMainLeft">SMS</string>
+    <string name="buttonMainRight">Е-Mail</string>
+    <string name="menu_settings">Einstellungen</string>
+    <string name="menu_about">Über</string>
+    <string name="main_address">Adresse:&#160;</string>
+    <string name="main_latitude">Breite:&#160;</string>
+    <string name="main_longitude">Länge:&#160;</string>
+    <string name="main_sent_from">Gesendet von %s</string>
+    <string name="main_latitude_label">Breite&#160;</string>
+    <string name="main_longitude_label">Länge&#160;</string>
+    <string name="main_address_label">Adresse&#160;</string>
+    <string name="about_info1">Diese Opensource-Anwendung %1$s(s. gitorius: https://gitorious.org/location2sms)%2$s steht unter der GPLv3 Lizenz.&#160;</string>
+    <string name="about_info2">Die Anwendung verwendet die GPS Genauigkeit, die vom jeweiligen Gerät bereitgestellt wird. Es wird Google Maps verwendet und eine Internetverbindung benötigt. Mit einer Positionsgenauigkeit mit Abweichung von 20 Metern muss gerechnet werden.</string>
+    <string name="about_privacy_policy_title">Datenschutz</string>
+    <string name="about_privacy_policy_text">Die Anwendung sammelt keine oder übermittelt persönliche Daten und überwacht nicht den persönlichen Gebrauch der Anwendung.</string>
+	
+</resources>

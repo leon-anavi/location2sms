@@ -2,6 +2,7 @@ package com.anavi.location2sms;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 
 import org.apache.http.client.ClientProtocolException;
 
@@ -37,7 +38,7 @@ import android.widget.TextView;
 
 public class Location2smsActivity extends Activity implements LocationListener, OnSeekBarChangeListener
 {
-	private static boolean m_bPlaybook = true;
+	private static boolean m_bPlaybook = false;
 
 	private LocationManager m_locationManager;
 	
@@ -212,13 +213,13 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 		String sLocation = "";
 		if (0 < m_sAddress.length())
         {
-            sLocation += "Address: " + m_sAddress + "\n";
+            sLocation += getString(R.string.main_address) + m_sAddress + "\n";
         }
-        sLocation += "Latitude: ";
-        sLocation += String.format("%.5f", m_location.getLatitude());
+        sLocation += getString(R.string.main_latitude);
+        sLocation += String.format(" %.5f", m_location.getLatitude());
         sLocation += "\n";
-        sLocation += "Longitude: ";
-        sLocation += String.format("%.5f", m_location.getLongitude());
+        sLocation += getString(R.string.main_longitude);
+        sLocation += String.format(" %.5f", m_location.getLongitude());
         sLocation += "\n";
 
         //Add short URL to map if available
@@ -235,8 +236,8 @@ public class Location2smsActivity extends Activity implements LocationListener, 
         if (true == bIsEmail)
         {
             sLocation += "\n";
-            sLocation += "Sent from ";
-            sLocation += m_sAppName;
+            
+            sLocation += String.format(getString(R.string.main_sent_from), m_sAppName);
         }
 		return sLocation;
 	}
@@ -338,7 +339,7 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 
 	private String getMapUrl(int nZoom, int nMapWidth, int nMapHeight)
 	{
-		String sCoord = String.format("%.5f,%.5f", m_location.getLatitude(), m_location.getLongitude());
+		String sCoord = String.format(Locale.ENGLISH, "%.5f,%.5f", m_location.getLatitude(), m_location.getLongitude());
 		
 		String sUrl = "http://maps.googleapis.com/maps/api/staticmap?center=";
         sUrl += sCoord;
@@ -350,7 +351,20 @@ public class Location2smsActivity extends Activity implements LocationListener, 
         sUrl += nMapHeight;
         sUrl += "&sensor=false&markers=color:blue|label:O|";
         sUrl += sCoord;
-        
+		
+        /*
+        String sUrl = "http://m.nok.it/?app_id=";
+        sUrl += "&token=";
+        sUrl += "&c=";
+        sUrl += sCoord;
+        sUrl += "&z=";
+        sUrl += nZoom;
+        sUrl += "&h=";
+        sUrl += nMapHeight;
+        sUrl += "&w=";
+        sUrl += nMapWidth;
+        sUrl += "&nord";*/
+		
         return sUrl;
 	}
 	//------------------------------------------------------------------------------
@@ -361,10 +375,10 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 		{
 			return "";
 		}
-	    String sText = "Latitude ";
-	    sText += "<font color=\"#006BC2\">%.5f</font> ";
-	    sText += "Longitude ";
-	    sText += "<font color=\"#006BC2\">%.5f</font><br />";
+	    String sText = getString(R.string.main_latitude_label);
+	    sText += " <font color=\"#006BC2\">%.5f</font> ";
+	    sText += getString(R.string.main_longitude_label);
+	    sText += " <font color=\"#006BC2\">%.5f</font><br />";
 	    return String.format(sText, m_location.getLatitude(), m_location.getLongitude());
 	}
 	//------------------------------------------------------------------------------
@@ -374,8 +388,8 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 		String sAddr = getCoordinatesAsText();
 		if (0 < m_sAddress.length())
 		{
-			sAddr += "Address ";
-			sAddr += String.format("<font color=\"#006BC2\">%s</font>", m_sAddress);
+			sAddr += getString(R.string.main_address_label);
+			sAddr += String.format(" <font color=\"#006BC2\">%s</font>", m_sAddress);
 		}
 		m_labelCoordinates.setText(Html.fromHtml(sAddr), TextView.BufferType.SPANNABLE);
 	}

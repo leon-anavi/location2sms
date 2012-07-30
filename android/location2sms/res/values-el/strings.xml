@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">location2sms</string>
+    <string name="buttonMainLeft">SMS</string>
+    <string name="buttonMainRight">Ηλεκτρονική διεύθυνση</string>
+    <string name="menu_settings">Ρυθμίσεις</string>
+    <string name="menu_about">Σχετικά με...</string>
+    <string name="main_address">Διεύθυνση:&#160;</string>
+    <string name="main_latitude">Γεωγραφικό πλάτος:&#160;</string>
+    <string name="main_longitude">Γεωγραφικό μήκος:&#160;</string>
+    <string name="main_sent_from">Στάλθηκε από %s</string>
+    <string name="main_latitude_label">Γεωγραφικό πλάτος&#160;</string>
+    <string name="main_longitude_label">Γεωγραφικό μήκος&#160;</string>
+    <string name="main_address_label">Διεύθυνση&#160;</string>
+    <string name="about_info1">Το παρόν λογισμικό είναι λογισμικό ανοικτού κώδικα και είναι διαθέσιμο, υπό την άδεια GPLv3, στο %1$sGitorious: https://gitorious.org/location2sms%2$s.&#160;</string>
+    <string name="about_info2">Το λογισμικό εξαρτάται απο την ποιότητα του GPS που προσφέρει η τηλεφωνική σας συσκευή. Τροφοδοτείται απο το API των χαρτών της Google και προϋποθέτει ένωση στο διαδίκτυο. Αναμένετε ακρίβεια τοποθεσίας με απόκλιση 20 μέτρων.</string>
+    <string name="about_privacy_policy_title">Πολιτική Προστασίας Προσωπικών Δεδομένων</string>
+    <string name="about_privacy_policy_text">Η εφαρμογή δεν συλλέγει ή μεταδίδει προσωπικές πληροφορίες και δεν παρακολουθεί την προσωπική σας χρήση της Εφαρμογής.</string>
+	
+</resources>

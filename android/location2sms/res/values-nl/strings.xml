@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">location2sms</string>
+    <string name="buttonMainLeft">SMS</string>
+    <string name="buttonMainRight">E-mail</string>
+    <string name="menu_settings">Instellingen</string>
+    <string name="menu_about">Over</string>
+    <string name="main_address">Adres:&#160;</string>
+    <string name="main_latitude">Breedtegraad:&#160;</string>
+    <string name="main_longitude">Lengtegraad:&#160;</string>
+    <string name="main_sent_from">Verstuurd door %s</string>
+    <string name="main_latitude_label">Breedtegraad&#160;</string>
+    <string name="main_longitude_label">Lengtegraad&#160;</string>
+    <string name="main_address_label">Adres&#160;</string>
+    <string name="about_info1">Dit is een open source applicatie  en volgt de %1$GPLv3 licentievoorwaarden%2$s.&#160;</string>
+    <string name="about_info2">Location2sms is afhankelijk van de GPS nauwkeurigheid van uw smartphone. Google Maps wordt gebruikt en internetverbinding is nodig voor goede werking. De te verwachten nauwkeurigheid van de positie is 20 meter. </string>
+    <string name="about_privacy_policy_title">Privacy Policy</string>
+    <string name="about_privacy_policy_text">De aanvraag niet verzamelt of verstuurt persoonlijk identificeerbare informatie en niet te controleren uw persoonlijke gebruik van de Applicatie.</string>
+	
+</resources>

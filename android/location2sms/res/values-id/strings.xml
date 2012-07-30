@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">location2sms</string>
+    <string name="buttonMainLeft">SMS</string>
+    <string name="buttonMainRight">E-mail</string>
+    <string name="menu_settings">Pengaturan</string>
+    <string name="menu_about">Tentang</string>
+    <string name="main_address">Alamat:&#160;</string>
+    <string name="main_latitude">Lintang:&#160;</string>
+    <string name="main_longitude">Bujur:&#160;</string>
+    <string name="main_sent_from">Dikirim dari %s</string>
+    <string name="main_latitude_label">Lintang&#160;</string>
+    <string name="main_longitude_label">Bujur&#160;</string>
+    <string name="main_address_label">Alamat&#160;</string>
+    <string name="about_info1">Ini adalah sebuah aplikasi open source yang tersedia di bawah lisensi GPLv3 di %1$sGitorious: https://gitorious.org/location2sms%2$s.&#160;</string>
+    <string name="about_info2">Aplikasi ini tergantung pada kualitas GPS yang memberikan perangkat. Hal ini didukung oleh Google Maps API dan membutuhkan Internet akurasi connection. Position sekitar 20 meter bisa diharapkan. </string>
+    <string name="about_privacy_policy_title">Kebijakan Privasi</string>
+    <string name="about_privacy_policy_text">Aplikasi ini tidak mengumpulkan atau mengirimkan informasi pribadi dan tidak memonitor penggunaan pribadi Anda dari Aplikasi.</string>
+	
+</resources>

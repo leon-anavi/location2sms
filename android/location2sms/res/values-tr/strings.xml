@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">location2sms</string>
+    <string name="buttonMainLeft">SMS</string>
+    <string name="buttonMainRight">Е-posta</string>
+    <string name="menu_settings">Ayarlar</string>
+    <string name="menu_about">Hakkında</string>
+    <string name="main_address">Adres:&#160;</string>
+    <string name="main_latitude">Enlem:&#160;</string>
+    <string name="main_longitude">Boylam:&#160;</string>
+    <string name="main_sent_from">Gönderilmiş %s</string>
+    <string name="main_latitude_label">Enlem&#160;</string>
+    <string name="main_longitude_label">Boylam&#160;</string>
+    <string name="main_address_label">Adres&#160;</string>
+    <string name="about_info1">Bu uygulama açık kaynaklı bir yazılım olup GPLv3 lisansıyla %1$sGitorius: https://gitorious.org/location2sms%2$s adresinde bulunmaktadır.&#160;</string>
+    <string name="about_info2">Bu uygulama cihazınızın GPS kalitesine bağlıdır. Google Maps API\'sini kullanır ve internet bağlantısı gerektirir. 20 metrelik yanılsamalar olağandır. </string>
+    <string name="about_privacy_policy_title">Gizlilik Politikası</string>
+    <string name="about_privacy_policy_text">Uygulama toplamak veya kişisel kimlik bilgilerini aktarır ve Uygulama kişisel kullanımınız izlemek yapmaz.</string>
+	
+</resources>

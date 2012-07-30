@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">location2sms</string>
+    <string name="buttonMainLeft">SMS</string>
+    <string name="buttonMainRight">E-поща</string>
+    <string name="menu_settings">Настройки</string>
+    <string name="menu_about">Информация</string>
+    <string name="main_address">Адрес:&#160;</string>
+    <string name="main_latitude">Ширина:&#160;</string>
+    <string name="main_longitude">Дължина:&#160;</string>
+    <string name="main_sent_from">Изпратено от %s</string>
+    <string name="main_latitude_label">Ширина&#160;</string>
+    <string name="main_longitude_label">Дължина&#160;</string>
+    <string name="main_address_label">Адрес&#160;</string>
+    <string name="about_info1">Това е приложение с отворен код, който е достъпен под GPLv3 лиценз в %1$Gitorious: https://gitorious.org/location2sms%2$.&#160;</string>
+    <string name="about_info2">Приложението зависи от качеството на GPS устройството. Използва Google Maps API и изисква Интернет връзка. Може да бъде очаквана точност на позиционирането до 20 метра.  </string>
+    <string name="about_privacy_policy_title">Декларация за поверителност</string>
+    <string name="about_privacy_policy_text">Приложението не събира или предава лична информация и не следи Вашата лична употреба на приложението.</string>
+	
+</resources>
