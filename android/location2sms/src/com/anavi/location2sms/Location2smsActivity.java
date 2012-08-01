@@ -1,6 +1,7 @@
 package com.anavi.location2sms;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
 
@@ -63,6 +64,10 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	private ProgressDialog m_dialogWait = null;
 	
 	private UrlShortener m_urlShortener;
+	
+	private Bitmap m_imageMap = null;
+	
+	private Handler m_handler = null;
 	
     /** Called when the activity is first created. */
     @Override
@@ -176,9 +181,10 @@ public class Location2smsActivity extends Activity implements LocationListener, 
  		m_mapZoomSlider.setProgress(14);
  		
  		m_location = m_locationManager.getLastKnownLocation(m_sBestProvider);
- 		printLocation();
+ 		positionUpdated();
     }
-    
+	//------------------------------------------------------------------------------
+
     /** Register for the updates when Activity is in foreground */
 	@Override
 	protected void onResume() 
@@ -186,6 +192,7 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 		super.onResume();
 		m_locationManager.requestLocationUpdates(m_sBestProvider, 20000, 1, this);
 	}
+	//------------------------------------------------------------------------------
 
 	/** Stop the updates when Activity is paused */
 	@Override
@@ -204,6 +211,12 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	}
 	//------------------------------------------------------------------------------
 	
+	/**
+	 * Compose message
+	 * 
+	 * @param bIsEmail message type
+	 * @return message
+	 */
 	private String composeMessageContent(boolean bIsEmail)
 	{
 		if (null == m_location)
@@ -246,7 +259,7 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	public void onLocationChanged(Location location) 
 	{
 		m_location = location;
-		printLocation();
+		positionUpdated();
 	}
 	//------------------------------------------------------------------------------
 
@@ -270,7 +283,12 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	}
 	//------------------------------------------------------------------------------
 
-	private void printLocation() 
+	/**
+	 * Load new location data
+	 * 
+	 * @return nothing
+	 */
+	private void positionUpdated() 
 	{
 		if (null == m_location)
 		{
@@ -278,65 +296,147 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 		}
 		
 		m_labelCoordinates = (TextView) findViewById(R.id.labelCoordinates);
-		
-		try
-		{
-			loadImage(getMapUrl(m_mapZoomSlider.getProgress(), m_nMapWidth, m_nMapHeight));
-		}
-		catch (Exception e) 
-		{
-			//unable to load image
-		}
-		
+				
 		final ReverseGeocoding reverseGeocoder = new ReverseGeocoding();
-		
-		final Handler handler = new Handler() 
+				
+		m_handler = new Handler() 
 		{
 			public void handleMessage(Message msg) 
 			{
-				if (0 == msg.what)
+				switch(msg.what)
 				{
-					//retrieve address
-					reverseGeocoder.loadAddress();
-					m_sAddress = reverseGeocoder.getAddress();
-					loadAddress();
-					//retrieve short URL
-					try 
-					{
-						m_urlShortener.requestShortUrl(getMapUrl(14, 400, 400));
-					} catch (ClientProtocolException e) 
-					{
-						//Nothing to do
-					} 
-					catch (IOException e) 
-					{
-						//Nothing to do
-					}
+					case 1:
+						loadAddress();
+						loading(false);
+					break;
+					case 2:
+						m_ImageMap.setImageBitmap(m_imageMap);
+						m_ImageMap.setVisibility(View.VISIBLE);
+					break;
+					case 3:
+						m_ImageMap.setVisibility(View.GONE);
+					break;
 				}
-				loading(false);
 			}
+			
 		};
 		
-		Thread checkUpdate = new Thread() 
+		//start new threads for retrieving information
+		loadAddress(reverseGeocoder);
+		String sMapUrl = getMapUrl(m_mapZoomSlider.getProgress(), 
+									m_nMapWidth, m_nMapHeight);
+		loadMap(sMapUrl);
+		loadMapShortUrl();
+	}
+	//------------------------------------------------------------------------------
+
+	/**
+	 * Retrieve short URL to the map
+	 * 
+	 * @return nothing
+	 */
+	private void loadMapShortUrl()
+	{
+		try 
+		{
+			m_urlShortener.requestShortUrl(getMapUrl(14, 400, 400));
+		} catch (ClientProtocolException e) 
+		{
+			//Nothing to do
+		} 
+		catch (IOException e) 
+		{
+			//Nothing to do
+		}
+	}
+	//------------------------------------------------------------------------------
+
+	/**
+	 * Download map and fire a signal to load it
+	 * 
+	 * @param sUrl URL to the map
+	 * @return nothing
+	 */
+	private void loadMap(final String sUrl)
+	{
+		Thread threadLocationData = new Thread() 
+		{  
+			public void run() 
+			{
+				if (0 < sUrl.length())
+				{
+					try 
+					{
+						URL url = new URL(sUrl);
+						m_imageMap = BitmapFactory.decodeStream(
+										url.openConnection().getInputStream());
+						m_handler.sendEmptyMessage(2);
+					} 
+					catch (MalformedURLException e) 
+					{
+						//nothing to do
+						m_handler.sendEmptyMessage(3);
+					}
+					catch (IOException e) 
+					{
+						//nothing to do
+						m_handler.sendEmptyMessage(3);
+					}
+				}
+				else
+				{
+					//Unable to load image
+					m_handler.sendEmptyMessage(3);
+				}
+
+			}
+		};
+		threadLocationData.start();
+	}
+	//------------------------------------------------------------------------------
+
+	/**
+	 * Download XML and retrieve address from geo coordinates
+	 * 
+	 * @param reverseGeocoder
+	 */
+	private void loadAddress(final ReverseGeocoding reverseGeocoder)
+	{
+		Thread threadLocationData = new Thread() 
 		{  
 			public void run() 
 			{
 				try 
 				{
+					//download data
 					reverseGeocoder.getGeoDataOverHttp(m_location.getLatitude(), 
-														m_location.getLongitude());
-					handler.sendEmptyMessage(0);
+							m_location.getLongitude());
+					//parse data and retrieve address
+					reverseGeocoder.loadAddress();
+					//save address
+					m_sAddress = reverseGeocoder.getAddress();
+					//emit a signal to show the address
+					m_handler.sendEmptyMessage(1);
 				} 
 				catch (IOException e) 
 				{
-					handler.sendEmptyMessage(1);
+					//Nothing to do
 				}
+
 			}
 		};
-		checkUpdate.start();		
+		threadLocationData.start();
 	}
 	//------------------------------------------------------------------------------
 
+	/**
+	 * Get URL to static map
+	 * 
+	 * @param nZoom zoom level
+	 * @param nMapWidth map width
+	 * @param nMapHeight map height
+	 * @return Map URL
+	 */
 	private String getMapUrl(int nZoom, int nMapWidth, int nMapHeight)
 	{
 		String sCoord = String.format(Locale.ENGLISH, "%.5f,%.5f", m_location.getLatitude(), m_location.getLongitude());
@@ -352,8 +452,8 @@ public class Location2smsActivity extends Activity implements LocationListener, 
         sUrl += "&sensor=false&markers=color:blue|label:O|";
         sUrl += sCoord;
 		
-        /*
-        String sUrl = "http://m.nok.it/?app_id=";
+        
+        /*String sUrl = "http://m.nok.it/?app_id=";
         sUrl += "&token=";
         sUrl += "&c=";
         sUrl += sCoord;
@@ -369,6 +469,11 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	}
 	//------------------------------------------------------------------------------
 
+	/**
+	 * get coordinated as formatted text
+	 * 
+	 * @return String
+	 */
 	private String getCoordinatesAsText()
 	{
 		if (null == m_location)
@@ -395,56 +500,28 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	}
 	//------------------------------------------------------------------------------
 
-	/**
-	 * load an external image by URL 
-	 * 
-	 * @param sUrl URL to the image
-	 * 
-	 * @return nothing
-	 * @throws nothing
-	 */
-	private void loadImage(String sUrl)
-	{
-		try 
-		{
-			if (0 == sUrl.length())
-			{
-				//no image
-				throw new IOException();
-			}
-			URL url = new URL(sUrl);
-			Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-			m_ImageMap.setImageBitmap(bmp);
-						
-			m_ImageMap.setVisibility(View.VISIBLE);
-		} 
-		catch (IOException e) 
-		{
-			//hide the image
-			m_ImageMap.setVisibility(View.GONE);
-		}
-	}
-	//------------------------------------------------------------------------------
-	
 	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) 
 	{
 		//reload map
-		if (null != m_location)
+		if ( (null != m_location) && (null != m_handler) )
 		{
-			loadImage(getMapUrl(m_mapZoomSlider.getProgress(), m_nMapWidth, m_nMapHeight));
+			String sMapUrl = getMapUrl(m_mapZoomSlider.getProgress(), 
+					m_nMapWidth, m_nMapHeight);
+			loadMap(sMapUrl);
+			//TODO: loadImage(getMapUrl(m_mapZoomSlider.getProgress(), m_nMapWidth, m_nMapHeight));
 		}
 	}
 	//------------------------------------------------------------------------------
 
 	public void onStartTrackingTouch(SeekBar seekBar) 
 	{
-		
+		//Nothing to do
 	}
 	//------------------------------------------------------------------------------
 
 	public void onStopTrackingTouch(SeekBar seekBar) 
 	{
-		
+		//Nothing to do
 	}
 	//------------------------------------------------------------------------------
 
@@ -465,6 +542,11 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	}
 	//------------------------------------------------------------------------------
 
+	/**
+	 * Show loading dialog
+	 * 
+	 * @param bStart start or stop
+	 */
 	private void loading(boolean bStart)
 	{
 		LinearLayout layoutMain = (LinearLayout) findViewById(R.id.layout_main);

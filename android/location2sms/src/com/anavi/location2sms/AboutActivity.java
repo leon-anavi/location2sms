@@ -31,7 +31,7 @@ public class AboutActivity extends Activity {
 	private String getInfoText()
 	{
 	    String sText = "<h2><i>location<font color=\"#006BC2\">2</font>sms</i></h2>\n";
-	    sText += "2.2.1<br />\n";
+	    sText += "2.2.3<br />\n";
 	    sText += "© 2012 Leon Anavi<br />\n";
 	    sText += "<font color=\"#006BC2\"><a href=\"http://anavi.org/\">http://anavi.org/</a></font><br />\n<br />\n";
     
