@@ -77,6 +77,10 @@ void Settings::loadSettings()
     {
         setSelectedMap(openstreetmap);
     }
+    else if (0 == sMapType.compare(QString("yandex")))
+    {
+        setSelectedMap(yandex);
+    }
     else
     {
         setSelectedMap(google);
@@ -107,6 +111,9 @@ void Settings::saveSettings()
         break;
         case openstreetmap:
             sMapType = "openstreetmap";
+        break;
+        case yandex:
+            sMapType = "yandex";
         break;
     }
     settings.setValue("MapType", sMapType);
@@ -186,6 +193,11 @@ void Settings::setSelectedMap(MapTypes eMapType)
             m_nMapZoomMin = m_nMapZoomMinOpenstreetMap;
             m_nMapZoomMax = m_nMapZoomMaxOpenstreetMap;
             m_nMapZoomDefault = m_nMapDefaultZoomOpenstreetMap;
+        break;
+        case yandex:
+        m_nMapZoomMin = m_nMapZoomMinYandex;
+        m_nMapZoomMax = m_nMapZoomMaxYandex;
+        m_nMapZoomDefault = m_nMapDefaultZoomYandex;
         break;
         default:
             //google

@@ -22,7 +22,7 @@ class Settings : public QObject
 
 public:
 
-    enum MapTypes { google, bing, nokia, openstreetmap };
+    enum MapTypes { google, bing, nokia, openstreetmap, yandex };
 
 private:
 
@@ -58,6 +58,9 @@ private:
     static const int m_nMapZoomMaxOpenstreetMap = 18;
     static const int m_nMapDefaultZoomOpenstreetMap = 14;
 
+    static const int m_nMapZoomMinYandex = 1;
+    static const int m_nMapZoomMaxYandex = 17;
+    static const int m_nMapDefaultZoomYandex = 14;
 public:
 
     explicit Settings(QObject *parent = 0);

@@ -726,6 +726,29 @@ QString MainWidget::getMapUrl(int nZoom, int nMapWidth, int nMapHeight) const
         sUrl += QString(",lightblue1");
         qDebug() << sUrl;
     }
+    else if (Settings::yandex == m_pSettings->getSelectedMap())
+    {
+        //check max allowed sizes of Yandex Static Maps
+        if (450 < nMapHeight)
+        {
+            nMapHeight = 450;
+        }
+        if (650 < nMapWidth)
+        {
+            nMapWidth = 650;
+        }
+        //Yandex map is not accurate in many regions outside Russia
+        sUrl += QString("http://static-maps.yandex.ru/1.x/?ll=");
+        sUrl += QString("%1,%2").arg(m_sLatitude).arg(m_sLongitude);
+        sUrl += QString("&z=");
+        sUrl += QString::number(nZoom);
+        sUrl += QString("&size=");
+        sUrl += QString("%1,%2").arg(nMapWidth).arg(nMapHeight);
+        sUrl += QString("&l=map,trf,skl&pt=");
+        sUrl += QString("%1,%2").arg(m_sLatitude).arg(m_sLongitude);
+        sUrl += QString(",pm2lbm");
+        qDebug() << sUrl;
+    }
     else
     {
         sUrl += QString("http://maps.googleapis.com/maps/api/staticmap?center=");

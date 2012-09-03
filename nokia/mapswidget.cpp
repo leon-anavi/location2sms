@@ -26,6 +26,7 @@ MapsWidget::MapsWidget(Settings* pSettings, QWidget *parent) :
     new QListWidgetItem("Bing", m_pList);
     new QListWidgetItem("Nokia", m_pList);
     new QListWidgetItem("OpenStreetMap", m_pList);
+    new QListWidgetItem("Yandex", m_pList);
 
     loadSettings();
 }
@@ -51,6 +52,9 @@ void MapsWidget::loadSettings()
         case Settings::openstreetmap:
             nRow = 3;
         break;
+        case Settings::yandex:
+            nRow = 4;
+        break;
     }
     m_pList->setCurrentRow(nRow);
 }
@@ -69,6 +73,9 @@ void MapsWidget::select()
         break;
         case 3:
             eMap = Settings::openstreetmap;
+        break;
+        case 4:
+            eMap = Settings::yandex;
         break;
     }
 

@@ -39,7 +39,7 @@ import android.widget.TextView;
 
 public class Location2smsActivity extends Activity implements LocationListener, OnSeekBarChangeListener
 {
-	private static boolean m_bPlaybook = false;
+	private static boolean m_bPlaybook = true;
 
 	private LocationManager m_locationManager;
 	
