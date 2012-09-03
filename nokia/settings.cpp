@@ -81,6 +81,10 @@ void Settings::loadSettings()
     {
         setSelectedMap(yandex);
     }
+    else if (0 == sMapType.compare(QString("googlesat")))
+    {
+        setSelectedMap(googlesat);
+    }
     else
     {
         setSelectedMap(google);
@@ -114,6 +118,9 @@ void Settings::saveSettings()
         break;
         case yandex:
             sMapType = "yandex";
+        break;
+        case googlesat:
+            sMapType = "googlesat";
         break;
     }
     settings.setValue("MapType", sMapType);
@@ -199,6 +206,7 @@ void Settings::setSelectedMap(MapTypes eMapType)
         m_nMapZoomMax = m_nMapZoomMaxYandex;
         m_nMapZoomDefault = m_nMapDefaultZoomYandex;
         break;
+        case googlesat:
         default:
             //google
             m_nMapZoomMin = m_nMapZoomMinGoogle;

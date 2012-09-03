@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.4.1, 2012-09-03T11:22:22. -->
+<!-- Written by Qt Creator 2.4.1, 2012-09-04T02:31:19. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -177,6 +177,7 @@
        <value type="QString">C:/gitorious/location2sms/location2sms_2.1.4_armel.deb</value>
        <value type="QString">C:/gitorious/location2sms/location2sms_2.1.4_armel.deb</value>
        <value type="QString">C:/gitorious/location2sms/nokia/location2sms_2.1.7_armel.deb</value>
+       <value type="QString">C:/gitorious/location2sms/nokia/location2sms_2.1.7_armel.deb</value>
        <value type="QString">C:/gitorious/location2sms/location2sms_2.1.5_armel.deb</value>
        <value type="QString">C:/gitorious/location2sms/location2sms_2.1.3_armel.deb</value>
        <value type="QString">C:/gitorious/location2sms/nokia/location2sms_2.1.5_armel.deb</value>
@@ -194,6 +195,7 @@
        <value type="QString">192.168.4.102</value>
        <value type="QString">192.168.4.104</value>
        <value type="QString">192.168.4.105</value>
+       <value type="QString">192.168.4.102</value>
        <value type="QString">192.168.4.103</value>
        <value type="QString">192.168.4.106</value>
        <value type="QString">192.168.4.103</value>
@@ -225,11 +227,13 @@
        <value type="QString"></value>
        <value type="QString"></value>
        <value type="QString"></value>
+       <value type="QString"></value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedTimes">
        <value type="QDateTime">2012-04-29T12:11:08</value>
        <value type="QDateTime">2012-07-01T22:00:43</value>
        <value type="QDateTime">2012-06-20T01:56:39</value>
+       <value type="QDateTime">2012-09-04T02:30:17</value>
        <value type="QDateTime">2012-09-03T11:18:57</value>
        <value type="QDateTime">2012-07-08T14:14:22</value>
        <value type="QDateTime">2012-05-13T23:41:57</value>

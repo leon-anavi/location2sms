@@ -382,7 +382,7 @@ private:
     QString getButtonEmailText() const;
 
     /**
-      * Get Google Maps URL
+      * Get maps URL
       *
       * @param nZoom
       * @param nMapHeight
@@ -392,6 +392,18 @@ private:
       */
     QString getMapUrl(int nZoom, int nMapWidth,
                       int nMapHeight) const;
+
+    /**
+      * Get Google Maps Base URL
+      *
+      * @param nZoom
+      * @param nMapHeight
+      * @param nMapWidth
+      *
+      * @return Map URL
+      */
+    QString getGoogleMapBaseUrl(int nZoom, int nMapWidth,
+                                    int nMapHeight) const;
 
     /**
       * Handle Send Button

@@ -22,7 +22,7 @@ class Settings : public QObject
 
 public:
 
-    enum MapTypes { google, bing, nokia, openstreetmap, yandex };
+    enum MapTypes { google, bing, nokia, openstreetmap, yandex, googlesat };
 
 private:
 

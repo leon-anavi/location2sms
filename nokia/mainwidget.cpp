@@ -692,7 +692,7 @@ QString MainWidget::getMapUrl(int nZoom, int nMapWidth, int nMapHeight) const
     QString sUrl;
     if (Settings::bing == m_pSettings->getSelectedMap())
     {
-        sUrl += QString("http://dev.virtualearth.net/REST/v1/Imagery/Map/Road/");
+        sUrl = QString("http://dev.virtualearth.net/REST/v1/Imagery/Map/Road/");
         sUrl += QString("%1,%2/").arg(m_sLatitude).arg(m_sLongitude);
         sUrl += QString::number(nZoom);
         sUrl += QString("?mapSize=");
@@ -702,7 +702,7 @@ QString MainWidget::getMapUrl(int nZoom, int nMapWidth, int nMapHeight) const
     }
     else if (Settings::nokia == m_pSettings->getSelectedMap())
     {
-        sUrl += QString("http://m.nok.it/?app_id=");
+        sUrl = QString("http://m.nok.it/?app_id=");
         sUrl += QString("&token=");
         sUrl += QString("&c=%1,%2").arg(m_sLatitude).arg(m_sLongitude);
         sUrl += QString("&z=");
@@ -715,7 +715,7 @@ QString MainWidget::getMapUrl(int nZoom, int nMapWidth, int nMapHeight) const
     }
     else if (Settings::openstreetmap == m_pSettings->getSelectedMap())
     {
-        sUrl += QString("http://staticmap.openstreetmap.de/staticmap.php?center=");
+        sUrl = QString("http://staticmap.openstreetmap.de/staticmap.php?center=");
         sUrl += QString("%1,%2/").arg(m_sLatitude).arg(m_sLongitude);
         sUrl += QString("&zoom=");
         sUrl += QString::number(nZoom);
@@ -738,7 +738,7 @@ QString MainWidget::getMapUrl(int nZoom, int nMapWidth, int nMapHeight) const
             nMapWidth = 650;
         }
         //Yandex map is not accurate in many regions outside Russia
-        sUrl += QString("http://static-maps.yandex.ru/1.x/?ll=");
+        sUrl = QString("http://static-maps.yandex.ru/1.x/?ll=");
         sUrl += QString("%1,%2").arg(m_sLatitude).arg(m_sLongitude);
         sUrl += QString("&z=");
         sUrl += QString::number(nZoom);
@@ -749,19 +749,32 @@ QString MainWidget::getMapUrl(int nZoom, int nMapWidth, int nMapHeight) const
         sUrl += QString(",pm2lbm");
         qDebug() << sUrl;
     }
+    else if (Settings::googlesat == m_pSettings->getSelectedMap())
+    {
+        sUrl = getGoogleMapBaseUrl(nZoom, nMapWidth, nMapHeight);
+        sUrl += QString("&maptype=hybrid");
+    }
     else
     {
-        sUrl += QString("http://maps.googleapis.com/maps/api/staticmap?center=");
-        sUrl += QString("%1,%2").arg(m_sLatitude).arg(m_sLongitude);
-        sUrl += QString("&zoom=");
-        sUrl += QString::number(nZoom);
-        sUrl += QString("&size=");
-        sUrl += QString::number(nMapWidth);
-        sUrl += "x";
-        sUrl += QString::number(nMapHeight);
-        sUrl += QString("&sensor=false&markers=color:blue|label:O|");
-        sUrl += QString("%1,%2").arg(m_sLatitude).arg(m_sLongitude);
+        sUrl = getGoogleMapBaseUrl(nZoom, nMapWidth, nMapHeight);
     }
+    return sUrl;
+}
+//------------------------------------------------------------------------------
+
+QString MainWidget::getGoogleMapBaseUrl(int nZoom,
+                                        int nMapWidth, int nMapHeight) const
+{
+    QString sUrl = QString("http://maps.googleapis.com/maps/api/staticmap?&center=");
+    sUrl += QString("%1,%2").arg(m_sLatitude).arg(m_sLongitude);
+    sUrl += QString("&zoom=");
+    sUrl += QString::number(nZoom);
+    sUrl += QString("&size=");
+    sUrl += QString::number(nMapWidth);
+    sUrl += "x";
+    sUrl += QString::number(nMapHeight);
+    sUrl += QString("&sensor=false&markers=color:blue|label:O|");
+    sUrl += QString("%1,%2").arg(m_sLatitude).arg(m_sLongitude);
     return sUrl;
 }
 //------------------------------------------------------------------------------

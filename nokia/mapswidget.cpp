@@ -23,6 +23,7 @@ MapsWidget::MapsWidget(Settings* pSettings, QWidget *parent) :
     m_pButtonSelect->setText(getButtonText());
 
     new QListWidgetItem("Google", m_pList);
+    new QListWidgetItem("Google Satellite", m_pList);
     new QListWidgetItem("Bing", m_pList);
     new QListWidgetItem("Nokia", m_pList);
     new QListWidgetItem("OpenStreetMap", m_pList);
@@ -43,17 +44,20 @@ void MapsWidget::loadSettings()
     int nRow = 0;
     switch (m_pSettings->getSelectedMap())
     {
-        case Settings::bing:
+        case Settings::googlesat:
             nRow = 1;
         break;
-        case Settings::nokia:
+        case Settings::bing:
             nRow = 2;
         break;
-        case Settings::openstreetmap:
+        case Settings::nokia:
             nRow = 3;
         break;
-        case Settings::yandex:
+        case Settings::openstreetmap:
             nRow = 4;
+        break;
+        case Settings::yandex:
+            nRow = 5;
         break;
     }
     m_pList->setCurrentRow(nRow);
@@ -66,15 +70,18 @@ void MapsWidget::select()
     switch (m_pList->currentRow())
     {
         case 1:
-            eMap = Settings::bing;
+            eMap = Settings::googlesat;
         break;
         case 2:
-            eMap = Settings::nokia;
+            eMap = Settings::bing;
         break;
         case 3:
-            eMap = Settings::openstreetmap;
+            eMap = Settings::nokia;
         break;
         case 4:
+            eMap = Settings::openstreetmap;
+        break;
+        case 5:
             eMap = Settings::yandex;
         break;
     }
