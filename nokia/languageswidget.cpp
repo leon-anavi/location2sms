@@ -37,6 +37,7 @@ LanguagesWidget::LanguagesWidget(Settings* pSettings, QWidget *parent) :
     new QListWidgetItem(QString::fromUtf8("Čeština"), m_pList);
     new QListWidgetItem(QString::fromUtf8("Bahasa Indonesia"), m_pList);
     new QListWidgetItem(QString::fromUtf8("Русский"), m_pList);
+    new QListWidgetItem(QString::fromUtf8("Suomi"), m_pList);
 }
 //------------------------------------------------------------------------------
 
@@ -95,6 +96,9 @@ void LanguagesWidget::loadSelectedLanguage()
         break;
         case 9:
             loadRussian();
+        break;
+        case 10:
+            loadFinnish();
         break;
         default:
             //English
@@ -241,6 +245,21 @@ void LanguagesWidget::loadRussian()
     else
     {
         qDebug() << "Unable to load Russian translation.";
+    }
+
+    qApp->installTranslator(&m_Translator);
+}
+//------------------------------------------------------------------------------
+
+void LanguagesWidget::loadFinnish()
+{
+    if (m_Translator.load(":/translations/location2sms_fi"))
+    {
+        qDebug() << "Finnish translation loaded.";
+    }
+    else
+    {
+        qDebug() << "Unable to load Finnish translation.";
     }
 
     qApp->installTranslator(&m_Translator);

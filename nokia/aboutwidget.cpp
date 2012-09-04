@@ -88,7 +88,7 @@ void AboutWidget::changeEvent(QEvent* event)
 QString AboutWidget::getInfoText() const
 {
     QString sText = "<h2><i>location<span style=\"color: #006BC2;\">2</span>sms</i></h2>\n";
-    sText += "2.1.7<br />\n";
+    sText += "2.1.8<br />\n";
     sText += QChar(0x00A9);
     sText += " 2011-2012 Leon Anavi<br />\n"
         "http://anavi.org/<br />\n<br />\n";
@@ -99,7 +99,7 @@ QString AboutWidget::getInfoText() const
     sText += "<br />\n<br />\n";
     sText += tr("Privacy Policy");
     sText += "<br />\n";
-    sText += tr("The Application does not collect or transmits personally "
+    sText += tr("The Application does not collect or transmit personally "
                 "identifiable information and does not monitor your "
                 "personal use of the Application.");
     return sText;

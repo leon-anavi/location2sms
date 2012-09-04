@@ -77,6 +77,8 @@ private:
 
     void loadRussian();
 
+    void loadFinnish();
+
     void loadSelectedLanguage();
 
 };

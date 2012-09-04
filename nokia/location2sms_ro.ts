@@ -4,19 +4,23 @@
 <context>
     <name>AboutWidget</name>
     <message>
-        <location filename="aboutwidget.cpp" line="83"/>
+        <location filename="aboutwidget.cpp" line="95"/>
         <source>This is an open source application available under GPLv3 licence at Gitorious: https://gitorious.org/location2sms. The application depends on GPS quality that the device delivers. It is powered by Google Maps API and requires Internet connection.Position accuracy of about 20 meters can be expected. </source>
         <translation>Aceasta este o aplicație cu sursă deschisă, disponibilă sub licență GPLv3 la Gitorious: https://gitorious.org/location2sms. Aplicația este dependentă de calitatea informațiilor GPS furnizate de către dispozitiv. Este bazată pe Google Maps API și necesită conexiune la internet. Acuratețea scontată a poziției este în jur de 20 de metri.</translation>
     </message>
     <message>
-        <location filename="aboutwidget.cpp" line="88"/>
+        <location filename="aboutwidget.cpp" line="100"/>
         <source>Privacy Policy</source>
         <translation>Politica de confidenţialitate</translation>
     </message>
     <message>
-        <location filename="aboutwidget.cpp" line="90"/>
-        <source>The Application does not collect or transmits personally identifiable information and does not monitor your personal use of the Application.</source>
+        <location filename="aboutwidget.cpp" line="102"/>
+        <source>The Application does not collect or transmit personally identifiable information and does not monitor your personal use of the Application.</source>
         <translation>Aplicarea nu colectează sau transmite informaţii de identificare personală şi nu monitoriza utilizarea dumneavoastră personal de aplicare.</translation>
+    </message>
+    <message>
+        <source>The Application does not collect or transmits personally identifiable information and does not monitor your personal use of the Application.</source>
+        <translation type="obsolete">Aplicarea nu colectează sau transmite informaţii de identificare personală şi nu monitoriza utilizarea dumneavoastră personal de aplicare.</translation>
     </message>
 </context>
 <context>
@@ -126,7 +130,7 @@ Longitudine: %2</translation>
         <translation>Hartă</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="928"/>
+        <location filename="mainwidget.cpp" line="964"/>
         <source>Location Data</source>
         <translation>Date despre locație</translation>
     </message>
@@ -139,7 +143,7 @@ Longitudine: %2</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="469"/>
-        <location filename="mainwidget.cpp" line="792"/>
+        <location filename="mainwidget.cpp" line="828"/>
         <source>Exit</source>
         <translation>Ieșire</translation>
     </message>
@@ -147,12 +151,12 @@ Longitudine: %2</translation>
 <context>
     <name>MapsWidget</name>
     <message>
-        <location filename="mapswidget.cpp" line="102"/>
+        <location filename="mapswidget.cpp" line="116"/>
         <source>Map:</source>
         <translation>Harta:</translation>
     </message>
     <message>
-        <location filename="mapswidget.cpp" line="108"/>
+        <location filename="mapswidget.cpp" line="122"/>
         <source>OK</source>
         <translation>ОК</translation>
     </message>

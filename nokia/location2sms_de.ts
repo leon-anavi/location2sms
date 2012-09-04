@@ -4,19 +4,23 @@
 <context>
     <name>AboutWidget</name>
     <message>
-        <location filename="aboutwidget.cpp" line="83"/>
+        <location filename="aboutwidget.cpp" line="95"/>
         <source>This is an open source application available under GPLv3 licence at Gitorious: https://gitorious.org/location2sms. The application depends on GPS quality that the device delivers. It is powered by Google Maps API and requires Internet connection.Position accuracy of about 20 meters can be expected. </source>
         <translation>Diese Opensource-Anwendung (s. gitorius: https://gitorious.org/location2sms) steht unter der GPLv3 Lizenz. Die Anwendung verwendet die GPS Genauigkeit, die vom jeweiligen Gerät bereitgestellt wird. Es wird Google Maps verwendet und eine Internetverbindung benötigt. Mit einer Positionsgenauigkeit mit Abweichung von 20 Metern muss gerechnet werden.</translation>
     </message>
     <message>
-        <location filename="aboutwidget.cpp" line="88"/>
+        <location filename="aboutwidget.cpp" line="100"/>
         <source>Privacy Policy</source>
         <translation>Datenschutz</translation>
     </message>
     <message>
-        <location filename="aboutwidget.cpp" line="90"/>
-        <source>The Application does not collect or transmits personally identifiable information and does not monitor your personal use of the Application.</source>
+        <location filename="aboutwidget.cpp" line="102"/>
+        <source>The Application does not collect or transmit personally identifiable information and does not monitor your personal use of the Application.</source>
         <translation>Die Anwendung sammelt keine oder übermittelt persönliche Daten und überwacht nicht den persönlichen Gebrauch der Anwendung.</translation>
+    </message>
+    <message>
+        <source>The Application does not collect or transmits personally identifiable information and does not monitor your personal use of the Application.</source>
+        <translation type="obsolete">Die Anwendung sammelt keine oder übermittelt persönliche Daten und überwacht nicht den persönlichen Gebrauch der Anwendung.</translation>
     </message>
 </context>
 <context>
@@ -126,7 +130,7 @@ Länge: %2</translation>
         <translation>Karte</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="928"/>
+        <location filename="mainwidget.cpp" line="964"/>
         <source>Location Data</source>
         <translation>Lokationsdaten</translation>
     </message>
@@ -139,7 +143,7 @@ Länge: %2</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="469"/>
-        <location filename="mainwidget.cpp" line="792"/>
+        <location filename="mainwidget.cpp" line="828"/>
         <source>Exit</source>
         <translation>Beenden</translation>
     </message>
@@ -147,12 +151,12 @@ Länge: %2</translation>
 <context>
     <name>MapsWidget</name>
     <message>
-        <location filename="mapswidget.cpp" line="102"/>
+        <location filename="mapswidget.cpp" line="116"/>
         <source>Map:</source>
         <translation>Karte</translation>
     </message>
     <message>
-        <location filename="mapswidget.cpp" line="108"/>
+        <location filename="mapswidget.cpp" line="122"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>

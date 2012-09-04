@@ -4,20 +4,24 @@
 <context>
     <name>AboutWidget</name>
     <message>
-        <location filename="aboutwidget.cpp" line="83"/>
+        <location filename="aboutwidget.cpp" line="95"/>
         <source>This is an open source application available under GPLv3 licence at Gitorious: https://gitorious.org/location2sms. The application depends on GPS quality that the device delivers. It is powered by Google Maps API and requires Internet connection.Position accuracy of about 20 meters can be expected. </source>
         <oldsource>This is an open source application available under GPLv3 licence at Gitorious: https://gitorious.org/location2sms. The application depends on GPS quality that the device delivers. Position accuracy of about 20 meters can be expected. It is powered by Google Maps API and requires Internet connection.</oldsource>
         <translation>Location2sms je open source aplikace, jejíž zdrojové kódy najdete v repozitáři na https://gitorious.org/location2sms a to pod licencí GPLv3. Přesnost aplikace závisí na kvalitě GPS modulu zařízení. Aplikace využívá Google Maps API a vyžaduje připojení k Internetu. Můžete očekávat přesnost cca na 20 metrů. </translation>
     </message>
     <message>
-        <location filename="aboutwidget.cpp" line="88"/>
+        <location filename="aboutwidget.cpp" line="100"/>
         <source>Privacy Policy</source>
         <translation>Ochrana osobních údajů</translation>
     </message>
     <message>
-        <location filename="aboutwidget.cpp" line="90"/>
-        <source>The Application does not collect or transmits personally identifiable information and does not monitor your personal use of the Application.</source>
+        <location filename="aboutwidget.cpp" line="102"/>
+        <source>The Application does not collect or transmit personally identifiable information and does not monitor your personal use of the Application.</source>
         <translation>Aplikace neshromažďuje ani přenáší osobní informace a nesleduje osobní využití aplikace.</translation>
+    </message>
+    <message>
+        <source>The Application does not collect or transmits personally identifiable information and does not monitor your personal use of the Application.</source>
+        <translation type="obsolete">Aplikace neshromažďuje ani přenáší osobní informace a nesleduje osobní využití aplikace.</translation>
     </message>
 </context>
 <context>
@@ -131,7 +135,7 @@ Longitude: %2</source>
         <translation>Mapy</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="928"/>
+        <location filename="mainwidget.cpp" line="964"/>
         <source>Location Data</source>
         <translation>Lokalizační údaje</translation>
     </message>
@@ -144,7 +148,7 @@ Longitude: %2</source>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="469"/>
-        <location filename="mainwidget.cpp" line="792"/>
+        <location filename="mainwidget.cpp" line="828"/>
         <source>Exit</source>
         <translation>Výstup</translation>
     </message>
@@ -152,12 +156,12 @@ Longitude: %2</source>
 <context>
     <name>MapsWidget</name>
     <message>
-        <location filename="mapswidget.cpp" line="102"/>
+        <location filename="mapswidget.cpp" line="116"/>
         <source>Map:</source>
         <translation>Mapy: </translation>
     </message>
     <message>
-        <location filename="mapswidget.cpp" line="108"/>
+        <location filename="mapswidget.cpp" line="122"/>
         <source>OK</source>
         <translation>ОК</translation>
     </message>

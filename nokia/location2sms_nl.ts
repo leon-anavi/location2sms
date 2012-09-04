@@ -4,21 +4,25 @@
 <context>
     <name>AboutWidget</name>
     <message>
-        <location filename="aboutwidget.cpp" line="83"/>
+        <location filename="aboutwidget.cpp" line="95"/>
         <source>This is an open source application available under GPLv3 licence at Gitorious: https://gitorious.org/location2sms. The application depends on GPS quality that the device delivers. It is powered by Google Maps API and requires Internet connection.Position accuracy of about 20 meters can be expected. </source>
         <oldsource>This is an open source application available under GPLv3 licence at Gitorious: https://gitorious.org/location2sms. The application depends on GPS quality that the device delivers. Position accuracy of about 20 meters can be expected. It is powered by Google Maps API and requires Internet connection.</oldsource>
         <translatorcomment>Dit is een open source applicatie  en volgt de GPLv3 licentievoorwaarden. Location2sms is afhankelijk van de GPS nauwkeurigheid van uw smartphone. Google Maps wordt gebruikt en internetverbinding is nodig voor goede werking. De te verwachten nauwkeurigheid van de positie is 20 meter</translatorcomment>
         <translation>Dit is een open source applicatie  en volgt de GPLv3 licentievoorwaarden. Location2sms is afhankelijk van de GPS nauwkeurigheid van uw smartphone. Google Maps wordt gebruikt en internetverbinding is nodig voor goede werking. De te verwachten nauwkeurigheid van de positie is 20 meter.</translation>
     </message>
     <message>
-        <location filename="aboutwidget.cpp" line="88"/>
+        <location filename="aboutwidget.cpp" line="100"/>
         <source>Privacy Policy</source>
         <translation>Privacy Policy</translation>
     </message>
     <message>
-        <location filename="aboutwidget.cpp" line="90"/>
-        <source>The Application does not collect or transmits personally identifiable information and does not monitor your personal use of the Application.</source>
+        <location filename="aboutwidget.cpp" line="102"/>
+        <source>The Application does not collect or transmit personally identifiable information and does not monitor your personal use of the Application.</source>
         <translation>De aanvraag niet verzamelt of verstuurt persoonlijk identificeerbare informatie en niet te controleren uw persoonlijke gebruik van de Applicatie.</translation>
+    </message>
+    <message>
+        <source>The Application does not collect or transmits personally identifiable information and does not monitor your personal use of the Application.</source>
+        <translation type="obsolete">De aanvraag niet verzamelt of verstuurt persoonlijk identificeerbare informatie en niet te controleren uw persoonlijke gebruik van de Applicatie.</translation>
     </message>
 </context>
 <context>
@@ -132,9 +136,9 @@ Longitude: %2</source>
         <translation>Kaarten</translation>
     </message>
     <message>
-        <location filename="mainwidget.cpp" line="928"/>
+        <location filename="mainwidget.cpp" line="964"/>
         <source>Location Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Locatie Data</translation>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="36"/>
@@ -145,7 +149,7 @@ Longitude: %2</source>
     </message>
     <message>
         <location filename="mainwidget.cpp" line="469"/>
-        <location filename="mainwidget.cpp" line="792"/>
+        <location filename="mainwidget.cpp" line="828"/>
         <source>Exit</source>
         <translation>Uitgang</translation>
     </message>
@@ -153,12 +157,12 @@ Longitude: %2</source>
 <context>
     <name>MapsWidget</name>
     <message>
-        <location filename="mapswidget.cpp" line="102"/>
+        <location filename="mapswidget.cpp" line="116"/>
         <source>Map:</source>
         <translation>Kaarten:</translation>
     </message>
     <message>
-        <location filename="mapswidget.cpp" line="108"/>
+        <location filename="mapswidget.cpp" line="122"/>
         <source>OK</source>
         <translation>ОК</translation>
     </message>
