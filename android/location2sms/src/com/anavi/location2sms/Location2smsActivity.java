@@ -7,7 +7,6 @@ import java.util.Locale;
 
 import org.apache.http.client.ClientProtocolException;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -35,7 +34,6 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Location2smsActivity extends Activity implements LocationListener, OnSeekBarChangeListener
 {
@@ -228,7 +226,7 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 		String sLocation = "";
 		if (0 < m_sAddress.length())
         {
-            sLocation += getString(R.string.main_address) + m_sAddress + "\n";
+            sLocation += getString(R.string.main_address) + " " + m_sAddress + "\n";
         }
         sLocation += getString(R.string.main_latitude);
         sLocation += String.format(" %.5f", m_location.getLatitude());
