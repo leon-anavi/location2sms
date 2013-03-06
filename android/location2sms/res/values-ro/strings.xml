@@ -12,8 +12,8 @@
     <string name="main_latitude_label">Latitudine </string>
     <string name="main_longitude_label">Longitudine </string>
     <string name="main_address_label">Adresă </string>
-    <string name="about_info1">Aceasta este o aplicație cu sursă deschisă, disponibilă sub licență GPLv3 la %1$sGitorious: https://gitorious.org/location2sms%2$s.&#160;</string>
-    <string name="about_info2">Aplicația este dependentă de calitatea informațiilor GPS furnizate de către dispozitiv. Este bazată pe Google Maps API și necesită conexiune la internet. Acuratețea scontată a poziției este în jur de 20 de metri.</string>
+    <string name="about_info1">Aceasta este o aplicație cu sursă deschisă, disponibilă sub licență GPLv3 la %1$sGitorious: https://gitorious.org/location2sms%2$s. </string>
+    <string name="about_info2">Aplicația este dependentă de calitatea informațiilor GPS furnizate de către dispozitiv. Este bazată pe Google Maps API și necesită conexiune la internet. Acuratețea scontată a poziției este în jur de 20 de metri. </string>
     <string name="about_privacy_policy_title">Politica de confidenţialitate</string>
     <string name="about_privacy_policy_text">Aplicarea nu colectează sau transmite informaţii de identificare personală şi nu monitoriza utilizarea dumneavoastră personal de aplicare.</string>
 	
