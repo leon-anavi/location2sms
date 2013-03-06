@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">location2sms</string>
+    <string name="buttonMainLeft">SMS</string>
+    <string name="buttonMainRight">E-mail</string>
+    <string name="menu_settings">Asetukset</string>
+    <string name="menu_about">Tietoja</string>
+    <string name="main_address">Osoite: </string>
+    <string name="main_latitude">Leveysaste: </string>
+    <string name="main_longitude">Pituusaste: </string>
+    <string name="main_sent_from">Lähetetty ohjelmasta %s</string>
+    <string name="main_latitude_label">Leveysaste </string>
+    <string name="main_longitude_label">Pituusaste </string>
+    <string name="main_address_label">Osoite </string>
+    <string name="about_info1">Tämä avoimen lähdekoodin sovellus on saatavilla GPLv3 lisenssillä %1$sGitorious: https://gitorious.org/location2sms%2$s.</string>
+    <string name="about_info2">Ohjelman toiminta on riippuvainen laitteen antaman GPS singnaalin laadusta. Se käyttää Google Maps API:a ja vaatii toimiakseen internet-yhteyden. Tarkkuus on noin 20 metriä. </string>
+    <string name="about_privacy_policy_title">PYksityisyys</string>
+    <string name="about_privacy_policy_text">Sovellus ei kerää tai jaa henkilökohtaisia tietojasi eikä tarkkaile miten käytät ohjelmaa.</string>
+	
+</resources>
