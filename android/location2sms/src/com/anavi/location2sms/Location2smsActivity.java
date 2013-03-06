@@ -7,6 +7,7 @@ import java.util.Locale;
 
 import org.apache.http.client.ClientProtocolException;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -14,14 +15,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.text.Html;
 import android.view.Display;
 import android.view.Menu;
@@ -65,8 +64,6 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	private UrlShortener m_urlShortener;
 	
 	private Bitmap m_imageMap = null;
-	
-	private Handler m_handler = null;
 	
 	private static final int m_nUpdateFrequency = 20000;
 	
@@ -379,33 +376,10 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 		}
 		
 		m_labelCoordinates = (TextView) findViewById(R.id.labelCoordinates);
-				
-		final ReverseGeocoding reverseGeocoder = new ReverseGeocoding();
-				
-		m_handler = new Handler() 
-		{
-			public void handleMessage(Message msg) 
-			{
-				switch(msg.what)
-				{
-					case 1:
-						loadAddress();
-						loading(false);
-					break;
-					case 2:
-						m_ImageMap.setImageBitmap(m_imageMap);
-						m_ImageMap.setVisibility(View.VISIBLE);
-					break;
-					case 3:
-						m_ImageMap.setVisibility(View.GONE);
-					break;
-				}
-			}
-			
-		};
 		
 		//start new threads for retrieving information
-		loadAddress(reverseGeocoder);
+		new AddressLoader().execute();
+		
 		String sMapUrl = getMapUrl(m_mapZoomSlider.getProgress(), 
 									m_nMapWidth, m_nMapHeight);
 		loadMap(sMapUrl);
@@ -442,6 +416,8 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	 */
 	private void loadMap(final String sUrl)
 	{
+		new MapLoader().execute(sUrl);
+		/*
 		Thread threadLocationData = new Thread() 
 		{  
 			public void run() 
@@ -474,44 +450,111 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 
 			}
 		};
-		threadLocationData.start();
+		threadLocationData.start();*/
 	}
 	//------------------------------------------------------------------------------
 
 	/**
 	 * Download XML and retrieve address from geo coordinates
-	 * 
-	 * @param reverseGeocoder
 	 */
-	private void loadAddress(final ReverseGeocoding reverseGeocoder)
-	{
-		Thread threadLocationData = new Thread() 
-		{  
-			public void run() 
+	private class AddressLoader extends AsyncTask<Void, Void, Void> {
+			
+		@Override
+		protected Void doInBackground(Void... urls) 
+		{	
+			try
 			{
-				try 
-				{
-					//download data
-					reverseGeocoder.getGeoDataOverHttp(m_location.getLatitude(), 
-							m_location.getLongitude());
-					//parse data and retrieve address
-					reverseGeocoder.loadAddress();
-					//save address
-					m_sAddress = reverseGeocoder.getAddress();
-					//emit a signal to show the address
-					m_handler.sendEmptyMessage(1);
-				} 
-				catch (IOException e) 
-				{
-					//Nothing to do
-				}
-
+				ReverseGeocoding reverseGeocoder = new ReverseGeocoding();
+				//download data
+				reverseGeocoder.getGeoDataOverHttp(m_location.getLatitude(), 
+						m_location.getLongitude());
+				//parse data and retrieve address
+				reverseGeocoder.loadAddress();
+				m_sAddress = reverseGeocoder.getAddress();
 			}
-		};
-		threadLocationData.start();
-	}
+			catch (IOException e) 
+			{
+				//Nothing to do
+			}
+			return null;
+		}
+		//------------------------------------------------------------------------------
+
+		protected void onProgressUpdate(Void... progress) 
+		{
+			//Nothing to do
+		}
+		//------------------------------------------------------------------------------
+
+		protected void onPostExecute(Void result) 
+		{
+			loadAddress();
+			loading(false);
+		}
+		//------------------------------------------------------------------------------
+
+	 }
 	//------------------------------------------------------------------------------
 
+	/**
+	 * Download and load the map
+	 */
+	private class MapLoader extends AsyncTask<String, Void, Integer> {
+			
+		@Override
+		protected Integer doInBackground(String... urlArray) 
+		{	
+			if (0 == urlArray.length)
+			{
+				//Missing argument
+				return -1;
+			}
+			if (0 == urlArray[0].length())
+			{
+				return -2;
+			}
+			
+			try 
+			{
+				URL url = new URL(urlArray[0]);
+				m_imageMap = BitmapFactory.decodeStream(
+								url.openConnection().getInputStream());
+			} 
+			catch (MalformedURLException e) 
+			{
+				return -2;
+			}
+			catch (IOException e) 
+			{
+				return -3;
+			}
+			return 0;
+		}
+		//------------------------------------------------------------------------------
+
+		protected void onProgressUpdate(Void... progress) 
+		{
+			//Nothing to do
+		}
+		//------------------------------------------------------------------------------
+
+		protected void onPostExecute(Integer result) 
+		{
+			if (0 == result)
+			{
+				m_ImageMap.setImageBitmap(m_imageMap);
+				m_ImageMap.setVisibility(View.VISIBLE);
+			}
+			else
+			{
+				m_ImageMap.setVisibility(View.GONE);
+			}
+		}
+		//------------------------------------------------------------------------------
+
+	 }
+	//------------------------------------------------------------------------------
+	
 	/**
 	 * Get URL to static map
 	 * 
@@ -586,12 +629,11 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) 
 	{
 		//reload map
-		if ( (null != m_location) && (null != m_handler) )
+		if (null != m_location)
 		{
 			String sMapUrl = getMapUrl(m_mapZoomSlider.getProgress(), 
 					m_nMapWidth, m_nMapHeight);
 			loadMap(sMapUrl);
-			//TODO: loadImage(getMapUrl(m_mapZoomSlider.getProgress(), m_nMapWidth, m_nMapHeight));
 		}
 	}
 	//------------------------------------------------------------------------------
