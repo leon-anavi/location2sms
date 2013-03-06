@@ -36,14 +36,13 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Location2smsActivity extends Activity implements LocationListener, OnSeekBarChangeListener
 {
-	private static boolean m_bPlaybook = true;
+	private static boolean m_bPlaybook = false;
 
 	private LocationManager m_locationManager;
-	
-	private String m_sBestProvider;
 	
 	private Location m_location  = null;
 	
@@ -69,6 +68,8 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	
 	private Handler m_handler = null;
 	
+	private static final int m_nUpdateFrequency = 20000;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -83,11 +84,9 @@ public class Location2smsActivity extends Activity implements LocationListener, 
         setContentView(R.layout.main);
         
         loading(true);
-            
+        
     	// Get the location manager
  		m_locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
- 		//get the best provider
- 		m_sBestProvider = (true == m_bPlaybook) ? "gps" : m_locationManager.getBestProvider(new Criteria(), false);
  		
  		boolean bIsTablet = getResources().getBoolean(R.bool.isTablet);
  		double nMapCoefLandscape = 0.52;
@@ -180,7 +179,8 @@ public class Location2smsActivity extends Activity implements LocationListener, 
  		
  		m_mapZoomSlider.setProgress(14);
  		
- 		m_location = m_locationManager.getLastKnownLocation(m_sBestProvider);
+ 		m_location = m_locationManager.getLastKnownLocation(
+ 												LocationManager.NETWORK_PROVIDER);
  		positionUpdated();
     }
 	//------------------------------------------------------------------------------
@@ -190,7 +190,12 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	protected void onResume() 
 	{
 		super.onResume();
-		m_locationManager.requestLocationUpdates(m_sBestProvider, 20000, 1, this);
+		//Listen for location data from GPS
+		m_locationManager.requestLocationUpdates(
+				LocationManager.GPS_PROVIDER, m_nUpdateFrequency, 1, this);
+		//Listen for location data from the network
+		m_locationManager.requestLocationUpdates(
+				LocationManager.NETWORK_PROVIDER, m_nUpdateFrequency, 1, this);
 	}
 	//------------------------------------------------------------------------------
 
@@ -256,8 +261,86 @@ public class Location2smsActivity extends Activity implements LocationListener, 
 	}
 	//------------------------------------------------------------------------------
 
+	/** 
+	 * Compare providers
+	 * 
+	 * @param sProvider1 provider 1
+	 * @param sProvider2 provider 2
+	 * 
+	 * @return boolean
+	 */
+	private boolean isSameProvider(String sProvider1, String sProvider2) 
+	{
+	    if (null == sProvider1) 
+	    {
+	      return (null == sProvider2);
+	    }
+	    return sProvider1.equals(sProvider2);
+	}
+	//------------------------------------------------------------------------------
+
+	/** Determines whether one Location reading is better than the current Location fix
+	  * 
+	  * @param location  The new Location that you want to evaluate
+	  * @param currentBestLocation  The current Location fix, to which you want to compare the new one
+	  * 
+	  * @return boolean
+	  */
+	private boolean isBetterLocation(Location location, Location currentBestLocation) 
+	{
+	    if (null == currentBestLocation) 
+	    {
+	        // A new location is always better than no location
+	        return true;
+	    }
+
+	    // Check whether the new location fix is newer or older
+	    long timeDelta = location.getTime() - currentBestLocation.getTime();
+	    boolean isSignificantlyNewer = timeDelta > m_nUpdateFrequency;
+	    boolean isSignificantlyOlder = timeDelta < -m_nUpdateFrequency;
+	    boolean isNewer = timeDelta > 0;
+
+	    if (isSignificantlyNewer) 
+	    {
+	    	// If it's been more than two minutes since the current location, use the new location
+	    	// because the user has likely moved
+	        return true;
+	    
+	    } 
+	    else if (isSignificantlyOlder) 
+	    {
+	    	// If the new location is more than two minutes older, it must be worse
+	        return false;
+	    }
+
+	    // Check whether the new location fix is more or less accurate
+	    int accuracyDelta = (int) (location.getAccuracy() - currentBestLocation.getAccuracy());
+	    boolean isLessAccurate = accuracyDelta > 0;
+	    boolean isMoreAccurate = accuracyDelta < 0;
+	    boolean isSignificantlyLessAccurate = accuracyDelta > 200;
+
+	    // Check if the old and new location are from the same provider
+	    boolean isFromSameProvider = isSameProvider(location.getProvider(),
+	            currentBestLocation.getProvider());
+
+	    // Determine location quality using a combination of timeliness and accuracy
+	    if (isMoreAccurate) {
+	        return true;
+	    } else if (isNewer && !isLessAccurate) {
+	        return true;
+	    } else if (isNewer && !isSignificantlyLessAccurate && isFromSameProvider) {
+	        return true;
+	    }
+	    return false;
+	}
+	//------------------------------------------------------------------------------
+
 	public void onLocationChanged(Location location) 
 	{
+		if (false == isBetterLocation(location, m_location))
+		{
+			return;
+		}
 		m_location = location;
 		positionUpdated();
 	}
